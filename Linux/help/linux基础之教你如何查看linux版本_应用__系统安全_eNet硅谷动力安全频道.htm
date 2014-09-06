@@ -1,0 +1,892 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta content=IE=EmulateIE7 http-equiv=X-UA-Compatible>
+<script type="text/javascript">
+<!--
+aid="20080828351133";
+atitle='linux%BB%F9%B4%A1%D6%AE%BD%CC%C4%E3%C8%E7%BA%CE%B2%E9%BF%B4linux%B0%E6%B1%BE';a_date="2008-08-28 14:23";a_author="转自 安全中国";a_source="eNet硅谷动力";a_type="7";a_editor="baining";a_acid="4199";a_acname="系统安全";a_pid="";cp_name="";
+var siteid="security";
+//-->
+</script>
+<title>linux基础之教你如何查看linux版本_应用__系统安全_eNet硅谷动力安全频道</title>
+<meta name="keywords" content="linux基础之教你如何查看linux版本  应用  系统安全"/>
+<meta name="description" content="如何得知自己正在使用的linux是什么版本呢，下面的几种方法将给你带来答案！"/>
+<link href="/article_new/v4/css/model.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="content">
+ 
+<style>
+.fra980{ width:980px; margin:0 auto; height:110px; overflow:hidden}
+.fra980 *{ padding:0; margin:0; font:12px "宋体";}
+.fra980 a{ text-decoration:none; color:#000000}
+.fra980 img{ border:0;}
+.clear {clear:both;font-size:1px; width:1px; visibility: hidden; height:1px;margin:0px;padding:0px; line-height:1px;}
+.hearder{ width:978px; border:1px solid #CCDEF4;}
+.hearder .topnav{ background:url(http://www.enet.com.cn/home/v4/images/tophead.gif) repeat-x; width:978px; margin:1px 0; height:88px; padding-top:12px; }
+.hearder .topnav .logo{ float:left;margin:14px 6px 0 6px;display:inline}
+.hearder .topnav .topsub{ float:left; margin-left:4px; display:inline}
+.hearder .topnav .topsub .tl{ background:url(http://www.enet.com.cn/home/v4/images/headpic.jpg) no-repeat; width:32px; height:37px; padding:7px 0 0 8px; font-weight:bold; line-height:19px;margin-right:4px; float:left}
+.hearder .topnav .topsub .tl a{ font-weight:bold; line-height:19px}
+.hearder .topnav .topsub .tr{ float:left; color:#666666; margin-top:7px; line-height:19px}
+.hearder .topnav .topsub .tr a{ color:#666}
+.hearder .topnav .dqdate{ float:left; color:#666; line-height:26px; height:26px; width:155px; text-align:center; margin:9px 0 0 8px; display:inline}
+.hearder .topnav .subnav{ float:left; width:952px; height:24px; border:1px solid #677693; background:#0F60AF; margin-top:10px; padding-left:7px; margin-left:7px;display:inline}
+.hearder .topnav .subnav .sleft{ float:left; height:24px; line-height:24px; color: #fff; width:620px; overflow:hidden}
+.sleft a{ color: #fff; display: inline; margin:0 3px}
+.sleft a:hover{ color:#fff}
+.hearder .topnav .subnav .sright{ float:left; margin-top:2px;}
+.sright input{ float:left;width:58px; height:14px; border:1px solid  #8298C1; padding:2px 0 2px 7px; margin-right:6px; color:#99999B }
+.hearder .topnav .itcpnew{ float:left;height:20px;background:url(http://www.enet.com.cn/home/v4/images/itcpbg.jpg) repeat-x; width:165px; margin-top:10px; text-align:center; color:#033991; font-size:14px; padding-top:6px}
+.hearder .topnav .itcpnew a{color:#033991; font-size:14px}
+.hearder .topnav .itcpnew img{ vertical-align:middle;}
+.hearder .topnav .subnavb{ float:left; width:802px; height:24px; border:1px solid #7B8DA5; border-left:none; background:#0F60AF; margin-top:10px; padding-left:10px; margin-left:-1px}
+.hearder .topnav .subnavb .sleft{ float:left; height:24px; line-height:24px; color: #fff; width:555px;}
+.sleft a{ color: #fff; display: inline; margin:0 2px}
+.sleft a:hover{ color:#fff}
+.hearder .topnav .subnavb .sleft .hs {color: #fff;font-weight: bold;}
+.hearder .topnav .subnavb .sright{ float:left; margin-top:2px; width:236px; }
+.sright .login{ background:url(http://www.enet.com.cn/home/v4/images/headpic.jpg) no-repeat 0 -50px; width:38px; height:17px; float:left; padding-top:3px; text-align:center; color:#063B81; margin-right:6px}
+.sright .login a{ color:#063B81}
+.sright select{ width:66px; height:19px; float:left}
+.hearder .midnav{ width:978px; background:url(http://www.enet.com.cn/home/v4/images/topbg.gif) repeat-x; height:64px; background-color:#fff; padding:9px 0 0;border-top:1px solid #CCDEF4; }
+.hearder .midnav .cpsearch{ width:973px; height:27px;padding-left:5px; font-weight:bold;}
+.hearder .midnav .cpsearch .lg{ background:url(http://www.enet.com.cn/home/v4/images/headpic.jpg) no-repeat -46px 0; width:28px; height:24px; float:left}
+.hearder .midnav .cpsearch .keywords{ float:left; width:116px; height:18px; margin-top:2px; line-height:18px; padding-left:14px}
+.hearder .midnav .cpsearch .cx{ height:27px; line-height:27px; font-weight:bold; float:left}
+.hearder .midnav .cpsearch .lb{ float:left; width:115px; height:23px; margin-top:2px}
+.hearder .midnav .cpsearch .brand{ float:left; width:98px; height:23px; margin-top:2px}
+.hearder .midnav .cpsearch .wznr{ float:left; width:115px; height:18px; margin-top:2px; line-height:18px;}
+.hearder .midnav .cplb{ margin:8px 0 0 16px; width:960px;}
+.hearder .midnav .cplb li{ float:left; margin-right:6px}
+.hearder .midnav .cplb li.fk{ background:url(http://www.enet.com.cn/home/v4/images/headpic.jpg) no-repeat -46px -28px; width:62px; height:15px; text-align:center; padding-top:6px}
+.hearder .midnav .cplb li.bq{ background:url(http://www.enet.com.cn/home/v4/images/headpic.jpg) no-repeat -46px -53px; width:63px; height:20px; text-align:center; padding-top:6px; text-align:center; font-weight:bold; color:#fff }
+.hearder .midnav .cplb li.bq a{font-weight:bold; color:#fff}
+.hearder .midnav .cplb li.jrcpk{font-weight:bold; width:70px;color:#033A8C; float:right; margin:2px 25px 0 0px; display:inline}
+.hearder .midnav .cplb li.jrcpk a{color:#033A8C;font-weight:bold;}
+.hearder .tjcon{ width:978px; height:76px}
+.hearder .tjcon .tjpb{ float:left; width:470px; margin-left:15px; display:inline}
+.hearder .tjcon .tjpb .tjpb_tit{ background:url(http://www.enet.com.cn/home/v4/images/headpic.jpg) no-repeat -111px -31px; width:29px; height:39px; padding:5px 10px; color:#434144; font-weight:bold; line-height:19px; float:left; margin:13px 8px 0 0}
+.hearder .tjcon .tjpb .tjtxt{ float:left; width:76px; color: #1D3A86; padding-left:6px; height:14px; margin:9px 0 2px;overflow:hidden}
+.hearder .tjcon .tjpb .tjtxt2{ float:left; width:96px; color: #1D3A86; padding-left:6px; height:14px; margin:9px 0 2px; overflow:hidden}
+.hearder .tjcon .tjpb .tjtxt a,.hearder .tjcon .tjpb .tjtxt2 a{color: #1D3A86;}
+.hearderbot{ border-top:1px solid #A8B3C5; border-bottom:1px solid #A8B3C5; width:980px; height:4px; background:#BFD5E2; overflow:hidden}
+
+
+
+
+/*2011316补样式*/
+.hearder .topnav .elogo{ float:left;margin:10px 6px 0 13px;display:inline; width:150px;}
+.hearder .topnav .topsubleft{ float:left;background:url(http://www.enet.com.cn/home/v4/images/topsubleft.jpg) no-repeat; width:37px; height:49px; padding:4px 0 0 7px; color:#dc1506; font-size:14px; font-weight:bold; line-height:22px; display:inline}
+.hearder .topnav .topsubleft a{ color:#dc1506; font-size:14px; font-weight:bold;line-height:22px;}
+.hearder .topnav .topsubright{ float:left; margin-left:14px; display:inline}
+.hearder .topnav .topsubright .tlnew{ background:url(http://www.enet.com.cn/home/v4/images/topsub3.jpg) no-repeat; width:31px; height:45px; padding:7px 0 0 8px; font-weight:bold; line-height:22px;margin-right:8px; float:left;}
+.hearder .topnav .topsubright .tlnew a{ font-weight:bold; line-height:21px}
+.hearder .topnav .topsubright .trnew{ float:left; color:#666666; margin-top:0px; line-height:18px}
+.hearder .topnav .topsubright .trnew a:hover{text-decoration:underline; color:#c00; }
+.marL11{ margin-left:11px}  
+.marL14{ margin-left:14px}
+
+
+
+
+</style>
+<div class="fra980">
+    <div class="hearder">
+      <div class="topnav">
+ <div style="height:55px;">
+   <div class="elogo"><a href="http://www.enet.com.cn/" target="_blank"><img src="http://www.enet.com.cn/home/v4/images/logo.jpg" /></a></div>
+   <div class="topsubleft"><a href="http://www.enet.com.cn/enews/" target="_blank">资讯中心</a></div>
+   <div class="topsubright">
+      <div class="tlnew"><a href="http://www.enet.com.cn/edigi" target="_blank">数码</a><br /><a href="http://www.enet.com.cn/digitalhome" target="_blank">家电</a></div>      <div class="trnew"><a href="http://www.enet.com.cn/dc" target="_blank">DC·DV</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/digitalhome/alist6580_100_2.html" target="_blank">液晶电视</a><br /><a href="http://www.enet.com.cn/digitalhome/atlist0_3D%B5%E7%CA%D3.html" target="_blank">3D电视</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/ebook" target="_blank">电子书</a>  <br /> <a href="http://www.enet.com.cn/digitalhome/alist7541_100_2.html" target="_blank">家庭影院</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/gps" target="_blank">GPS</a></div>
+   </div>
+   <div class="topsubright">
+      <div class="tlnew">电脑整机</div>
+      <div class="trnew"><a href="http://www.enet.com.cn/notebook" target="_blank">笔记本</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/computer" target="_blank">台式机</a><br/><a href="http://www.enet.com.cn/famlypc" target="_blank">家用电脑</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/emobile" target="_blank">手机</a><br /><a href="http://www.enet.com.cn/printer" target="_blank">打印机</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/projector" target="_blank">投影机</a></div>
+   </div>   
+   <div class="topsubright">
+      <div class="tlnew"><a href="http://www.enet.com.cn/hardwares" target="_blank">硬件DIY</a></div>
+      <div class="trnew"><a href="http://www.enet.com.cn/cpu" target="_blank">三大件</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/motherboard" target="_blank">板卡</a>  <br/><a href="http://www.enet.com.cn/other" target="_blank">外设</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/display" target="_blank">显示器 </a><br/> <a href="http://www.enet.com.cn/audio" target="_blank">音箱</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/other/alist6046.html" target="_blank">鼠标</a></div>
+   </div>
+   <div class="topsubright">
+      <div class="tlnew"><a href="http://www.enet.com.cn/application" target="_blank">企业应用</a></div>
+      <div class="trnew"><a href="http://www.enet.com.cn/cio" target="_blank">CIO</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/security" target="_blank">网络安全</a>   <a href="http://www.enet.com.cn/storage" target="_blank">企业存储</a> <br/>   <a href="http://www.enet.com.cn/esoftware" target="_blank">商用软件</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/server" target="_blank">服务器</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/networks" target="_blank">通信</a><br />   <a href="http://www.enet.com.cn/businesspc" target="_blank">商用电脑</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/solution" target="_blank">解决方案</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/oa" target="_blank">办公</a></div>
+   </div>
+   <div class="topsubleft marL14"><a href="http://product.enet.com.cn" target="_blank">产品大全</a></div>
+   <div class="topsubleft marL14"><a href="http://auto.enet.com.cn" target="_blank">汽车中心</a></div>
+     <div class="clear"></div>
+   </div>
+   <div class="clear"></div>
+   <div class="itcpnew"><img src="http://www.enet.com.cn/home/v4/images/sjn.jpg" />&nbsp;<a href="http://www.enet.com.cn/lab/" target="_blank">IT产品评测中心</a></div>
+   <div class="subnavb" >
+     <div class="sleft" ><a href="http://www.enet.com.cn/pad/" target="_blank">平板电脑</a>│<a href="http://www.enet.com.cn/aio/" target="_blank">一体电脑</a>│<a href="http://www.enet.com.cn/emobile/alist4823.html" target="_blank">智能手机</a>│<a href="http://www.enet.com.cn/elady/" target="_blank">IT女性</a>│<a  href="http://www.enet.com.cn/pic/" target="_blank">图片</a>│<a href="http://discovery.enet.com.cn/" target="_blank">科学</a>&nbsp;&nbsp;<a href="http://games.enet.com.cn/" target="_blank" class="hs">游戏</a><b class="hs">&middot;</b><a href="http://www.enet.com.cn/eschool/" target="_blank" class="hs">学院</a><b class="hs">&middot;</b><a href="http://download.enet.com.cn/" target="_blank" class="hs">下载</a><b class="hs">&middot;</b><a href="http://bbs.enet.com.cn/" target="_blank" class="hs">论坛</a>&nbsp;&nbsp;<a href="http://www.enet.com.cn/city/hn/" target="_blank">华南特区</a></div>
+     <div class="sright">
+     	<form id="eLogin1" name="eLogin1" action="http://pass.enet.com.cn/dispatcher.jsp" method="post" target="_blank">
+     		<input type="text" name="userid" value="用户名" onmouseover="this.focus()" onfocus="this.select()" onclick="this.value=''" /><input type="password" name="password" value="pwd" onmouseover="this.focus()" onfocus="this.select()" onclick="this.value=''" /><div class="login"><a href="javascript:;" onclick="dologin(eLogin1);">登录</a></div><div class="login" style="margin-right:0"><a href="http://pass.enet.com.cn/regist.jsp" target="_blank">注册</a></div><input type="hidden" name="channel" value="pass"/><!--select name="channel" class="bor_gray"><option value="pass" selected>通行证</option><option value="store">经销商</option></select-->
+     	</form>
+     </div>
+   </div>
+</div>
+<script>
+function getzqliD(artdate,acolor){
+	/*var dstr = artdate;
+  var dre = /([^\[]+?)(?=\])/gi;
+  dstr = dstr.match(dre);
+  var mydstr = String(dstr).split("/");
+  var bdstr = mydstr[1];*/
+	var mydate;
+	var Day;
+	var Mon;
+	mydate=new Date();
+	var formtartdate="<font color="+acolor+">"+artdate+"</font>";
+	if (String(mydate.getDate()).length>1){
+		Day=mydate.getDate();
+	}else{
+		Day="0"+mydate.getDate();
+	}
+	if (String(mydate.getMonth()+1).length>1){
+		Mon=parseInt(mydate.getMonth()+1);
+	}else{
+		Mon="0"+parseInt(mydate.getMonth()+1)
+	}
+	mydate="["+Mon+"/"+Day+"]";
+	if (String(mydate)==artdate){
+		document.write(formtartdate);
+	}else{
+		document.write(artdate);
+	}
+}
+</script>
+    <div class="clear"></div>
+  </div>
+</div>
+  <div class="blank6"></div>
+ <div class="fra">
+	<div class="con690" id="204"><!-- ENETAD --></div>
+	<div class="con280" id="205"><!-- ENETAD --></div>
+</div>
+ <div class="blank6"></div>
+ <div class="fra">
+  <!--include virtual="/audio/v4/includes/subtop.shtml"-->
+  <div class="clear"></div>
+   <div class="dqwz">
+    <div class="dqwz_left">当前位置&nbsp;&gt;&nbsp;<a href="http://www.enet.com.cn/" target="_blank">硅谷动力首页</a>&nbsp;&gt;&nbsp;<a href="/security/" target="_blank">安全</a>&nbsp;&gt;&nbsp;<a href="/security/alist4199.html" target="_blank">系统安全</a></div><form name="asearch" method="get" action="http://eso.enet.com.cn/s" target="_blank">
+<div class="dqwz_right">更多文章查询：<input type="text" value="" name="q" />&nbsp;<img style="cursor:pointer;" src="/article_new/v4/images/wzcx.jpg" onclick="asearch.submit();" /></div>
+</form>
+   </div>
+   <div class="clear"></div>
+    </div>
+ <div class="clear"></div>
+ <div class="fra">
+<!--征文-->
+  <div class="con690">
+   <div class="secpic_con">
+    <h1>linux基础之教你如何查看linux版本</h1>
+     <div class="wzrq"><a href="http://www.enet.com.cn/security/" target="_blank">http://www.enet.com.cn/security/</a>&nbsp;&nbsp;2008年08月28日14：23&nbsp;&nbsp;来源：eNet硅谷动力&nbsp;&nbsp;作者:转自 安全中国&nbsp;&nbsp;字号：<a href="javascript:ts('acontent',-1)">小</a> | <span><a href="javascript:ts('acontent',1)">大</a></span></div>
+	   <div class="wzjj">【文章摘要】如何得知自己正在使用的linux是什么版本呢，下面的几种方法将给你带来答案！</div>	   		    <div class="clear"></div>
+	    <div class="wzcon" id="acontent">
+		 		<div class="wznr"> 　　如何得知自己正在使用的linux是什么版本呢，下面的几种方法将给你带来答案！<br/><br/>　　1. 查看内核版本命令：<br/><br/>　　1) [root@q1test01 ~]# cat /proc/version  <br/><br/>　　  Linux version 2.6.9-22.ELsmp (bhcompile@crowe.devel.redhat.com) (gcc version 3.4.4 20050721 (Red Hat 3.4.4-2)) #1 SMP Mon Sep 19 18:00:54 EDT 2005  <br/><br/>　　2) [root@q1test01 ~]# uname -a  <br/><br/>　　Linux q1test01 2.6.9-22.ELsmp #1 SMP Mon Sep 19 18:00:54 EDT 2005 x86_64 x86_64 x86_64 GNU/Linux  <br/><br/>　　3) [root@q1test01 ~]# uname -r  <br/><br/>　　2.6.9-22.ELsmp <br/><br/>　　2. 查看linux版本：<br/><br/>　　1) 登录到服务器执行 lsb_release -a ,即可列出所有版本信息,例如:<br/><br/>　　[root@3.5.5Biz-46 ~]# [root@q1test01 ~]# lsb_release -a  <br/><br/>　　LSB Version:    :core-3.0-amd64:core-3.0-ia32:core-3.0-noarch:graphics-3.0-amd64:graphics-3.0-   <br/><br/>　　ia32:graphics-3.0-noarch  <br/><br/>　　Distributor ID: RedHatEnterpriseAS  <br/><br/>　　Description:    Red Hat Enterprise Linux AS release 4 (Nahant Update 2)  <br/><br/>　　Release:        4  <br/><br/>　　Codename:      NahantUpdate2  <br/><br/>　　注:这个命令适用于所有的linux，包括Redhat、SuSE、Debian等发行版。<br/><br/>　　2) 登录到linux执行cat /etc/issue,例如如下:  <br/><br/>　　[root@q1test01 ~]# cat /etc/issue  <br/><br/>　　Red Hat Enterprise Linux AS release 4 (Nahant Update 2)  <br/><br/>　　Kernel \r on an \m<br/><br/>　　3) 登录到linux执行cat /etc/redhat-release ,例如如下:  <br/><br/>　　[root@q1test01 ~]# cat /etc/redhat-release  <br/><br/>　　Red Hat Enterprise Linux AS release 4 (Nahant Update 2)  <br/><br/>　　注:这种方式下可以直接看到具体的版本号，比如 AS4 Update 1  <br/><br/>　　4)登录到linux执行rpm -q redhat-release ,例如如下:  <br/><br/>　　[root@q1test01 ~]# rpm -q redhat-release<br/><br/>　　redhat-release-4AS-3  <br/><br/>　　注:这种方式下可看到一个所谓的release号，比如上边的例子是3<br/><br/>　　这个release号和实际的版本之间存在一定的对应关系，如下：  <br/><br/>　　redhat-release-3AS-1 -> Redhat Enterprise Linux AS 3  <br/><br/>　　redhat-release-3AS-7.4 -> Redhat Enterprise Linux AS 3 Update 4  <br/><br/>　　redhat-release-4AS-2 -> Redhat Enterprise Linux AS 4  <br/><br/>　　redhat-release-4AS-2.4 -> Redhat Enterprise Linux AS 4 Update 1  <br/><br/>　　redhat-release-4AS-3 -> Redhat Enterprise Linux AS 4 Update 2  <br/><br/>　　redhat-release-4AS-4.1 -> Redhat Enterprise Linux AS 4 Update 3  <br/><br/>　　redhat-release-4AS-5.5 -> Redhat Enterprise Linux AS 4 Update 4  <br/><br/>　　另:第3)、4)两种方法只对Redhat Linux有效。<a href='http://www.enet.com.cn/'><img src='http://images.enet.com.cn/end.gif' width='11' height='11' border='0' target='_blank' align='absmiddle'/></a> </div>
+   			   			<script type="text/javascript">
+	var Url = document.URL;
+	var aatt = document.title;
+	var naatt = aatt.substring(0, aatt.indexOf("_"));
+	var fznr = naatt + "\r\n\r\n来自eNet硅谷动力\r\n\r\n" + Url;
+  function copyUrl(){
+  	window.clipboardData.setData("Text",fznr );
+  	alert("复制成功，请粘贴到你的QQ/MSN上推荐给您的好友！\r\n\r\n" + naatt + "__eNet硅谷动力\r\n\r\n" + Url);
+  }
+</script>
+<div class="lxfs"><a href="http://www.enet.com.cn/security/" target="_blank" class="marR150"><img src="/article_new/v4/aimage/security.jpg" /></a><a href="JavaScript: copyUrl()" rel="nofollow"><img src="/article_new/v4/images/img2.jpg" /></a></div>
+<div class="blank15"></div>
+<div class="blank15"></div>
+   			<div class="adtxtal2"><a href="http://www.enet.com.cn/security/" target="_blank">点击阅读更多网络安全相关文章&gt;&gt;</a></div>
+<div class="adtxtal">
+<a title="分享到搜狐微博" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var f='http://t.sohu.com/third/post.jsp?',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=660,height=470,left=',(s.width-660)/2,',top=',(s.height-470)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','','','utf-8'));" style="margin:0 0 0 20px;font-size:12px;font-family:'\5b8b\4f53';color:#000"><span style="display:inline-block;width:16px;height:16px;margin:0 3px 0 -20px;vertical-align:middle;background:url(http://s2.cr.itc.cn/img/t/152.png) no-repeat"></span>搜狐微博</a>
+</div>
+<div class="adtxta4">
+<a href="javascript:void(0);" onclick="(function(){var url = 'link=http://www.enet.com.cn&source='+ encodeURIComponent('硅谷动力')+ '&info='+ encodeURIComponent(document.title) + ' ' + encodeURIComponent(document.location.href);window.open('http://t.163.com/article/user/checkLogin.do?'+url+'&'+new Date().getTime(),'newwindow','height=330,width=550,top='+(screen.height-280)/2+',left='+(screen.width-550)/2+', toolbar=no, menubar=no, scrollbars=no,resizable=yes,location=no, status=no');})()" target="_self" >网易微博</a></div>
+<div class="adtxtal6">
+<script>
+function posttoWb(){
+var _t = encodeURI(document.title);
+var _url = encodeURI(window.location);
+var _appkey = '4fe957561b034d1fb0d55197ba3d6598';
+var _site = encodeURI;
+var _pic = '';
+var _u = 'http://v.t.qq.com/share/share.php?title='+_t+'&url='+_url+'&appkey='+_appkey+'&site='+_site+'&pic='+_pic;
+window.open( _u,'转播到腾讯微博', 'width=700, height=580, top=180, left=320, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
+}
+</script>
+<style>
+.tmblog{
+	padding-left:22px;
+	line-height:22px;
+	background:url(http://v.t.qq.com/share/images/ico.png) no-repeat left center; height:22px;
+}
+</style>
+<a href="javascript:void(0)" onclick="posttoWb();" class="tmblog" >腾讯微博</a>
+</div>
+<div class="adtxta3 mart10clear">
+<a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=1594265726',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','','','gb2312'));" title="分享到新浪微博">新浪微博</a>
+</div>
+<div class="adtxta2 mart10clear">
+<script type="text/javascript">
+(function(){
+var p = {
+url:location.href,
+desc:'',/*默认分享理由(可选)*/
+summary:'',/*摘要(可选)*/
+title:'',/*分享标题(可选)*/
+site:'',/*分享来源 如：腾讯网(可选)*/
+pics:'' /*分享图片的路径(可选)*/
+};
+var s = [];
+for(var i in p){
+s.push(i + '=' + encodeURIComponent(p[i]||''));
+}
+document.write(['<a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?',s.join('&'),'" target="_blank" title="分享到QQ空间"><img src="http://qzonestyle.gtimg.cn/ac/qzone_v5/app/app_share/qz_logo.png" alt="分享到QQ空间" />&nbsp;QQ空间</a>'].join(''));
+})();
+</script>
+</div>
+<div class="clear"></div>
+<div class="adtxt mart10clear"><a href="http://www.myhuike.com/" target="_blank">意想不到  就在惠客</a> 请点击：<a href="http://www.myhuike.com/" target="_blank">www.myhuike.com</a>&nbsp;进入</div>
+        
+        
+        <div class="zrbj">责任编辑：白宁</div>
+        <div class="clear"></div>
+ 		 </div>
+   </div>
+   <div class="blank10"></div>
+    <div class="w688 bor">
+     <div class="wzgjz"><span>关键字：</span>
+                         <a href="/security/atlist0_%B2%E9%BF%B4.html" target="_blank">查看</a>&nbsp;
+                         <a href="/security/atlist0_linux.html" target="_blank">linux</a>&nbsp;
+                    <a href="/security/atlist0_%B0%E6%B1%BE.html" target="_blank">版本</a>&nbsp;
+     </div>
+    </div>
+        <div class="blank10"></div>
+    <div class="w688 bor">
+     <div class="wzlistit"><img src="/article_new/v4/images/img8.jpg" />&nbsp;关于&nbsp;<span><a>查看 linux</a></span>&nbsp;相关报道</div>
+      <div class=" wzlist3">
+       <ul class="marT18">
+        
+ 
+
+
+
+	   <li><a href="http://www.enet.com.cn/article/2014/0327/A20140327365148.shtml" title="利用科来网络分析技术发现蠕虫问题案例" target="_blank">
+			利用科来网络分析技术发现蠕虫问题案例
+			</a></li>
+	  
+	   <li><a href="http://www.enet.com.cn/article/2013/1126/A20131126334717.shtml" title="2013年第三季度数据威胁大幅增加" target="_blank">
+			2013年第三季度数据威胁大幅增加
+			</a></li>
+	  
+	   <li><a href="http://www.enet.com.cn/article/2013/1016/A20131016322971.shtml" title="如何查看局域网内共享文件访问和操作记录" target="_blank">
+			如何查看局域网内共享文件访问和操作记录
+			</a></li>
+	  
+	   <li><a href="http://www.enet.com.cn/article/2013/0828/A20130828307398.shtml" title="保护好自己：谷歌会泄露您的密码" target="_blank">
+			保护好自己：谷歌会泄露您的密码
+			</a></li>
+	  
+	   <li><a href="http://www.enet.com.cn/article/2013/0802/A20130802299861.shtml" title="如何用聚生网管监控局域网主机上网行为" target="_blank">
+			如何用聚生网管监控局域网主机上网行为
+			</a></li>
+	  
+	   <li><a href="http://www.enet.com.cn/article/2013/0725/A20130725298172.shtml" title="详解下一代智能防火墙之iQoS" target="_blank">
+			详解下一代智能防火墙之iQoS
+			</a></li>
+	  
+	   <li><a href="http://www.enet.com.cn/article/2013/0507/A20130507282493.shtml" title="公司查看局域网流量的最佳办法" target="_blank">
+			公司查看局域网流量的最佳办法
+			</a></li>
+	  
+	   <li><a href="http://www.enet.com.cn/article/2013/0409/A20130409273979.shtml" title="聚生网管：局域网网络流量、网络行为管理" target="_blank">
+			聚生网管：局域网网络流量、网络行为管理
+			</a></li>
+	  
+	   <li><a href="http://www.enet.com.cn/article/2013/0328/A20130328272628.shtml" title="支付宝部分转账付款信息遭泄露" target="_blank">
+			支付宝部分转账付款信息遭泄露
+			</a></li>
+	  
+	   <li><a href="http://www.enet.com.cn/article/2013/0320/A20130320267171.shtml" title="聚生网管禁止局域网下载 迅雷BT电驴全都失业" target="_blank">
+			聚生网管禁止局域网下载 迅雷BT电驴全都失业
+			</a></li>
+	  
+
+       </ul>
+      </div>
+      <div class="blank10"></div>
+      <div class="clear"></div>
+    </div>
+       <div class="blank15"></div>
+<div class="w688 bor">
+ <div class="wzlistit"><div class="wleft"><img src="/article_new/v4/images/img8.jpg" />&nbsp;<a>最新文章</a></div><div class="wright"><a href="http://www.enet.com.cn/security/" title="硅谷动力安全频道" target="_blank">进入硅谷动力安全频道</a></div></div>
+ <div class="clear"></div>
+  <div class="wzlist4">
+       <ul>
+        <li><a href="http://www.enet.com.cn/article/2014/0327/A20140327365148.shtml" title=" 利用科来网络分析技术发现蠕虫问题案例 " target="_blank">利用科来网络分析技术发现蠕虫问题案例 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0327/A20140327365139.shtml" title=" 瑞星安全随身WiFi开售 剑指移动互联网安全 " target="_blank">瑞星安全随身WiFi开售 剑指移动互联网安全 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0320/A20140320362264.shtml" title=" 2014年3月ITbrand防火墙品牌排行榜 " target="_blank">2014年3月ITbrand防火墙品牌排行榜 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0320/A20140320362267.shtml" title=" 2014年3月ITbrand杀毒软件品牌排行榜 " target="_blank">2014年3月ITbrand杀毒软件品牌排行榜 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0320/A20140320362147.shtml" title=" 雾里看花 勿让"NG"迷惑了双眼 " target="_blank">雾里看花 勿让"NG"迷惑了双眼 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0320/A20140320362086.shtml" title=" 瑞星发布安全随身WiFi 京东互联网首发 " target="_blank">瑞星发布安全随身WiFi 京东互联网首发 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0318/A20140318361426.shtml" title=" 信息安全形势严峻，西部省份成重灾区 " target="_blank">信息安全形势严峻，西部省份成重灾区 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0312/A20140312359226.shtml" title=" 天玑科技运维管理新战略解数据中心难题 " target="_blank">天玑科技运维管理新战略解数据中心难题 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0312/A20140312358867.shtml" title=" 瑞星报告:六大问题严重威胁移动安全 " target="_blank">瑞星报告:六大问题严重威胁移动安全 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0306/A20140306356069.shtml" title=" 卡巴斯基在2013年整体测试中41次夺冠 " target="_blank">卡巴斯基在2013年整体测试中41次夺冠 </a></li>
+
+       </ul>
+      </div>
+      <div class="clear"></div>
+</div>
+<div class="blank10"></div>
+<div class="w688 bor">
+ <div class="wzlistit"><img src="/article_new/v4/images/img8.jpg" />&nbsp;<a>图片欣赏</a></div>
+  <div class="pic120"><a href="http://www.enet.com.cn/pic/photo-0-13767.html" title="空间小精灵 戴尔Vostro3800_eNet商务台式机频道" alt="空间小精灵 戴尔Vostro3800_eNet商务台式机频道" target="_blank"><img src="http://images.enet.com.cn/2014/3/27/1396434829789_120.jpg" width="120" height="90" /></a><br/><a href="http://www.enet.com.cn/pic/photo-0-13767.html" title="空间小精灵 戴尔Vostro3800_eNet商务台式机频道" target="_blank">空间小精灵 戴尔Vostro3800_eNet商务台式机频道</a></div>
+<div class="pic120"><a href="http://www.enet.com.cn/pic/photo-0-13766.html" title="至薄之美 三星ATIV Book 9家族_eNet笔记本频道" alt="至薄之美 三星ATIV Book 9家族_eNet笔记本频道" target="_blank"><img src="http://images.enet.com.cn/2014/3/27/1394649825154_120.jpg" width="120" height="90" /></a><br/><a href="http://www.enet.com.cn/pic/photo-0-13766.html" title="至薄之美 三星ATIV Book 9家族_eNet笔记本频道" target="_blank">至薄之美 三星ATIV Book 9家族_eNet笔记本频道</a></div>
+<div class="pic120"><a href="http://www.enet.com.cn/pic/photo-0-13765.html" title="变色龙 ThinkPad New X1 Carbon_eNet笔记本频道" alt="变色龙 ThinkPad New X1 Carbon_eNet笔记本频道" target="_blank"><img src="http://images.enet.com.cn/2014/3/26/1395788797167_120.jpg" width="120" height="90" /></a><br/><a href="http://www.enet.com.cn/pic/photo-0-13765.html" title="变色龙 ThinkPad New X1 Carbon_eNet笔记本频道" target="_blank">变色龙 ThinkPad New X1 Carbon_eNet笔记本频道</a></div>
+<div class="pic120"><a href="http://www.enet.com.cn/pic/photo-0-13764.html" title="纤薄Win 8平板 ThinkPad 8_eNet平板电脑图赏" alt="纤薄Win 8平板 ThinkPad 8_eNet平板电脑图赏" target="_blank"><img src="http://images.enet.com.cn/2014/3/26/1394639927809_120.jpg" width="120" height="90" /></a><br/><a href="http://www.enet.com.cn/pic/photo-0-13764.html" title="纤薄Win 8平板 ThinkPad 8_eNet平板电脑图赏" target="_blank">纤薄Win 8平板 ThinkPad 8_eNet平板电脑图赏</a></div>
+<div class="pic120"><a href="http://www.enet.com.cn/pic/photo-0-13763.html" title="质感出众 OPPO Find 7真机现场图赏" alt="质感出众 OPPO Find 7真机现场图赏" target="_blank"><img src="http://images.enet.com.cn/2014/3/20/1393345439419_120.jpg" width="120" height="90" /></a><br/><a href="http://www.enet.com.cn/pic/photo-0-13763.html" title="质感出众 OPPO Find 7真机现场图赏" target="_blank">质感出众 OPPO Find 7真机现场图赏</a></div>
+<div class="clear"></div>
+<div class="pic120"><a href="http://www.enet.com.cn/pic/photo-0-13760.html" title="性感至high 雷神游戏本同乐汇图赏_eNet笔记本频道" alt="性感至high 雷神游戏本同乐汇图赏_eNet笔记本频道" target="_blank"><img src="http://images.enet.com.cn/2014/3/13/1395483455338_120.jpg" width="120" height="90" /></a><br/><a href="http://www.enet.com.cn/pic/photo-0-13760.html" title="性感至high 雷神游戏本同乐汇图赏_eNet笔记本频道" target="_blank">性感至high 雷神游戏本同乐汇图赏_eNet笔记本频道</a></div>
+<div class="pic120"><a href="http://www.enet.com.cn/pic/photo-0-13759.html" title="心动至美纤薄于型 华为G6图赏" alt="心动至美纤薄于型 华为G6图赏" target="_blank"><img src="http://images.enet.com.cn/2014/3/12/1392879432386_120.jpg" width="120" height="90" /></a><br/><a href="http://www.enet.com.cn/pic/photo-0-13759.html" title="心动至美纤薄于型 华为G6图赏" target="_blank">心动至美纤薄于型 华为G6图赏</a></div>
+<div class="pic120"><a href="http://www.enet.com.cn/pic/photo-0-13758.html" title="韩国大学女教师泳装照走红" alt="韩国大学女教师泳装照走红" target="_blank"><img src="http://images.enet.com.cn/2014/3/11/1393694560669_120.jpg" width="120" height="90" /></a><br/><a href="http://www.enet.com.cn/pic/photo-0-13758.html" title="韩国大学女教师泳装照走红" target="_blank">韩国大学女教师泳装照走红</a></div>
+<div class="pic120"><a href="http://www.enet.com.cn/pic/photo-0-13757.html" title="雪白美机 HTC新渴望8系Desire 816图赏" alt="雪白美机 HTC新渴望8系Desire 816图赏" target="_blank"><img src="http://images.enet.com.cn/2014/3/10/1393182424655_120.jpg" width="120" height="90" /></a><br/><a href="http://www.enet.com.cn/pic/photo-0-13757.html" title="雪白美机 HTC新渴望8系Desire 816图赏" target="_blank">雪白美机 HTC新渴望8系Desire 816图赏</a></div>
+<div class="pic120"><a href="http://www.enet.com.cn/pic/photo-0-13756.html" title="全球首款2K屏智能手机 vivo Xplay3S图赏" alt="全球首款2K屏智能手机 vivo Xplay3S图赏" target="_blank"><img src="http://images.enet.com.cn/2014/3/10/1396530446340_120.jpg" width="120" height="90" /></a><br/><a href="http://www.enet.com.cn/pic/photo-0-13756.html" title="全球首款2K屏智能手机 vivo Xplay3S图赏" target="_blank">全球首款2K屏智能手机 vivo Xplay3S图赏</a></div>
+<div class="clear"></div>
+
+  <div class="blank15"></div>
+</div>
+<div class="blank10"></div>
+ <script>
+   var comentsiteid="acomment"; var as_title=atitle; var as_url="http://www.enet.com.cn/article/"+aid.substr(0,4)+"/"+aid.substr(4,4)+"/A"+aid+".shtml";
+   var urlt="http://comment.enet.com.cn/list.jsp?articleid="+aid+"&site="+comentsiteid+"&url="+as_url+"&title="+as_title+"";
+   var moreurl="http://comment.enet.com.cn/index.jsp?articleid="+aid+"&site="+comentsiteid+"&url="+as_url+"&title="+as_title+"";
+</script>
+<script type="text/javascript">
+	function checkComment() {
+	 document.comment.articleid.value=aid;
+	 //document.comment.url.value=urlt;
+	 document.comment.url.value=as_url;
+	 document.comment.title.value=as_title;
+		if (document.comment.username.value.length==0) {
+			alert("请输入用户名，谢谢！");
+			document.comment.username.focus();
+			return false;
+		}
+		if (document.comment.content.value.length==0) {
+			alert("留言内容不能为空!");
+			document.comment.content.focus();
+			return false;
+		}
+		if (document.comment.content.value.length>2000) {
+			alert("留言内容不能超过2000字符!");
+			document.comment.content.focus();
+			return false;
+		}
+		var incode = document.getElementById("incode").value;
+		if(incode==""){
+			alert("请输入验证码");
+			createCode();
+			return false;
+		}
+		//alert(code);
+	return true;
+	}
+</script>
+<script language="javascript" type="text/javascript">
+     function createCode(){
+		var t = new Date();
+		var imgcode = document.getElementById("codeid");
+        imgcode.style.display="block";
+		document.getElementById("codeimg").src="http://comment.enet.com.cn/jspub/imgcode.jsp?s=s&t="+t.getTime();
+     }
+</script>
+<style>
+.f3_blo1{width:634px; float:left; padding-left:9px; margin-right:9px; font-size:14px; margin-bottom:10px}
+.in1{width:97px;}
+.f3bc{ padding-top:7px;}
+.f3bc input{ vertical-align:middle;}
+.in2{ width:620px;*width:620px;_width:620px; height:70px; margin-top:3px;}
+.ly{line-height:20px; color:#5a5a5a;}
+.ly td{padding-left:5px; border-bottom:1px dashed #808080; padding-top:6px; padding-bottom:6px; font-size:12px;}
+td a{ font-size:12px; color:#FF6602;}
+td{  font-size:12px;}
+</style>
+<div class="w688 bor">
+ <div class="wzlistit"><img src="/article_new/v4/images/img8.jpg" />&nbsp;网友留言</div>
+  <div class="blank6"></div>
+<div class="f3_blo1">
+	<span id=commentspan></span>
+	<script>document.write("<scr"+"ipt  src='"+urlt+"'></scr"+"ipt>");</script>
+</div>
+<div class="f3_blo1">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  	<form action="http://comment.enet.com.cn/commentdo.jsp?s=s" method="post" name="comment" onSubmit="return checkComment();" target="_blank">
+   <input type="hidden" name="articleid" value="" />
+   <input type='hidden' name='url' value="" />
+   <input type='hidden' name='site' value="acomment" />
+   <input type='hidden' name='title' value="" />
+   <input type='hidden' name='htmlcontent' value="N" />
+    <tr>
+      <td width="60%" height="20" style=" padding-top:4px;">请您输入您要使用的昵称：<input type="text" name="username" class="in1" value="eNet网友" />
+	  </td>
+	  <td  id="codeid" name="codeid" style="display:none" >
+				<div style="float:left; margin-right:10px;"><input type='text' name='incode' id='incode'/></div>
+				<div style="float:left;margin-top:2px;margin-right:10px;"><img id="codeimg" name="codeimg" src='' style="height:25;cursor:pointer;" onclick="createCode();"/></div><div style="float:left; margin-top:5px;"></div>
+		</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <textarea name="content" cols="" rows="" class="in2"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td height="31" colspan="2" valign="middle" class="f3bc"><input type="image" src="/article_new/v4/images/tj.jpg" />&nbsp;&nbsp;留言仅代表个人观点，请对自己的言论和行为负责&nbsp;&nbsp; <script>document.write("<a href='"+moreurl+"' target='_blank'>更多评论</a>");</script></td>
+    </tr>
+   </form>
+  </table>
+</div>
+</div>
+<div class="blank10"></div>
+	 	
+<div class="w688 bor">
+ <div class="wzlistit"><img src="/article_new/v4/images/img8.jpg" />&nbsp;网站地图</div>
+ <div class="wzlist5">
+ <ul class="float">
+  <li><span><a href="/enews/" target="_blank">资讯</a></span><a href="/enews/it.shtml" target="_blank">IT业界</a><a href="/enews/tele.shtml" target="_blank">通信</a><a href="/enews/internet.shtml" target="_blank">互联网</a><a href="/enews/aflist5384_100_0.html" target="_blank">家电</a><a href="/enews/aflist4690_100_0.html" target="_blank">软件</a><a href="http://discovery.enet.com.cn/" target="_blank" class="bornone"><font color="red">科学探索</font></a></li>
+  <div class="clear"></div>	
+ <li><span><a href="/notebook/" target="_blank">笔记本</a></span><a href="/notebook/alist5368.html" target="_blank">资讯</a><a href="/notebook/nbhq" target="_blank">行情</a><a href="/notebook/nbpc.shtml" target="_blank">评测</a><a href="http://product.enet.com.cn/price/plist4.shtml" target="_blank">报价</a><a href="/notebook/pbdn/" target="_blank">平板电脑</a><a href="/notebook/alist5261.html" target="_blank" class="bornone">周边</a><!--a href="/notebook/alist7423.html" target="_blank">上网本</a--></li>
+<div class="clear"></div>
+   <li><span><a href="/edigi" target="_blank">数码</a></span><a href="/dc" target="_blank">DCDV</a><a href="/gps/" target="_blank">GPS</a><a href="/video" target="_blank">数码影音</a><a href="/mp3" target="_blank">MP3/MP4</a><a href="http://hunt.enet.com.cn" target="_blank" class="bornone">数码猎奇</a></li>
+<div class="clear"></div>
+   <li><span><a href="http://auto.enet.com.cn" target="_blank">汽车</a></span><a href="http://auto.enet.com.cn/xwzx.shtml" target="_blank">新车</a><a href="http://auto.enet.com.cn/articlelist/7495_7496_7497_7490_7491_7492_7493_7494-0-0-0-1.shtml" target="_blank">行情导购</a><a href="http://auto.enet.com.cn/pcsj.shtml" target="_blank">试驾</a><a href="http://product.auto.enet.com.cn/" target="_blank">车型库</a><a href="http://product.auto.enet.com.cn/picindex.shtml" target="_blank">图片库</a><a href="http://auto.enet.com.cn/zhuanti/autoweek/" target="_blank" class="bornone">周刊</a></li>
+	<div class="clear"></div>
+   <li><span><a href="/oa/" target="_blank">办公</a></span><a href="/printer/" target="_blank">打印机</a><a href="/integrativ/" target="_blank">一体机</a><a href="/projector/" target="_blank">投影机</a><a href="/oa/alist5979.html" target="_blank">耗材</a><a href="http://www.enet.com.cn/oa/alist6042-6245-6244-6246-6288.html" target="_blank" class="bornone">扫描传真</a></li>
+<div class="clear"></div>
+   <li><span><a href="http://games.enet.com.cn" target="_blank">游戏</a></span><a href="http://games.enet.com.cn" target="_blank">网络游戏</a><a href="http://games.enet.com.cn/computer.shtml" target="_blank">单机游戏</a><a href="http://games.enet.com.cn/dzjj.shtml" target="_blank">电子竞技</a><a href="http://games.enet.com.cn/download.shtml" target="_blank" class="bornone">游戏下载</a></li>
+<div class="clear"></div>
+ <li><span><a href="http://product.enet.com.cn/" target="_blank">产品库</a></span><a href="http://product.enet.com.cn/price/plist97.shtml" target="_blank">手机</a><a href="http://product.enet.com.cn/price/plist4.shtml" target="_blank">笔记本</a><a href="http://product.enet.com.cn/price/plist31.shtml" target="_blank">数码</a><a href="http://product.enet.com.cn/price/plist129365.shtml" target="_blank">打印机</a><a href="http://product.enet.com.cn/price/plist20.shtml" target="_blank">硬件</a><a href="http://www.enet.com.cn/lab/" target="_blank" class="bornone"><font color="red">评测</font></a></li>
+<div class="clear"></div>
+   <li><span><a href="http://download.enet.com.cn" target="_blank">软件下载</a></span><a href="http://download.enet.com.cn/php/clist.php?cid=1" target="_blank">网络工具</a><a href="http://download.enet.com.cn/php/clist.php?cid=4" target="_blank">图像处理</a><a href="http://download.enet.com.cn/php/clist.php?cid=5" target="_blank">多媒体</a><a href="http://download.enet.com.cn/php/clist.php?cid=6" target="_blank" class="bornone">系统优化</a><!--a href="http://download.enet.com.cn/php/clist.php?cid=3" target="_blank" class="bornone">应用工具</a--></li>
+  <div class="clear"></div>   
+ </ul>
+ <ul class="float marL10">
+   <li><span><a href="/eschool/" target="_blank">学院</a></span><a href="http://www.enet.com.cn/eschool/includes/zhuanti/photoshop/" target="_blank">PS教程</a><a href="http://www.enet.com.cn/eschool/esch_new/" target="_blank">视频教程</a><a href="http://www.enet.com.cn/eschool/inforcenter/articlelist.jsp?fid=3664" target="_blank">网页制作</a><a href="http://www.enet.com.cn/eschool/rjyy.shtml" target="_blank" class="bornone">软件教程</a></li>
+  <div class="clear"></div>
+ <li><span><a href="/emobile/" target="_blank">手机</a></span><a href="/emobile/alist4146.html" target="_blank">资讯</a><a href="/emobile/alist3811.html" target="_blank">行情</a><a href="/emobile/alist3821.html" target="_blank">导购</a><a href="/emobile/alist3807.html" target="_blank">评测</a><a href="/emobile/ztlist/" target="_blank">专题</a><a href="http://product.enet.com.cn/price/plist97.shtml" target="_blank">报价</a><a href="http://pic.enet.com.cn/piclist_88_%CA%D6%BB%FA%CA%B1%C9%D0.html" target="_blank" class="bornone">图库</a></li>
+  <div class="clear"></div>
+   <li><span><a href="/hardwares/" target="_blank">硬件</a></span><a href="/cpu/" target="_blank">核心部件</a><a href="/motherboard/" target="_blank">板卡</a><a href=" /display/" target="_blank">显示器</a><a href="/audio/" target="_blank">音频</a><a href="/other/" target="_blank">外设</a><a href=" /hardwares/alist6045-6046.html" target="_blank" class="bornone">键鼠</a></li>
+  <div class="clear"></div>
+  
+ <li><span><a href="/application/" target="_blank">企业</a></span><a href="/server/" target="_blank"><font color="red">服务器</font></a><a href="/storage/" target="_blank">存储</a><a href="/networks/" target="_blank">网络通信</a><a href="/esoftware/" target="_blank"><font color="red">软件</font></a><a href="/security/" target="_blank">安全</a><a href="/cio/" target="_blank" class="bornone">CIO</a></li>
+<div class="clear"></div>
+ <li><span><a href="/digitalhome/" target="_blank">家电</a></span><a href="/digitalhome/pingbds.shtml" target="_blank">电视</a><a href="/digitalhome/bsjd.shtml" target="_blank">洗衣机</a><a href="/digitalhome/bsjd.shtml" target="_blank">空调</a><a href="/digitalhome/bsjd.shtml" target="_blank">冰箱</a><a href="/digitalhome/cwjd.shtml" target="_blank">厨电</a><!--a href="/digitalhome/cwjd.shtml" target="_blank">卫浴</a--><a href="/digitalhome/cwjd.shtml" target="_blank" class="bornone">小家电</a></li>
+<div class="clear"></div>
+ <li><span><a href="http://pic.enet.com.cn/" target="_blank">图片</a></span><a href="http://pic.enet.com.cn/piclist_122-124_%BF%C6%D1%A7%CC%BD%CB%F7.html" target="_blank">科学探索</a><a href="http://pic.enet.com.cn/piclist_89_%CA%FD%C2%EB%C9%E3%D3%B0.html" target="_blank">数码摄影</a><a href="http://pic.enet.com.cn/piclist_82_%B1%BE%B1%BE%BF%E1%CD%BC.html" target="_blank">本本酷图</a><a href="http://pic.enet.com.cn/piclist_102_%BF%E1%B3%B5%F6%A6%C5%AE.html" target="_blank" class="bornone">酷车靓女</a></li>
+<div class="clear"></div>
+  <li><span><a href="http://bbs.enet.com.cn/" target="_blank">论坛</a></span><a href="http://dcbbs.enet.com.cn/" target="_blank">数码</a><a href="http://nbbbs.enet.com.cn/" target="_blank">笔记本</a><a href="http://mbbs.enet.com.cn/" target="_blank">手机</a><a href="http://bbs.enet.com.cn/index.php" target="_blank">综合</a><a href="http://xbbs.enet.com.cn/" target="_blank">学院</a><a href="http://gamebbs.enet.com.cn/" target="_blank" class="bornone">游戏</a></li>
+  <div class="clear"></div>
+ <li><span><a href="/elady/" target="_blank">IT女性</a></span><a href="/elady/fashion/" target="_blank">服饰</a><a href="/elady/beauty/" target="_blank">美容</a><a href="/life/ent/" target="_blank">娱乐</a><a href="/life/xiuxian/" target="_blank">休闲</a><a href="/elady/star/" target="_blank" class="bornone">星座</a></li>
+<div class="clear"></div>
+
+ </ul>
+</div>
+</div>
+<!--SmartMedia Begin:-->
+<SCRIPT type="text/javascript" SRC="http://smjs.allyes.com/sm.js"></SCRIPT>
+<SCRIPT type="text/javascript" SRC="http://smjs.allyes.com/enet++channelhomepage++sm++show.js"></SCRIPT>
+<!--SmartMedia End-->
+
+  </div>
+  <div class="con280">
+   <div id="206"><!-- ENETAD --></div>
+<div class="blank10"></div>
+<script src='http://images.enet.com.cn/js/ad.js'></script>
+<script src='http://www9.enet.com.cn/mem_str_zoneid=204'></script>
+<script src='http://www9.enet.com.cn/mem_str_zoneid=205'></script>
+<script src='http://www9.enet.com.cn/mem_str_zoneid=206'></script>
+
+     <!--最新上市-->
+ <div class="w280 bor">
+  <div class="title1"><div class="left"><a><font class="blackfont">频道精华</font></a></div><div class="right"><!--a href="#" target="_blank" class="more">更多</a><img src="/article_new/v4/images/more.gif" /--></div></div>
+   <div class="clear"></div>
+    <div class="pic122"><a href="http://www.enet.com.cn/article/2013/0711/A20130711295535.shtml" target="_blank"><img src="http://images.enet.com.cn/2013/0711/92/5058488.jpg" alt="科达推出SAFE系列通用高清监控管理平台" title="科达推出SAFE系列通用高清监控管理平台" width="116" height="87" /></a><div class="pictxt122"><a href="http://www.enet.com.cn/article/2013/0711/A20130711295535.shtml" title="科达推出SAFE系列通用高清监控管理平台" target="_blank"> 科达推出SAFE系列通用高清监控管理平台 </a></div></div>
+<div class="pic122"><a href="http://www.enet.com.cn/article/2013/0704/A20130704294645.shtml" target="_blank"><img src="http://images.enet.com.cn/2013/0704/11/9259486.png" alt="卡巴斯基PURE保护证券期货账号信息安全" title="卡巴斯基PURE保护证券期货账号信息安全" width="116" height="87" /></a><div class="pictxt122"><a href="http://www.enet.com.cn/article/2013/0704/A20130704294645.shtml" title="卡巴斯基PURE保护证券期货账号信息安全" target="_blank"> 卡巴斯基PURE保护证券期货账号信息安全 </a></div></div>
+<div class="pic122"><a href="http://www.enet.com.cn/article/2013/0704/A20130704294604.shtml" target="_blank"><img src="http://images.enet.com.cn/2013/0704/34/9202835.jpg" alt="安全管家提醒:盗版应用玩起百变大咖秀" title="安全管家提醒:盗版应用玩起百变大咖秀" width="116" height="87" /></a><div class="pictxt122"><a href="http://www.enet.com.cn/article/2013/0704/A20130704294604.shtml" title="安全管家提醒:盗版应用玩起百变大咖秀" target="_blank"> 安全管家提醒:盗版应用玩起百变大咖秀 </a></div></div>
+<div class="pic122"><a href="http://www.enet.com.cn/article/2013/0703/A20130703294428.shtml" target="_blank"><img src="http://images.enet.com.cn/2013/0703/68/8402589.jpg" alt="新计算时代 等级保护建设面临新挑战" title="新计算时代 等级保护建设面临新挑战" width="116" height="87" /></a><div class="pictxt122"><a href="http://www.enet.com.cn/article/2013/0703/A20130703294428.shtml" title="新计算时代 等级保护建设面临新挑战" target="_blank"> 新计算时代 等级保护建设面临新挑战 </a></div></div>
+
+    <div class="blank15"></div>
+ </div>
+<div class="blank10"></div>
+<!--专题-->
+<div class="w280 bor">
+ <div class="title1"><div class="left"><a>网络安全专题</a></div><div class="right"><a href="/security/ztlist/" target="_blank" class="more">更多</a><img src="/article_new/v4/images/more.gif" /></div></div>
+  <div class="clear"></div>
+   
+
+
+
+
+<div class="pic122"><a href="http://www.enet.com.cn/security/zhuanti/cisco2013/" target="_blank" title="您的网络能否保护您免受下代威胁？"><img src="http://images.enet.com.cn/2013/0812/01/2749584.jpg" title="您的网络能否保护您免受下代威胁？" width="116" height="87" /></a><a href="http://www.enet.com.cn/security/zhuanti/cisco2013/" title="您的网络能否保护您免受下代威胁？" target="_blank"> 您的网络能否保护您免受下代威胁？ </a></div>
+<div class="pic122"><a href="http://www.enet.com.cn/security/zhuanti/barracudanetworks/" target="_blank" title="梭子鱼Web应用防火墙"><img src="http://images.enet.com.cn/2013/0715/53/8609798.jpg" title="梭子鱼Web应用防火墙" width="116" height="87" /></a><a href="http://www.enet.com.cn/security/zhuanti/barracudanetworks/" title="梭子鱼Web应用防火墙" target="_blank"> 梭子鱼Web应用防火墙 </a></div>
+<!--wget finished successful flag-->
+
+   <div class="blank10"></div>
+    <div class="wzlist">
+     <ul>
+      
+
+
+
+
+<li><a href="http://www.enet.com.cn/security/zhuanti/jowto/" title="椒图科技引领“服务器安全”" target="_blank">椒图科技引领“服务器安全”</a></li>
+<li><a href="http://www.enet.com.cn/security/zhuanti/jowto/jhse/" title="JHSE椒图主机安全环境系统有奖公测" target="_blank">JHSE椒图主机安全环境系统有奖公测</a></li>
+<li><a href="http://www.enet.com.cn/security/zhuanti/2013/safe/" title="文档管理革命背后 电子文档安全如何保障？" target="_blank">文档管理革命背后 电子文档安全如何保障？</a></li>
+<!--wget finished successful flag-->
+
+     </ul>
+    </div>
+   <div class="blank6"></div>
+</div>
+<div class="blank10"></div>
+<iframe width="280" height="326" class="share_self" frameborder="0" scrolling="no" src="http://service.t.sina.com.cn/widget/WeiboShow.php?width=280&height=326&fansRow=1&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1663315964&verifier=b218d70f"></iframe>
+<div class="blank10"></div>
+<!--排行-->
+<div class="w280 bor">
+ 	<div class="wzphtit">
+	 	<ul>
+	 		<li class="bt">频道热文排行</li>
+	 		<li id="naph0" class="fb"><a style="cursor:pointer;" onmouseover="javascript:changediv('3','naph','naph0','fq','fb','aph0','aph')">本日</a></li>
+	 		<li id="naph1" class="fq"><a style="cursor:pointer;" onmouseover="javascript:changediv('3','naph','naph1','fq','fb','aph1','aph')">本周</a></li>
+	 		<li id="naph2" class="fq"><a style="cursor:pointer;" onmouseover="javascript:changediv('3','naph','naph2','fq','fb','aph2','aph')">本月</a></li>
+	  </ul>
+  </div>
+  <div class="clear"></div>
+  <div class="wzph" id="aph0">
+   <ul>
+    <li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290430.shtml" title=" 泄密者斯诺登若被引渡，前途渺茫 " target="_blank">泄密者斯诺登若被引渡，前途渺茫 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290404.shtml" title=" 美国国家安全局能利用“大数据”做什么 " target="_blank">美国国家安全局能利用“大数据”做什么 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290424.shtml" title=" 全球顶级网管：美国“合法”监听互联网 " target="_blank">全球顶级网管：美国“合法”监听互联网 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290428.shtml" title=" PRISM项目媒体爆料人正在香港避难 " target="_blank">PRISM项目媒体爆料人正在香港避难 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290427.shtml" title=" 美国NSA监控项目泄密者:已不期望能再回 " target="_blank">美国NSA监控项目泄密者:已不期望能再回 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290389.shtml" title=" 安全管家防盗功能协民警抓获手机盗贼 " target="_blank">安全管家防盗功能协民警抓获手机盗贼 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290398.shtml" title=" 如何禁止电脑使用U盘 防止U盘拷贝公司 " target="_blank">如何禁止电脑使用U盘 防止U盘拷贝公司 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290401.shtml" title=" 对话黑客：四款最佳的反监控移动APP " target="_blank">对话黑客：四款最佳的反监控移动APP </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290418.shtml" title=" 科技巨头被指向政府提供用户隐私 " target="_blank">科技巨头被指向政府提供用户隐私 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290393.shtml" title=" 高校网站安全检测“不及格” 考生选报 " target="_blank">高校网站安全检测“不及格” 考生选报 </a></li>
+
+   </ul>
+  </div>
+  <div class="wzph" id="aph1" style="display:none">
+   <ul>
+    <li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290430.shtml" title=" 泄密者斯诺登若被引渡，前途渺茫 " target="_blank">泄密者斯诺登若被引渡，前途渺茫 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290404.shtml" title=" 美国国家安全局能利用“大数据”做什么 " target="_blank">美国国家安全局能利用“大数据”做什么 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290424.shtml" title=" 全球顶级网管：美国“合法”监听互联网 " target="_blank">全球顶级网管：美国“合法”监听互联网 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290428.shtml" title=" PRISM项目媒体爆料人正在香港避难 " target="_blank">PRISM项目媒体爆料人正在香港避难 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290427.shtml" title=" 美国NSA监控项目泄密者:已不期望能再回 " target="_blank">美国NSA监控项目泄密者:已不期望能再回 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290389.shtml" title=" 安全管家防盗功能协民警抓获手机盗贼 " target="_blank">安全管家防盗功能协民警抓获手机盗贼 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290398.shtml" title=" 如何禁止电脑使用U盘 防止U盘拷贝公司 " target="_blank">如何禁止电脑使用U盘 防止U盘拷贝公司 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290401.shtml" title=" 对话黑客：四款最佳的反监控移动APP " target="_blank">对话黑客：四款最佳的反监控移动APP </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290418.shtml" title=" 科技巨头被指向政府提供用户隐私 " target="_blank">科技巨头被指向政府提供用户隐私 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0613/A20130613290393.shtml" title=" 高校网站安全检测“不及格” 考生选报 " target="_blank">高校网站安全检测“不及格” 考生选报 </a></li>
+
+   </ul>
+  </div>
+  <div class="wzph" id="aph2" style="display:none">
+   <ul>
+    <li><a href="http://www.enet.com.cn/article/2013/0410/A20130410274031.shtml" title=" 聚生网管：限制局域网网速，限制电脑网 " target="_blank">聚生网管：限制局域网网速，限制电脑网 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0521/A20130521285772.shtml" title=" 如何禁止迅雷的上传功能 " target="_blank">如何禁止迅雷的上传功能 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0409/A20130409273979.shtml" title=" 聚生网管：局域网网络流量、网络行为管 " target="_blank">聚生网管：局域网网络流量、网络行为管 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0425/A20130425276512.shtml" title=" 2013年4月ITbrand杀毒软件品牌排行榜 " target="_blank">2013年4月ITbrand杀毒软件品牌排行榜 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0419/A20130419275671.shtml" title=" 携手卡巴斯基 百度推出中文版杀毒软件 " target="_blank">携手卡巴斯基 百度推出中文版杀毒软件 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0603/A20130603288232.shtml" title=" Nginx惊现漏洞 百万网站面临"拖库"风险 " target="_blank">Nginx惊现漏洞 百万网站面临"拖库"风险 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0418/A20130418275533.shtml" title=" 简约而不简单 腾讯电脑管家8.0详细评测 " target="_blank">简约而不简单 腾讯电脑管家8.0详细评测 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0425/A20130425276534.shtml" title=" Windows XP停止更新 企业必须未雨绸缪 " target="_blank">Windows XP停止更新 企业必须未雨绸缪 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0502/A20130502280772.shtml" title=" 《致青春》热映 “免费观影”暗藏木马 " target="_blank">《致青春》热映 “免费观影”暗藏木马 </a></li>
+<li><a href="http://www.enet.com.cn/article/2013/0529/A20130529287356.shtml" title=" 网银"授权支付"被曝安全风险  360安全 " target="_blank">网银"授权支付"被曝安全风险  360安全 </a></li>
+
+   </ul>
+  </div>
+  <div class="blank6"></div>
+</div>
+<div class="blank10"></div>
+<!--产品库-->
+<div class="w280 bor">
+ <div class="title1"><div class="left"><a><font class="blackfont">产品库</font></a></div><div class="right"><a href="http://product.enet.com.cn/" target="_blank" class="more">更多</a><img src="/article_new/v4/images/more.gif" /></div></div>
+  <div class="blank15"></div>
+  
+  <table border="0" width="260" class="bgcpk" cellpadding="0" cellspacing="0">
+   <tr>
+    <td width="36%" class="wcpk"><a href="http://product.enet.com.cn/xdp255615.html" target="_blank">苹果iPad2(WIFI版)</a></td>
+    <td width="13%" class="jg"><a href="http://product.enet.com.cn/xdp255615.html" target="_blank">5399</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppm255615.html" target="_blank">配置</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppic255615.html" target="_blank">图片</a></td>
+   </tr>
+   <tr class="btcp" height="30">
+    <td width="36%" class="wcpk"><a href="http://product.enet.com.cn/xdp255625.html" target="_blank">苹果iPad2(3G版)</a></td>
+    <td width="18%" class="jg"><a href="http://product.enet.com.cn/xdp255625.html" target="_blank">6399</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppm255625.html" target="_blank">配置</a></td>
+    <td width="13%" class="pz"><a href="http://product.enet.com.cn/xdppic255625.html" target="_blank">图片</a></td>
+   </tr>
+   <tr  height="30">
+    <td width="36%" class="wcpk"><a href="http://product.enet.com.cn/xdp251773.html" target="_blank">IdeaPad Y460C-ITH</a></td>
+    <td width="13%" class="jg"><a href="http://product.enet.com.cn/xdp251773.html" target="_blank">5150</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppm251773.html" target="_blank">配置</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppic251773.html" target="_blank">图片</a></td>
+   </tr>
+   <tr  height="30">
+    <td width="36%" class="wcpk"><a href="http://product.enet.com.cn/xdp254212.html" target="_blank">惠普G42-474TX</a></td>
+    <td width="18%" class="jg"><a href="http://product.enet.com.cn/xdp254212.html" target="_blank">4350</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppm254212.html" target="_blank">配置</a></td>
+    <td width="13%" class="pz"><a href="http://product.enet.com.cn/xdppic254212.html" target="_blank">图片</a></td>
+   </tr>
+    <tr  height="30">
+    <td width="36%" class="wcpk"><a href="http://product.enet.com.cn/xdp247466.html" target="_blank">苹果 iPhone4</a></td>
+    <td width="18%" class="jg"><a href="http://product.enet.com.cn/xdp247466.html" target="_blank">5950</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppm247466.html" target="_blank">配置</a></td>
+    <td width="13%" class="pz"><a href="http://product.enet.com.cn/xdppic247466.html" target="_blank">图片</a></td>
+   </tr>
+   <tr  class="btcp"  height="30">
+    <td width="36%" class="wcpk"><a href="http://product.enet.com.cn/xdp252282.html" target="_blank">诺基亚 C5-03</a></td>
+    <td width="13%" class="jg"><a href="http://product.enet.com.cn/xdp252282.html" target="_blank">1850</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppm252282.html" target="_blank">配置</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppic252282.html" target="_blank">图片</a></td>
+   </tr>
+   <tr  height="30">
+    <td width="36%" class="wcpk"><a href="http://product.enet.com.cn/xdp244980.html" target="_blank">佳能 550D</a></td>
+    <td width="13%" class="jg"><a href="http://product.enet.com.cn/xdp244980.html" target="_blank">4750</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppm244980.html" target="_blank">配置</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppic244980.html" target="_blank">图片</a></td>
+   </tr>
+   <tr  height="30">
+    <td width="36%" class="wcpk"><a href="http://product.enet.com.cn/xdp246297.html" target="_blank">佳能IXUS 105</a></td>
+    <td width="18%" class="jg"><a href="http://product.enet.com.cn/xdp246297.html" target="_blank">1270</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppm246297.html" target="_blank">配置</a></td>
+    <td width="13%" class="pz"><a href="http://product.enet.com.cn/xdppic246297.html" target="_blank">图片</a></td>
+   </tr>
+   <tr  height="30">
+    <td width="36%" class="wcpk"><a href="http://product.enet.com.cn/xdp255072.html" target="_blank">微星880GM-E41</a></td>
+    <td width="13%" class="jg"><a href="http://product.enet.com.cn/xdp255072.html" target="_blank">599</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppm255072.html" target="_blank">配置</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppic255072.html" target="_blank">图片</a></td>
+   </tr>
+   <tr  height="30">
+    <td width="36%" class="wcpk"><a href="http://product.enet.com.cn/xdp246495.html" target="_blank">华硕M4A88TD-M</a></td>
+    <td width="18%" class="jg"><a href="http://product.enet.com.cn/xdp246495.html" target="_blank">749</a></td>
+    <td width="18%" class="pz"><a href="http://product.enet.com.cn/xdppm246495.html" target="_blank">配置</a></td>
+    <td width="13%" class="pz"><a href="http://product.enet.com.cn/xdppic246495.html" target="_blank">图片</a></td>
+   </tr>
+   
+  </table>
+  <div class="blank10"></div>
+</div>
+ <div class="blank10"></div>
+<!--全站热点-->
+ <div class="w280 bor">
+  <div class="title1"><div class="left"><a>全站热点</a></div><div class="right"><!--a href="#" target="_blank" class="more">更多</a><img src="/article_new/v4/images/more.gif" /--></div></div>
+   <div class="clear"></div>
+    <div class="pic122"><a href="http://www.enet.com.cn/article/2014/0401/A20140401366225.shtml" target="_blank"><img src="http://images.enet.com.cn/2014/0401/21/3162408.jpg" alt="念念不忘 网游自制黑色版MacBook Air" title="念念不忘 网游自制黑色版MacBook Air" width="116" height="87" /></a><div class="pictxt122"><a href="http://www.enet.com.cn/article/2014/0401/A20140401366225.shtml" title="念念不忘 网游自制黑色版MacBook Air" target="_blank"> 念念不忘 网游自制黑色版MacBook Air </a></div></div>
+<div class="pic122"><a href="http://www.enet.com.cn/article/2014/0401/A20140401366193.shtml" target="_blank"><img src="http://images.enet.com.cn/2014/0401/93/3148815.jpg" alt="云计算与云服务是下一个科技泡沫吗？" title="云计算与云服务是下一个科技泡沫吗？" width="116" height="87" /></a><div class="pictxt122"><a href="http://www.enet.com.cn/article/2014/0401/A20140401366193.shtml" title="云计算与云服务是下一个科技泡沫吗？" target="_blank"> 云计算与云服务是下一个科技泡沫吗？ </a></div></div>
+
+    <div class="blank10"></div>
+     <div class="wzlist">
+      <ul>
+       <li><a href="http://www.enet.com.cn/article/2014/0401/A20140401366270.shtml" title=" 最薄对决 ELIFE S5.5全面对比vivo X3S " target="_blank">最薄对决 ELIFE S5.5全面对比vivo X3S </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0401/A20140401366235.shtml" title=" 微软Build 2014开发者大会日程 " target="_blank">微软Build 2014开发者大会日程 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0401/A20140401366232.shtml" title=" 英特尔再发9款平板专用BayTrail-T处理器 " target="_blank">英特尔再发9款平板专用BayTrail-T处理器 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0401/A20140401366228.shtml" title=" 汉王蓝天副总宋垦：霾表M1跨界并非转型 " target="_blank">汉王蓝天副总宋垦：霾表M1跨界并非转型 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0401/A20140401366227.shtml" title=" 阿里投资银泰，进可攻退可守？ " target="_blank">阿里投资银泰，进可攻退可守？ </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0401/A20140401366225.shtml" title=" 念念不忘 网游自制黑色版MacBook Air " target="_blank">念念不忘 网游自制黑色版MacBook Air </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0401/A20140401366214.shtml" title=" 4.5寸超薄联通定制机 华为G6评测 " target="_blank">4.5寸超薄联通定制机 华为G6评测 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0401/A20140401366211.shtml" title=" 微软任命新的Xbox和云服务领导人 " target="_blank">微软任命新的Xbox和云服务领导人 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0401/A20140401366209.shtml" title=" 松下：尚未决定投资特斯拉超级锂电池工厂 " target="_blank">松下：尚未决定投资特斯拉超级锂电池工厂 </a></li>
+<li><a href="http://www.enet.com.cn/article/2014/0401/A20140401366207.shtml" title=" FB CEO扎克伯格2013年领取1美元年薪 " target="_blank">FB CEO扎克伯格2013年领取1美元年薪 </a></li>
+
+      </ul>
+     </div>
+    <div class="blank6"></div>
+ </div>
+  <div class="blank10"></div>
+<!--广告推广-->
+ <!--include virtual="/notebook/v4/f/advlist.shtml"-->
+<!--论坛精选-->
+<div class="w280 bor">
+  <div class="title1"><div class="left"><a>论坛精选</a></div><div class="right"><a href="http://bbs.enet.com.cn/" target="_blank" class="more">更多</a><img src="/article_new/v4/images/more.gif" /></div></div>
+   <div class="clear"></div>
+    <div class="pic122">
+<a href="http://bbs.enet.com.cn/home.php?mod=space&uid=9681363&do=album&id=47" target="_blank">
+<img src="http://myarticle.enet.com.cn/images/2011/0107/1294373686840.jpg" / alt="《让子弹飞》十大镜头">
+<a href="http://bbs.enet.com.cn/home.php?mod=space&uid=9681363&do=album&id=47" target="_blank">《让子弹飞》十大镜头</a></div>
+    <div class="pic122"><a href="http://bbs.enet.com.cn/home.php?mod=space&uid=9681363&do=album&id=46" target="_blank">
+	<img src="http://myarticle.enet.com.cn/images/2011/0126/1296012827537.jpg" / alt="史上最美头像800张">
+	<a href="http://bbs.enet.com.cn/home.php?mod=space&uid=9681363&do=album&id=46" target="_blank">史上最美头像800张</a></div>
+    <div class="blank10"></div>
+     <div class="wzlist">
+      <ul>
+       <li><a href="http://bbs.enet.com.cn/thread-26872-1-1.html" target="_blank">世上最痛苦的-辐射没来，盐买太多了</a></li>
+       <li><a href="http://bbs.enet.com.cn/thread-21508-1-1.html" target="_blank">初中生接吻照网上疯传 长达50分钟(图)</a></li>
+       <li><a href="http://bbs.enet.com.cn/forum-6433-1.html" target="_blank">ipad专用壁纸分享 张张精彩</a></li>
+	   <li><a href="http://bbs.enet.com.cn/thread-20980-1-2.html" target="_blank">裸模苏紫紫人体艺术照【图】</a></li>
+       <li><a href="http://bbs.enet.com.cn/forum-6431-1.html" target="_blank">最热门ipad游戏破解版免费下载</a></li>
+       <li><a href="http://bbs.enet.com.cn/thread-20403-1-1.html" target="_blank">看看李开复的工资，想买啥就买啥～</a></li>
+       <li><a href="http://bbs.enet.com.cn/thread-21497-1-1.html" target="_blank">苏紫紫到兽兽 说说那些因裸成名的女孩们</a></li>
+       <li><a href="http://bbs.enet.com.cn/thread-20965-1-1.html" target="_blank">她把火热的身体献给了姐夫</a></li>
+      </ul>
+     </div>
+    <div class="blank6"></div>
+ </div>
+<div class="blank10"></div>
+<script type="text/javascript">/*250*250，创建于2011-11-2*/ var cpro_id = 'u663572';</script><script src="http://cpro.baidu.com/cpro/ui/c.js" type="text/javascript"></script>
+  </div>
+  <div class="clear"></div>
+ </div>
+ <script>
+var tgs = new Array( 'div','td','tr','a','center','b');
+var szs = new Array( '12px','14px','20px' );
+var startSz = 1;
+function ts( trgt,inc ) {
+	if (!document.getElementById) return
+	var d = document,cEl = null,sz = startSz,i,j,cTags;
+	sz += inc;
+	if ( sz < 0 ) sz = 0;
+	if ( sz > 2 ) sz = 2;
+	startSz = sz;
+	if ( !( cEl = d.getElementById( trgt ) ) ) cEl = d.getElementsByTagName( trgt )[ 0 ];
+	cEl.style.fontSize = szs[ sz ];
+	for ( i = 0 ; i < tgs.length ; i++ ) {
+		cTags = cEl.getElementsByTagName( tgs[ i ] );
+		for ( j = 0 ; j < cTags.length ; j++ ) cTags[ j ].style.fontSize = szs[ sz ];
+	}
+}
+//换层相关与登录验证
+function dologin(myform)
+{
+	if(myform.userid.value==""||myform.userid.value=="用户名"){
+		alert("请填写用户名！");
+		myform.userid.focus();
+		return false;
+	}
+	if(myform.password.value==""){
+		alert("请填写密码！");
+		myform.password.focus();
+		return false;
+	}
+	myform.submit();
+}
+function changediv(divcount,olddivall,newdiv,newdivclass,olddivclass,listdiv,listdivall){
+	for(var p=0;p<divcount;p++){
+		document.getElementById(olddivall+p).className=newdivclass;
+		document.getElementById(listdivall+p).style.display='none';
+	}
+	document.getElementById(newdiv).className=olddivclass;
+	document.getElementById(listdiv).style.display='block';
+}
+function changediv_edu(divcount,listdiv,listdivall){
+	for(var p=0;p<divcount;p++){
+		document.getElementById(listdivall+p).style.display='none';
+	}
+	document.getElementById(listdiv).style.display='block';
+}
+function homecdiv0(divcount,olddivall,newdiv,newdivclass,olddivclass,listdiv,listdivall){
+	for(var p=0;p<divcount;p++){
+		if((divcount-1)==p){
+		document.getElementById(olddivall+p).className=newdivclass+' marR0';
+		}else{
+		document.getElementById(olddivall+p).className=newdivclass;
+		}
+		document.getElementById(listdivall+p).style.display='none';
+	}
+	if((olddivall+(divcount-1))==newdiv){
+		document.getElementById(newdiv).className=olddivclass+' marR0';
+	}else{
+		document.getElementById(newdiv).className=olddivclass;
+	}
+	document.getElementById(listdiv).style.display='block';
+}
+function homecdiv1(divcount,olddivall,newdiv,newdivclass,olddivclass,listdiv,listdivall){
+	for(var p=0;p<divcount;p++){
+		document.getElementById(olddivall+p).className=newdivclass+' marR0';
+		document.getElementById(listdivall+p).style.display='none';
+	}
+	document.getElementById(newdiv).className=olddivclass+' marR0';
+	document.getElementById(listdiv).style.display='block';
+}
+function dosubmit(myform)
+{
+	if(myform.xname.value==""){
+		alert("请您请填写姓名！");
+		myform.xname.focus();
+		return false;
+	}
+	if(myform.xpost.value==""){
+		alert("请您填写邮政编码！");
+		myform.xpost.focus();
+		return false;
+	}
+	if(myform.xtel.value==""){
+		alert("请您填写电话！");
+		myform.xtel.focus();
+		return false;
+	}
+	myform.submit();
+}
+</script>
+<style type="text/css">
+table.frabottom{ margin:30px auto 0 auto; font-size:12px}
+.frabottom td{ font:12px "宋体"; color:#000}
+.frabottom td a{ text-decoration:none; font-size:12px}
+.frabottom td a:hover{ text-decoration:underline}
+table.frabottom td p{ color:#000; font-size:12px}
+td.gygg a{ color:#000}
+</style>
+<div class="clear"></div>
+<table width="980" border="0" align="center" cellpadding="0" cellspacing="0" class="frabottom">
+  <tr>
+    <td height="90" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+      <tr >
+        <td height="24" align="center" valign="top" class="gygg">
+        <script>
+        </script>
+         <a href="http://www.enet.com.cn/aboutus/" target="_blank">企业文化</a> | <a href="http://www.enet.com.cn/aboutus/job.shtml">招聘岗位</a> | <a href="http://www.enet.com.cn/aboutus/production.shtml" target="_blank">客户服务</a> | <a href="http://www.enet.com.cn/aboutus/freedback.shtml" target="_blank">建议/投诉</a> | <a href="http://www.enet.com.cn/aboutus/copyright.shtml" target="_blank">版权声明</a> | <a href="http://www.enet.com.cn/aboutus/contact.shtml" target="_blank">联系我们</a> <!--a href="http://www.enet.com.cn/aboutus/sitemap/index.shtml" target="_blank">网站导航</a> | <span style="CURSOR: hand" onClick="window.external.addFavorite('http://www.enet.com.cn','eNet硅谷动力__IT信息门户')" title="eNet硅谷动力_IT信息门户">加入收藏</span> | <a href="/home/others/ba.shtml" target="_blank">联网单位备案表</a--></td>
+      </tr>
+    </table>
+        <table border="0" align="center" cellpadding="3" cellspacing="0">
+          <tbody>
+            <tr>
+              <td align="center" height="60" valign="top"><p style="line-height:24px">网站合作、内容监督、商务咨询、投诉建议：010-65245588<br />
+                <!--合作建议：hezuo@mail.enet.com.cn<br /-->
+                Copyright &#169; 2000--<script language="JavaScript" type="text/JavaScript">
+var year="";
+mydate=new Date();
+myyear= mydate.getYear();
+year=(myyear > 200) ? myyear : 1900 + myyear;
+document.write(year);
+</script> 硅谷动力公司版权所有 京ICP证000088号  <a href="/home/others/ba.shtml" target="_blank">京公网安备110101000005号</a><br />
+              </p></td>
+              <td><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=0102000103000022" target="_blank"><img src="http://www.enet.com.cn/i/images/bottom/biaoshi1.gif" alt="京ICP证000088号" width="40" height="48" border="0" /></a>
+</td>
+            </tr>
+          </tbody>
+      </table></td>
+  </tr>
+</table>
+
+<div style="display:none"><a href="http://webscan.360.cn" name="ce15974b01d26a26113dca0610934d81" >360网站安全检测平台</a></div>
+<script type="text/javascript" src="http://frame.enet.com.cn/a.php"></script>
+
+
+
+ <script>
+</script>
+<script type="text/javascript" >BAIDU_CLB_SLOT_ID = "163852";</script>
+<script type="text/javascript" src="http://cbjs.baidu.com/js/o.js"></script>
+  <img src="http://count.enet.com.cn/Counter?objectid=20080828351133&columnid=4199&site=security&reserve=linux%BB%F9%B4%A1%D6%AE%BD%CC%C4%E3%C8%E7%BA%CE%B2%E9%BF%B4linux%B0%E6%B1%BE" width=1 height=1>
+ </div>
+</body>
+</html>
+

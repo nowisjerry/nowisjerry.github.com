@@ -1,0 +1,592 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+
+<title>Ubuntu Linux系统下apt-get命令详解 - 51CTO.COM</title>
+<meta name="description" content="整理了Ubuntu Linux操作系统下apt-get命令的详细说明,分享给大家。"/>
+<meta name="keywords" content="Ubuntu,Linux,apt-get,命令"/>
+<base target="_blank" />
+<link href="http://images.51cto.com/images/art1105/css/grid.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="http://images.51cto.com/images/art/css/art_master_top.css" />
+<link href="http://book.51cto.com/images/bookspec/css/css3.css" rel="stylesheet" type="text/css" />
+<script language="javaScript" src="http://www.51cto.com/php/base_art.js"></SCRIPT>
+<script src="http://www.51cto.com/images/homepage/index_1_down.js"></script>
+<style type="text/css">
+.bds_tools a{ padding:0; margin:0;}
+</style>
+</head>
+<body >
+<!-- 导航 开始-->
+<div id="home_top">    <div class="top_nav">        <div class="left" style="width:400px"><div class="logo_51cto" title="51CTO.COM - 技术成就梦想 -  中国领先的IT技术网站"></div><a href="http://www.51cto.com/">首页</a><img width="16" height="25" align="absmiddle" src="http://home.51cto.com/public/themes/blue/images/top_bg_xian.gif" style="padding-top: 2px;"><a onmouseover="show(1,this);" onmouseout="popupClose();" href="http://www.51cto.com/col/35/" target="_blank">技术频道<img align="absmiddle" src="http://images.51cto.com/images/art/top_images/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="http://home.51cto.com/public/themes/blue/images/top_bg_xian.gif"><a onmouseover="show(2,this);" onmouseout="popupClose();" href="http://www.51cto.com" target="_blank">51CTO旗下网站<img align="absmiddle" src="http://images.51cto.com/images/art/top_images/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="http://home.51cto.com/public/themes/blue/images/top_bg_xian.gif"><a href="http://www.51cto.com/about/map.htm" target="_blank">地图</a> <a href="http://www.51cto.com/about/rss.html" target="_blank"><img src="http://images.51cto.com/files/uploadimg/20110922/143749870.gif" style="vertical-align:middle; margin-bottom: 5px; margin-left:5px;"></a>       </div>        <div class="right">            <div class="more"><img width="27" height="16" align="absmiddle" src="http://home.51cto.com/public/themes/blue/images/top_shequ.gif">社区：<a href="http://edu.51cto.com/" target="_blank" style="color:#CC0000">学院</a><a href="http://down.51cto.com" target="_blank">下载</a><a href="http://bbs.51cto.com" target="_blank">论坛</a><a href="http://blog.51cto.com" target="_blank">博客</a><a onmouseover="show(3,this)" onmouseout="popupClose()" href="javascript:viod(0);">更多<img align="absmiddle" src="http://images.51cto.com/images/art/top_images/nav_ico1.gif" style="padding-left: 4px;"></a>            </div>            <span id="login_status"><div class="login" id="login_status"></div>    </span>                </div>    </div></div>
+<div class="subMenu1" id="s1" onmouseover="popupNoClose();" onmouseout="popupClose();">
+<ul>
+<li><a href="http://network.51cto.com" target="_blank">网络</a></li>
+<li><a href="http://netsecurity.51cto.com" target="_blank">安全</a></li>
+<li><a href="http://developer.51cto.com" target="_blank">开发</a></li>
+<li><a href="http://database.51cto.com" target="_blank">数据库</a></li>
+<li><a href="http://server.51cto.com" target="_blank">服务器</a></li>
+<li><a href="http://os.51cto.com" target="_blank">系统</a></li>
+<li><a href="http://virtual.51cto.com" target="_blank">虚拟化</a></li>
+<li><a href="http://cloud.51cto.com" target="_blank">云计算</a></li>
+<li><a href="http://developer.51cto.com/embed/" target="_blank">嵌入式</a></li>
+<li><a href="http://mobile.51cto.com/" target="_blank">移动开发</a></li>
+</ul>
+</div> 
+<div class="subMenu2" id="s2" onmouseover="popupNoClose()" onmouseout="popupClose()">
+<ul>
+<li><a href="http://www.51cto.com" target="_blank" title="中国领先的IT技术网站">51CTO.COM</a></li>
+<li><a href="http://www.cioage.com" target="_blank" title="中国首个专门服务于CIO的专业网站">CIOage.com</a></li>
+<li><a href="http://www.watchstor.com/" target="_blank"  title="领先的中文存储网络媒体">WatchStor.com</a></li>
+<li><a href="http://www.hc3i.cn/" target="_blank"  title="中国首家专注于数字医疗及医疗信息化的专业网站">HC3i.cn</a></li>
+</ul>
+</div>
+<script src="http://www.51cto.com/js/jquery-1.8.3.min.js"></script>
+<script>
+$(function(){
+	$(".bann").height(265);	 
+	$(".bann").css("background-color","white");
+});
+
+</script>
+
+<script src="http://www.51cto.com/head_art_more1.js"></script>
+<!-- 登陆信息 -->
+<!-- 导航 结束--> 
+ <div class="g_39 mb10">
+	<div id="tonglanad" class="fl"></div>
+	<div id="list4" class="fr">
+		<ul>
+			<li id="wordlinkad1"></li>
+			<li id="wordlinkad2"></li>
+			<li id="wordlinkad3"></li>
+			<li id="wordlinkad4"></li>
+		</ul>
+	</div>
+<br class="dle"/>
+</div>
+
+<div class="g_39 menu">
+<DIV class=subNav_logo>
+<A href="http://os.51cto.com/" target=_blank><IMG src="http://www.51cto.com/images/sunbanner/caozuoxitong_logo.gif" border="0"></a></DIV>
+<DIV class=subNav_l>
+<A href="http://os.51cto.com/col/543/" target=_blank>新闻</A> | 
+<A href="http://os.51cto.com/linux/" target=_blank>Linux</A> | 
+<A href="http://os.51cto.com/windows/" target=_blank>Windows</A> | 
+<A href="http://os.51cto.com/col/975/" target=_blank>浏览器</A> | 
+<A href="http://os.51cto.com/col/610/" target=_blank>开源</A> | 
+<A href="http://os.51cto.com/col/545/" target=_blank>运维</A> | 
+<A href="http://publish.51cto.com/list/519/" target=_blank>全部</A> | 
+<A href="http://os.51cto.com/art/201106/266501.htm" target=_blank>投稿指南</A> | 
+<a href="http://os.51cto.com/art/201109/292676.htm"><img src="http://images.51cto.com/files/uploadimg/20110922/143749870.gif" width="15" height="16" alt="RSS" > RSS订阅</a>
+</DIV>
+  
+<div class="search fr">
+<dl>
+<form name=searchform action="http://www.51cto.com/php/search.php" target="_blank" method=post style="margin:0px; padding:0px;">
+<dt class="fl"><input name="keyword" type="text" class="searchInput f14 input" value="请输入关键字" onfocus="doempty(this, '请输入关键字');" onblur="doempty(this, '请输入关键字');" /></dt>
+<dd class="fl"><input type="image" src="http://images.51cto.com/images/art/newart1012/images/search.gif" /></dd></form>
+</dl>
+</div>
+<br class="dle"/>
+</div>
+<div class="g_39 b3-s-4273B3 rel">
+<!--width : 26*25 - 15 = 635px-->
+<div class="g_26 fl m_l">
+<div class="brief bgF8F8F8">
+<p class="crumb ">您所在的位置：<a href='http://os.51cto.com'>操作系统</a> &gt; <a href='http://os.51cto.com/col/523/'>Linux</a> &gt; <a href='http://os.51cto.com/col/1326/'>发行版</a> &gt; <a href='http://os.51cto.com/col/1363/'>Ubuntu</a> &gt;  <b>Ubuntu Linux系统下apt-get命令详解</b> </p>
+<h1>Ubuntu Linux系统下apt-get命令详解</h1>
+<div class="msg">
+<div>2008-02-14 11:36    机械工业出版社华章公司 <span class="f12-a"><a href="#commment" target="_self"></a></span> 字号：<span class="f14-b"><a href="javascript:setfont(12);" target="_self">T</a></span> | <span class="f16-b"><a href="javascript:setfont(16);" target="_self">T</a></span></div>
+<div class='artHd' id='books' style='padding:5px 25px;display:none;'></div>
+<div class="fav"><a href="javascript:favorBox('open');" title="一键收藏，随时查看，分享好友！" target="_self"><img src="http://images.51cto.com/images/art/newart1012/images/Fav.gif" alt="一键收藏，随时查看，分享好友！" border="0" /></a></div>
+</div>
+<div class="brieftext">
+<p class="f14 green">整理了Ubuntu Linux操作系统下apt-get命令的详细说明,分享给大家。</p>
+<p class="ad">AD：<script src="http://www.51cto.com/js/article/keywords_ad_new.js"></script>
+</p>
+</div>
+</div>
+<div class="tag bgF8F8F8" id="indexlist" style="display:none;">
+<ul id="indexliststr">
+</ul>
+<br class="dle"/>
+</div>
+<div class="content bgF8F8F8 f14">
+<div id="content">
+<p><p>整理了Ubuntu Linux操作系统下apt-get命令的详细说明,分享给大家。<br>常用的APT命令参数：</p>
+<p>apt-cache search package 搜索包</p>
+<p>apt-cache show package 获取包的相关信息，如说明、大小、版本等</p>
+<p>sudo apt-get install package 安装包</p>
+<p>sudo apt-get install package - - reinstall 重新安装包</p>
+<p>sudo apt-get -f install 修复安装"-f = ——fix-missing"</p>
+<p>sudo apt-get remove package 删除包</p>
+<p>sudo apt-get remove package - - purge 删除包，包括删除配置文件等</p>
+<p>sudo apt-get update 更新源</p>
+<p>sudo apt-get upgrade 更新已安装的包</p>
+<p>sudo apt-get dist-upgrade 升级系统</p>
+<p>sudo apt-get dselect-upgrade 使用 dselect 升级</p>
+<p>apt-cache depends package 了解使用依赖</p>
+<p>apt-cache rdepends package 是查看该包被哪些包依赖</p>
+<p>sudo apt-get build-dep package 安装相关的编译环境</p>
+<p>apt-get source package 下载该包的源代码</p>
+<p>sudo apt-get clean &amp;&amp; sudo apt-get autoclean 清理无用的包</p>
+<p>sudo apt-get check 检查是否有损坏的依赖</p>
+<p><FONT size=4>【相关文章】</FONT></p>
+<UL type=disc>
+<LI><A href="http://os.51cto.com/art/200709/56331.htm" target=_blank><U><FONT color=blue>Debian Linux新手Apt-get/dpkg简明入门</FONT></U></A></LI></UL>
+<UL type=disc>
+<LI><A href="http://book.51cto.com/art/200706/49547.htm" target=_blank><U><FONT color=blue>apt-get命令更新</FONT></U></A></LI></UL>
+<UL type=disc>
+<LI><A href="http://os.51cto.com/art/200712/61667.htm" target=_blank><U><FONT color=blue>使用Shell脚本来实现FTP的自动上传下载</FONT></U></A></LI></UL>
+<DIV align=right>【责任编辑：<A class=ln href='mailto:liubing@51cto.com'>刘兵</A> TEL：（010）68476606】</DIV><br> 
+<p class="blank10"></p> 
+ 
+ 
+
+
+<div class="f12"> <span class="fl">原文：<a href="http://os.51cto.com/art/200802/65583.htm" class="blue"><b>Ubuntu Linux系统下apt-get命令详解</b></a></span> <span class="fr"><a href="http://os.51cto.com">返回操作系统首页</a></span> </div>
+<p class="blank1"></p>
+</div>
+<script type="text/javascript">
+/*主站文章页600*60，创建于2013-9-23*/
+var cpro_id = "u1372942";
+</script> <script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+<iframe width="600" scrolling="no" height="239" frameborder="0" src="http://widget.weibo.com/relationship/bulkfollow.php?language=zh_cn&amp;uids=1708729084,1706976420,1888399833,1422974343,1878468181,2024585553&amp;wide=0&amp;color=C2D9F2,FFFFFF,0082CB,666666&amp;showtitle=1&amp;showinfo=1&amp;sense=0&amp;verified=1&amp;count=6&amp;refer='+encodeURIComponent(location.href)+'&amp;dpc=1"></iframe>
+<div class="tips">
+<div style="float:left;">
+<span style="float:left; margin-top:4px;">分享到：</span>
+<!-- Baidu Button BEGIN -->
+    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="margin-right:5px; float:left;">
+        <a class="bds_qzone"></a>
+        <a class="bds_tsina"></a>
+        <a class="bds_tqq"></a>
+        <a class="bds_renren"></a>
+        <a class="bds_t163"></a>
+        <span class="bds_more"></span>
+		<a class="shareCount"></a>
+
+</div>
+<!--<div class="fl"> 
+    </div>
+--><script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=585532" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	var bds_config = {'snsKey':{'tsina':'2378297317'}};
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+</script>
+<!-- Baidu Button END -->
+
+
+
+</div><div class="fr blue"><a href="javascript:AddFavorite(document.location.href,document.title);" target="_self">收藏</a>|<a href="javascript:window.print();" target="_self">打印</a>|<a id="msnqqcopy" title="分享本资源给好友" target="_self">复制</a></div>
+</div>
+</div>
+<!--内容 end-->
+<div class="topbiaoqing">
+<div class="biaoqing fixfloat pad" >
+<ul>
+<li><a href='javascript:getcountscom(65583,1)' target="_self"><img src="http://images.51cto.com/images/art1105/images/bq1.jpg" /></a>
+<div><a href='javascript:getcountscom(65583,1)' target="_self">给力</a></div>
+<span id="65583_1">(0票)</span></li>
+<li><a href='javascript:getcountscom(65583,2)'  target="_self"><img src="http://images.51cto.com/images/art1105/images/bq2.jpg" /></a>
+<div><a href='javascript:getcountscom(65583,2)'  target="_self">动心</a></div>
+<span id="65583_2">(0票)</span></li>
+<li><a href='javascript:getcountscom(65583,3)'  target="_self"><img src="http://images.51cto.com/images/art1105/images/bq3.jpg" /></a>
+<div><a href='javascript:getcountscom(65583,3)'  target="_self">废话</a></div>
+<span id="65583_3">(0票)</span></li>
+<li><a href='javascript:getcountscom(65583,4)'  target="_self"><img src="http://images.51cto.com/images/art1105/images/bq4.jpg" /></a>
+<div><a href='javascript:getcountscom(65583,4)'  target="_self">专业</a></div>
+<span id="65583_4">(0票)</span></li>
+<li><a href='javascript:getcountscom(65583,5)'  target="_self"><img src="http://images.51cto.com/images/art1105/images/bq5.jpg" /></a>
+<div><a href='javascript:getcountscom(65583,5)'  target="_self">标题党</a></div>
+<span id="65583_5">(0票)</span></li>
+<li><a href='javascript:getcountscom(65583,6)'  target="_self"><img src="http://images.51cto.com/images/art1105/images/bq6.jpg" /></a>
+<div><a href='javascript:getcountscom(65583,6)'  target="_self">路过</a></div>
+<span id="65583_6">(0票)</span></li>
+</ul>
+</div>
+<script language="javascript"> 
+getcountscom(65583,11);
+
+</script>
+</div>
+<p class="blank10"></p>
+<!--reltag end-->
+
+<p class="blank10"></p>
+<div class="uyan">
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1609262"></script>
+</div>
+<!--box end-->
+
+<div class="bor">
+<div class="titbg pl15">关于<a href='http://www.51cto.com/php/search.php?keyword=Ubuntu' target='_blank' class='underline'>Ubuntu</a>&nbsp;&nbsp;<a href='http://www.51cto.com/php/search.php?keyword=Linux' target='_blank' class='underline'>Linux</a>&nbsp;&nbsp;<a href='http://www.51cto.com/php/search.php?keyword=apt-get' target='_blank' class='underline'>apt-get</a>&nbsp;&nbsp;<a href='http://www.51cto.com/php/search.php?keyword=%C3%FC%C1%EE' target='_blank' class='underline'>命令</a>的更多文章</div>
+<div class="reltag">
+<ul class="fl list02">
+  <li><a href="http://os.51cto.com/art/201311/418876.htm" title="Devyn的Linux内核专题：配置PCI和ACPI">Devyn的Linux内核专题：配置PCI和ACPI</a></li><li><a href="http://os.51cto.com/art/201311/418865.htm" title="Linux 下用来查询安装包信息的RPM选项">Linux 下用来查询安装包信息的RPM选项</a></li><li><a href="http://os.51cto.com/art/201311/418860.htm" title="OpenSUSE 13.1：拥抱64位ARM 提升开源质量">OpenSUSE 13.1：拥抱64位ARM 提升开源质量</a></li><li><a href="http://os.51cto.com/art/201311/418858.htm" title="Linux企业级桌面版：Ubuntu vs Windows">Linux企业级桌面版：Ubuntu vs Windows</a></li><li><a href="http://os.51cto.com/art/201311/418850.htm" title="如何在Linux上配置基于Web的网络流量监控系统">如何在Linux上配置基于Web的网络流量监控系</a></li>
+</ul>
+<div class="fr">
+<div class="h5 f12"><a href="http://os.51cto.com/art/201311/418740.htm" title="系统频道热点推荐：Linux远程管理工具来袭"><b>系统频道热点推荐：Linux远程管理工具来袭</b></a></div>
+<a href="http://os.51cto.com/art/201311/418740.htm" title="系统频道热点推荐：Linux远程管理工具来袭"><img src="http://s5.51cto.com/wyfs01/M01/32/D9/wKioOVKRuGChd1LIAAAQFpQ7OUc096.jpg" alt="系统频道热点推荐：Linux远程管理工具来袭" width="100" height="80" border="0" /></a>
+<p class="c666">年关将至，互联网行业的盛会也接踵而来，11月19日，红帽2013高峰<a class="blue"href="http://os.51cto.com/art/201311/418740.htm" title="系统频道热点推荐：Linux远程管理工具来袭">[详细]</a></p>
+</div>
+</div></div>
+
+<p class="blank10"></p>
+
+
+
+<div class="relart fl bor">
+<div class="titbg">
+<h3 class="fl t1">栏目热门</h3>
+<a href="/click/1363" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+  
+	  <li><a href="http://os.51cto.com/art/201310/413730.htm" title="Ubuntu 13.10 俏丽的蝾螈安装体验">Ubuntu 13.10 俏丽的蝾螈安装体验</a></li>
+	  
+	  <li><a href="http://os.51cto.com/art/201310/413240.htm" title="Ubuntu 13.10日趋完善：一个伟大的Linux桌面系统">Ubuntu 13.10日趋完善：一个伟大的Linux桌</a></li>
+	  
+	  <li><a href="http://os.51cto.com/art/201310/413079.htm" title="图文教程：桌面版 Ubuntu 13.04升级至Ubuntu 13.10">图文教程：桌面版 Ubuntu 13.04升级至Ubunt</a></li>
+	  
+	  <li><a href="http://os.51cto.com/art/201310/413649.htm" title="Ubuntu 13.10 改进 Linux 服务器部署">Ubuntu 13.10 改进 Linux 服务器部署</a></li>
+	  
+	  <li><a href="http://os.51cto.com/art/201310/414787.htm" title="Ubuntu 13.10 安装“纯净版”要做的8件事">Ubuntu 13.10 安装“纯净版”要做的8件事</a></li>
+	  
+</ul>
+</div>
+<div class="cathot fr bor">
+<div class="titbg">
+<h3 class="fl t1">同期最新</h3>
+<a href="/col/1363" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+	
+	  <li><a href="http://os.51cto.com/art/200802/65503.htm" title="调查：Ubuntu和Red Hat是最常用Linux软件">调查：Ubuntu和Red Hat是最常用Linux软件</a></li>
+	  
+	  <li><a href="http://os.51cto.com/art/200801/65256.htm" title="Lotus Notes将对Ubuntu全面支持">Lotus Notes将对Ubuntu全面支持</a></li>
+	  
+	  <li><a href="http://os.51cto.com/art/200801/65067.htm" title="无需破解！Ubuntu用户也玩Photoshop CS2">无需破解！Ubuntu用户也玩Photoshop CS2</a></li>
+	  
+	  <li><a href="http://os.51cto.com/art/200801/64987.htm" title="零点接触Ubuntu创始人 从Linux到太空计划">零点接触Ubuntu创始人 从Linux到太空计划</a></li>
+	  
+	  <li><a href="http://os.51cto.com/art/200801/64861.htm" title="在Ubuntu Linux 6.06 LTS (Dapper Drake)上安装CVS服务">在Ubuntu Linux 6.06 LTS (Dapper Drake)上</a></li>
+	  
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1"><a href="http://os.51cto.com">操作系统</a></h3>
+<span class="pl10">频道导航</span></div>
+ <ul class="xtlist">
+<li><span class="tit">生产环境</span>
+<div><a href="http://os.51cto.com/linux/">Linux</a>
+|<a href="http://os.51cto.com/windows/">Windows</a>
+|<a href="http://os.51cto.com/col/522/">Unix</a>
+|<a href="http://os.51cto.com/col/545/">运维教程</a>
+|<a href="http://os.51cto.com/art/201011/233915.htm">Linux运维趋势</a>
+</div>
+</li>
+<li class="last"><span class="tit">OS前沿</span>
+<div><a href="http://os.51cto.com/col/975/">浏览器</a>
+|<a href="http://os.51cto.com/col/610/">开源技术</a>
+|<a href="http://os.51cto.com/windows7/">Windows 7</a>
+|<a href="http://os.51cto.com/windows2008/">Server 08</a>
+|<a href="http://os.51cto.com/col/1417/">移动OS</a>
+</div>
+</li>
+</ul> 
+</div> 
+<p class="blank10"></p>
+<DIV class=leftbotcon>
+<DIV class="bor jdlist">
+<DIV class=titbg>
+<H3 class=t2>热点推荐</H3></DIV>
+<UL>
+<LI><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" href="http://mobile.51cto.com/mobile-182392.htm"><IMG src="http://images.51cto.com/files/uploadimg/20100202/153546162.jpg"></A> 
+<DIV class=name><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" href="http://mobile.51cto.com/mobile-182392.htm">Android开发应用详解</A></DIV></LI>
+<LI><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" href="http://developer.51cto.com/art/201106/266369.htm"><IMG src="http://images.51cto.com/files/uploadimg/20110608/133620622.jpg"></A> 
+<DIV class=name><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" href="http://developer.51cto.com/art/201106/266369.htm">那些性感的让人尖叫的程序员</A></DIV></LI>
+<LI><A href="http://developer.51cto.com/art/200907/133407.htm"><IMG src="http://images.51cto.com/files/uploadimg/20090702/134217922.jpg"></A> 
+<DIV class=name><A href="http://developer.51cto.com/art/200907/133407.htm">HTML5 下一代Web开发标准详解</A></DIV></LI>
+<LI><A href="http://developer.51cto.com/art/201104/257581.htm"><IMG src="http://images.51cto.com/files/uploadimg/20110426/123123954.jpg"></A> 
+<DIV class=name><A href="http://developer.51cto.com/art/201104/257581.htm">高性能WEB开发应用指南</A></DIV></LI>
+<LI><A href="http://os.51cto.com/art/200706/49181.htm"><IMG src="http://images.51cto.com/files/uploadimg/20070613/195816929.jpg"></A> 
+<DIV class=name><A href="http://os.51cto.com/art/200706/49181.htm">Ubuntu开源技术交流频道</A></DIV></LI></UL></DIV>
+<P class=blank10></P>
+<DIV class="bor hotTag"><STRONG>热门标签：</STRONG> <A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-2]);" href="http://os.51cto.com/windows/">windows频道</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://mobile.51cto.com/">移动开发</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://cloud.51cto.com/">云计算</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://mobile.51cto.com/mobile/objc/">objective-c</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://network.51cto.com/art/200909/151122.htm">tp-link路由器设置图解</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://developer.51cto.com/art/200907/133407.htm">html5</A> </DIV></DIV>
+<div class="leftbotbox"> </div>
+</div>
+<!--left end-->
+<div class="g_13 fr">
+<div class="focus fixfloat"> 
+ <img width="298" style="border: 1px solid #CCCCCC; margin:5px 0px 5px;" src="http://www.51cto.com/images/weixin.png"><div class="hot">
+<ul>
+<li class="tit"><em>头条</em> <a href="http://os.51cto.com/art/201402/430615.htm">《Linux运维趋势》2014年2月号</a> </li>
+<li class="con"><dl><dt><a href="http://os.51cto.com/art/201402/430615.htm"><img border="0" src="http://s2.51cto.com/wyfs02/M02/13/AD/wKioL1MQajXwHU84AAAzfphbF68463.jpg"/></a></dt>
+<dd>本期重点：如何利用云存储简化工作流程 远离培训机构才能做好运维</dd>
+</dl></li></ul><ol class="hotlist"><li><a href="http://os.51cto.com/art/201312/426165.htm">《Linux运维趋势》2013年12月号</a></li><li><a href="http://os.51cto.com/art/201312/422425.htm">《Linux运维趋势》2013年11月号</a></li></ol></div>
+<p id="hzh_one">
+<script language="JavaScript" src="http://www.51cto.com/ad/art/hzh/ad.js" type="text/javascript"></script>
+</p>
+</div>
+<div class="rank">
+<div class="tlt">
+      <h3>文章排行</h3>
+      <a onmouseover="change_top10(3);" id="top_3">本月</a><a onmouseover="change_top10(2);" id="top_2">本周</a><a onmouseover="change_top10(1);" class="myon" id="top_1">24小时</a> </div>
+ <div id="top10_1" style="display: block;" class="list"><ul>
+<li><a href="http://os.51cto.com/art/201403/432229.htm" target="_blank" title="Linux服务器的初步配置流程">Linux服务器的初步配置流程</a>
+<li><a href="http://os.51cto.com/art/201312/426047.htm" target="_blank" title="Fedora 20 安装试用体验">Fedora 20 安装试用体验</a>
+<li><a href="http://os.51cto.com/art/201207/346023.htm" target="_blank" title="告诉你Hadoop是什么">告诉你Hadoop是什么</a>
+<li><a href="http://os.51cto.com/art/201403/432079.htm" target="_blank" title="从Linux终端管理进程：10个你必须知道">从Linux终端管理进程：10个你必须知道</a>
+<li><a href="http://os.51cto.com/art/201403/432179.htm" target="_blank" title="Linux运维工程师应如何挑选数据库服务">Linux运维工程师应如何挑选数据库服务</a>
+<li><a href="http://os.51cto.com/art/201403/430832.htm" target="_blank" title="转角遇到Zabbix：企业级分布式系统监控">转角遇到Zabbix：企业级分布式系统监控</a>
+<li><a href="http://os.51cto.com/art/201402/429520.htm" target="_blank" title="Ubuntu 12.04和14.04两大版本性能比拼">Ubuntu 12.04和14.04两大版本性能比拼</a>
+<li><a href="http://os.51cto.com/art/201205/336386.htm" target="_blank" title="OpenStack的架构详解">OpenStack的架构详解</a>
+<li><a href="http://os.51cto.com/art/201403/431950.htm" target="_blank" title="五款好玩又好用的Linux网络测试和监控">五款好玩又好用的Linux网络测试和监控</a>
+<li><a href="http://os.51cto.com/art/201207/350458.htm" target="_blank" title="PPTV借Windows Azure走出国门 企业云计">PPTV借Windows Azure走出国门 企业云计</a>
+</ul></div>
+<div id="top10_2" style="display: none;" class="list"><ul>
+<li><a href="http://os.51cto.com/art/201403/431514.htm" target="_blank" title="Linux学习分享：月薪3K到13K的距离有多">Linux学习分享：月薪3K到13K的距离有多</a>
+<li><a href="http://os.51cto.com/art/201403/431521.htm" target="_blank" title="Linux新手必备：8个实用的Linux终端命">Linux新手必备：8个实用的Linux终端命</a>
+<li><a href="http://os.51cto.com/art/201403/431512.htm" target="_blank" title="MySQL优化经验和方法汇总">MySQL优化经验和方法汇总</a>
+<li><a href="http://os.51cto.com/art/201403/431519.htm" target="_blank" title="使用国外 DNS 造成国内网站访问慢的解">使用国外 DNS 造成国内网站访问慢的解</a>
+<li><a href="http://os.51cto.com/art/201403/431632.htm" target="_blank" title="Linux系统下五种的常见错误配置">Linux系统下五种的常见错误配置</a>
+<li><a href="http://os.51cto.com/art/201403/431943.htm" target="_blank" title="私人定制：为自己打造Linux小系统">私人定制：为自己打造Linux小系统</a>
+<li><a href="http://os.51cto.com/art/201403/431706.htm" target="_blank" title="Linux只存在于PC或服务器里吗？NO……">Linux只存在于PC或服务器里吗？NO……</a>
+<li><a href="http://os.51cto.com/art/201403/431950.htm" target="_blank" title="五款好玩又好用的Linux网络测试和监控">五款好玩又好用的Linux网络测试和监控</a>
+<li><a href="http://os.51cto.com/art/201403/431520.htm" target="_blank" title="如何在 GNU/Linux 启用 Intel Rapid St">如何在 GNU/Linux 启用 Intel Rapid St</a>
+<li><a href="http://os.51cto.com/art/201403/431727.htm" target="_blank" title="SQL Server内存遭遇操作系统进程压榨案">SQL Server内存遭遇操作系统进程压榨案</a>
+</ul></div>
+<div id="top10_3" style="display: none;" class="list"><ul>
+<li><a href="http://os.51cto.com/art/201402/430080.htm" target="_blank" title="哪些行业巨头正在使用Linux操作系统？">哪些行业巨头正在使用Linux操作系统？</a>
+<li><a href="http://os.51cto.com/art/201403/430832.htm" target="_blank" title="转角遇到Zabbix：企业级分布式系统监控">转角遇到Zabbix：企业级分布式系统监控</a>
+<li><a href="http://os.51cto.com/art/201402/429878.htm" target="_blank" title="亲身经历：远离培训机构才能做好运维">亲身经历：远离培训机构才能做好运维</a>
+<li><a href="http://os.51cto.com/art/201402/430615.htm" target="_blank" title="《Linux运维趋势》2014年2月号 总第35">《Linux运维趋势》2014年2月号 总第35</a>
+<li><a href="http://os.51cto.com/art/201403/430879.htm" target="_blank" title="Linux钱途无量，高薪就业的敲门砖">Linux钱途无量，高薪就业的敲门砖</a>
+<li><a href="http://os.51cto.com/art/201403/431387.htm" target="_blank" title="每个极客都应该知道的Linux技巧">每个极客都应该知道的Linux技巧</a>
+<li><a href="http://os.51cto.com/art/201402/430190.htm" target="_blank" title="85后的首次远程研发项目实战">85后的首次远程研发项目实战</a>
+<li><a href="http://os.51cto.com/art/201403/431514.htm" target="_blank" title="Linux学习分享：月薪3K到13K的距离有多">Linux学习分享：月薪3K到13K的距离有多</a>
+<li><a href="http://os.51cto.com/art/201403/431110.htm" target="_blank" title="用Linux命令行生成随机密码的十种方法">用Linux命令行生成随机密码的十种方法</a>
+<li><a href="http://os.51cto.com/art/201402/430558.htm" target="_blank" title="快速入门：自学Linux命令的四种方法">快速入门：自学Linux命令的四种方法</a>
+</ul></div>
+ 
+ </div>
+<p class="blank1"></p>
+
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1">热点专题</h3>
+<a href="http://os.51cto.com/speclist/1363" class="tmore">更多&gt;&gt;</a></div>
+<ul class="plist01">
+<li><a href="http://os.51cto.com/art/201311/417161.htm" title="Ubuntu小技巧，每日点点滴滴"><img src="http://s2.51cto.com/wyfs01/M01/32/85/wKioOVKDoraAAjyPAAAI7eJPgYk621.jpg" alt="Ubuntu小技巧，每日点点滴滴" width="100" height="80" /></a>
+<h5><a href="http://os.51cto.com/art/201311/417161.htm" title="Ubuntu小技巧，每日点点滴滴">Ubuntu小技巧，每日点</a></h5>
+<div class="c666">Ubuntu是目前最受欢迎的Linux发行版，不仅是免费的操</div>
+</li><li><a href="http://os.51cto.com/art/201311/416437.htm" title="系统频道热点推荐：桌面系统之战，这个秋天有点“冷”"><img src="http://s4.51cto.com/wyfs01/M02/32/5F/wKioOVJ-V5vx33V0AAAJkW4eQyQ887.jpg" alt="系统频道热点推荐：桌面系统之战，这个秋天有点“冷”" width="100" height="80" /></a>
+<h5><a href="http://os.51cto.com/art/201311/416437.htm" title="系统频道热点推荐：桌面系统之战，这个秋天有点“冷”">系统频道热点推荐：桌</a></h5>
+<div class="c666">秋风呼呼的，一阵阵地吹着，树叶纷纷沉落，漫天飞舞着</div>
+</li><li><a href="http://os.51cto.com/art/201311/415977.htm" title="深入浅出 Linux命令行札记"><img src="http://s1.51cto.com/wyfs01/M02/32/42/wKioJlJ6LfOwjyNQAABes9pWVuY143.jpg" alt="深入浅出 Linux命令行札记" width="100" height="80" /></a>
+<h5><a href="http://os.51cto.com/art/201311/415977.htm" title="深入浅出 Linux命令行札记">深入浅出 Linux命令行</a></h5>
+<div class="c666">Linux命令行吸引了大多数Linux爱好者。一个正常的Linu</div>
+</li> 
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tagCloud">
+<div class="tlt">
+<h3>热点标签</h3>
+</div>
+<div class="taglist"><A title="IIS服务" href="http://os.51cto.com/art/201104/256478.htm">IIS服务</A>
+<A title="Windows 8" href="http://os.51cto.com/art/201104/256380.htm">Windows 8</A>
+<A title="浏览器战报" href="http://os.51cto.com/art/201103/250662.htm">浏览器战报</A>
+
+<A title="Ubuntu 11.04" href="http://os.51cto.com/art/201101/244030.htm">Ubuntu 11.04</A>
+<A title="运维秘诀" href="http://os.51cto.com/art/201101/244021.htm">运维秘诀</A>
+<A title="活动目录" href="http://os.51cto.com/art/201012/236185.htm">活动目录</A>
+<A title="Linux管理员" href="http://os.51cto.com/art/201104/253193.htm">Linux管理员</A>
+<A title="Fedora 15" href="http://os.51cto.com/art/201103/246763.htm">Fedora 15</A>
+<A title="Linux运维趋势" href="http://os.51cto.com/art/201011/233915.htm">Linux运维趋势</A>
+<A title="开源社区" href="http://os.51cto.com/art/201010/230570.htm">开源社区</A></div>
+</div>
+<div class="rss">
+<ul>
+<li class="lin f12-c"><a href="http://news.51cto.com/col/1323/"><strong>点击这里查看样刊</strong></a></li>
+<li>
+<dl>
+<dt> </dt>
+<dd><a href="http://home.51cto.com/index.php?s=/Subscribe"><img src="http://images.51cto.com/images/art0910/images/dingy.gif" /></a></dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">全站热点</h3>
+</div>
+<div class="webhot fixfloat">
+<ul>
+
+<li>
+  <a href="http://os.51cto.com/art/201310/413487.htm"  title="《Linux运维趋势》2013年9月号"><img src="http://s7.51cto.com/wyfs01/M01/31/06/wKioJlJioBbh34RDAAASj_YGzTI044.jpg" /></a>
+  <div><a href="http://os.51cto.com/art/201310/413487.htm"  title="《Linux运维趋势》2013年9月号">《Linux运维趋势》2013年9月号</a></div>
+</li>
+
+<li>
+  <a href="http://developer.51cto.com/art/201310/413757.htm"  title="《开发月刊》2013年10月刊发布"><img src="http://s2.51cto.com/wyfs01/M02/31/22/wKioOVJnni7iNp_vAAAijSka_5w002.jpg" /></a>
+  <div><a href="http://developer.51cto.com/art/201310/413757.htm"  title="《开发月刊》2013年10月刊发布">《开发月刊》2013年10月刊发布</a></div>
+</li>
+
+</ul>
+</div>
+<p class="blank1"></p>
+<ul class="list03">
+
+<li><a href="http://cloud.51cto.com/art/201310/413852.htm"  title="云的世界正变为现实2013云计算架构师峰会隆重召开">云的世界正变为现实2013云计算架构师</a></li>
+
+<li><a href="http://os.51cto.com/art/201310/413754.htm"  title="Ubuntu 13.10 俏丽的蝾螈，为梦想而生">Ubuntu 13.10 俏丽的蝾螈，为梦想而</a></li>
+
+<li><a href="http://mobile.51cto.com/ios-413703.htm"  title="iOS开发各类优化解决方案集锦">iOS开发各类优化解决方案集锦</a></li>
+
+<li><a href="http://os.51cto.com/art/201310/413659.htm"  title="微软Windows发展史：28年13次华丽变身">微软Windows发展史：28年13次华丽变</a></li>
+
+<li><a href="http://mobile.51cto.com/comment-413613.htm"  title="整合Android的路上Google其实走的很小心">整合Android的路上Google其实走的很</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">读书</h3>
+</div>
+  
+<div class="catbook"><a href="http://book.51cto.com/art/200704/44709.htm" title="网管员必读——网络组建"><img src="http://images.51cto.com/files/uploadimg/20070407/102949482.jpg" width="66" height="98" border="0" /></a>
+<h5><a href="http://book.51cto.com/art/200704/44709.htm">网管员必读——网络组建</a></h5>
+<div class="c666 text">本书以一个模拟局域网组建为思路，介绍了与局域网组建各主要方面相关的知识及组建、配置方法。本书所介绍的内容主要包括：局域网</div>
+</div>
+
+
+<ul class="list03">
+
+<li><a href="http://book.51cto.com/art/200711/59497.htm" title="用户体验要素">用户体验要素</a></li>
+
+<li><a href="http://book.51cto.com/art/200711/59581.htm" title="Linux命令、编辑器与Shell编程">Linux命令、编辑器与Shell编程</a></li>
+
+<li><a href="http://book.51cto.com/art/200711/59629.htm" title="Windows用户态程序高效排错">Windows用户态程序高效排错</a></li>
+
+<li><a href="http://book.51cto.com/art/200711/59724.htm" title="XML案例解析教程">XML案例解析教程</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1 fl">博文推荐</h3>
+<a class="tmore" href="http://blog.51cto.com/">更多&gt;&gt;</a></div>
+
+<ul class="list03">
+ <li><a href="http://linlinben.blog.51cto.com/1997439/403189/" target="_blank" title="送给年轻女孩的话：不想成为女强人的话就早点嫁了吧！">送给年轻女孩的话：不想成为女强人的</a></li><li><a href="http://zhoujg.blog.51cto.com/1281471/403115/" target="_blank" title="面向语言编程LOP（Language Oriented Programming）方法介绍">面向语言编程LOP（Language Oriented</a></li><li><a href="http://zhoujg.blog.51cto.com/1281471/403114/" target="_blank" title="产生式编程（Generative Programming）方法介绍">产生式编程（Generative Programming</a></li><li><a href="http://vcycyv.blog.51cto.com/683635/403006/" target="_blank" title="spring mvc 学习二">spring mvc 学习二</a></li>
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tj">
+<div class="tlt">
+<h3>最新热帖</h3>
+<a class="more" href="http://bbs.51cto.com/hotthreads.php">更多&gt;&gt;</a></div>
+<ul>
+<li><a href="http://bbs.51cto.com/thread-818279-1.html" target="_blank" title="CCNA重点知识点">CCNA重点知识点</a></li><li><a href="http://bbs.51cto.com/thread-814108-1.html" target="_blank" title="大公司里的草还是小公司里的宝？">大公司里的草还是小公司里的宝？</a></li><li><a href="http://bbs.51cto.com/thread-682482-1.html" target="_blank" title="一道局域网布线的基础题目">一道局域网布线的基础题目</a></li><li><a href="http://bbs.51cto.com/thread-550558-1.html" target="_blank" title="【JAVA EE企业级开发四步走完全攻略】">【JAVA EE企业级开发四步走完全攻略</a></li><li><a href="http://bbs.51cto.com/thread-26429-1.html" target="_blank" title="通用WAP网站生成系统(PowerDiamond) v.1">通用WAP网站生成系统(PowerDiamond) </a></li>
+</ul>
+</div>
+<div class="picAD">
+<script language="JavaScript" src="http://www.51cto.com/ad/art/baidugoogle/ad.js" type="text/javascript"></script>
+</div>
+</div>
+<p class="blank1"></p> 
+<!--leftbotcon end-->
+</div> 
+<div class="subweb">
+<h4>51CTO旗下网站</h4>
+<div>
+<a target="_blank" href="http://www.51cto.com/">领先的IT技术网站 51CTO</a>
+<a target="_blank" href="http://www.watchstor.com/">领先的中文存储媒体 WatchStor</a>
+<a target="_blank" href="http://www.cioage.com/">中国首个CIO网站 CIOage</a>
+<a target="_blank" href="http://www.hc3i.cn/">中国首家数字医疗网站 HC3i</a>
+</div>
+</div>
+<div id="ft"><div id="foot" align="center"><script src="http://images.51cto.com/images/copy_right/copy_right.js"></script></div></div>
+<script src="http://logs.51cto.com/rizhi/count/count.js"></script>
+<!-- START GA.js -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20883758-1']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_addOrganic', 'baidu', 'word']);
+  _gaq.push(['_addOrganic', 'google', 'q']);
+  _gaq.push(['_addOrganic', 'soso', 'w']);
+  _gaq.push(['_addOrganic', '3721', 'name']);
+  _gaq.push(['_addOrganic', 'yodao', 'q']);
+  _gaq.push(['_addOrganic', 'vnet', 'kw']);
+  _gaq.push(['_addOrganic', 'sogou', 'query']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- END GA.js -->
+
+<!-- baidu.js -->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff77ea1ecd95cb2a1bc65cbcb3aaba7d4' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!--end baidu.js -->
+<script type="text/javascript">
+
+	$("#uyan_cmt_list").next().remove();	
+	$("#uyan_cmt_list").next().css("display","none");	
+</script>
+
+<!-- 新监测代码 -->
+<!-- 新监测代码 -->
+<div id="MyMoveAd" style="display:none">
+<span id="wordlink_1"><script src="http://www.51cto.com/ad/art/wordlink/wordlink1.js"></script></span>
+<span id="wordlink_2"><script src="http://www.51cto.com/ad/art/wordlink/wordlink2.js"></script></span>
+<span id="wordlink_3"><script src="http://www.51cto.com/ad/art/wordlink/wordlink3.js"></script></span>
+<span id="wordlink_4"><script src="http://www.51cto.com/ad/art/wordlink/wordlink4.js"></script></span>
+<span id="pinglun"><script language="JavaScript" src="http://www.51cto.com/php/getArtCount.php?artid=65583&type=all"></script></span>
+<span id="tonglan"><script language="JavaScript" src="http://www.51cto.com/ad/art/tonglan/ad.js"></script></span>
+<span id="wordlink"><script language="JavaScript" src="http://www.51cto.com/ad/art/wordlink/ad.js"></script></span>
+<script src="http://www.51cto.com/ad/art/wordlink/ad.js"></script>
+<span id="bookss"><script language="JavaScript" src="http://www.51cto.com/php/getBookData.php?artid="></script></span>
+</div>   
+<script language="javascript" src="http://www.51cto.com/js/article/favorite.js"></script>
+
+<script language="javaScript" src="http://www.51cto.com/php/dialog_utf8.js"></SCRIPT>
+<script language="javaScript" src="http://www.51cto.com/mail.js"></script>  
+<script type="text/javascript" src="http://home.51cto.com/apps/favorite/Tpl/default/Public/js/favorbox.js"></script>
+<script language="javascript" src="http://images.51cto.com/images/art/newart1012/clipboard.js"></script>
+<script language="javaScript"> 
+	var thistid=65583; 
+	
+	//收藏按钮
+	var favor_url = 'http://os.51cto.com/art/200802/65583.htm';  // 如：http://bbs.51cto.com/thread-789649-1.html
+	var favor_title = 'Ubuntu Linux系统下apt-get命令详解';       //  
+	
+	//绑定复制按钮
+	copy('msnqqcopy', 'http://os.51cto.com/art/200802/65583.htm', '分享到MSN/QQ的链接复制成功!');
+//	copy('bbscopy', '[url=http://os.51cto.com/art/200802/65583.htm][u]Ubuntu Linux系统下apt-get命令详解[/u][/url]', '分享到论坛的UBB代码复制成功!');
+
+</script> 
+<script src=" http://home.51cto.com/index.php?s=/Index/getLoginStatus/reback/http%253A%252F%252Fos.51cto.com%252Fart%252F200802%252F65583.htm" charset='utf-8'></script>
+<script src="http://www.51cto.com/php/count.php?view=yes&artID=65583" language="javascript"></script>
+<script language="javascript">
+document.getElementById('books').innerHTML = document.getElementById("bookss").innerHTML; 
+</script>
+
+</body>
+</html>

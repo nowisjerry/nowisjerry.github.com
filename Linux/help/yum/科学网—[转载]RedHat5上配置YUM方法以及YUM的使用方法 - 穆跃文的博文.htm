@@ -1,0 +1,485 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0049)http://blog.sciencenet.cn/blog-588243-678821.html -->
+<html  xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<title>科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文</title>
+
+<meta  name="keywords"  content="[转载]RedHat5上配置YUM方法以及YUM的使用方法">
+<meta  name="description"  content="转自：http://www.onexin.net/redhat5-methods-yum-and-yum-configured-to-use/一、YUM的配置方法在REDHAT 5以后,加入了YUM这个新功能,可以解决RPM包的 ... ,科学网">
+<meta  name="generator"  content="Discuz! X1.5">
+<meta  name="author"  content="Discuz! Team and Comsenz UI Team">
+<meta  name="copyright"  content="2001-2010 Comsenz Inc.">
+<meta  name="MSSmartTagsPreventParsing"  content="True">
+<meta  http-equiv="MSThemeCompatible"  content="Yes">
+<!--<base  href="http://blog.sciencenet.cn/">--><base href="."><link  rel="stylesheet"  type="text/css"  href="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/style_1_common.css"><link  rel="stylesheet"  type="text/css"  href="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/style_1_home_space.css"><link  rel="stylesheet"  id="css_extstyle"  type="text/css"  href="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/style.css"><script  type="text/javascript">var STYLEID = '1', STATICURL = 'static/', IMGDIR = 'static/image/common', VERHASH = 'Opj', charset = 'gbk', discuz_uid = '0', cookiepre = '8aWX_183e_', cookiedomain = '.sciencenet.cn', cookiepath = '/', showusercard = '1', attackevasive = '0', disallowfloat = 'register|newthread', creditnotice = '', defaultstyle = './template/default/style/t1', REPORTURL = 'aHR0cDovL2Jsb2cuc2NpZW5jZW5ldC5jbi9ibG9nLTU4ODI0My02Nzg4MjEuaHRtbA==', SITEURL = 'http://blog.sciencenet.cn/';</script><style  type="text/css"  adt="123"></style>
+<script  src="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/common.js"  type="text/javascript"></script><script  src="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/home.js"  type="text/javascript"></script>
+<link  rel="stylesheet"  type="text/css"  href="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/style_1_css_space.css">
+<link  id="style_css"  rel="stylesheet"  type="text/css"  href="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/style(1).css">
+<style  id="diy_style">body {background-attachment:fixed !important;}</style>
+<script  src="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/rightclick.js"></script><style  type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style  type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style  type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style  type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style  type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; border: 0; padding: 0; margin: 0}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0 !important; padding: 0 !important; margin: 0 !important; vertical-align: 0 !important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap ! important}
+.MathJax img {display: inline ! important; float: none ! important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block; overflow: hidden; width: 1px; height: 60ex}
+.MathJax .MathJax_EmBox {display: block; overflow: hidden; width: 1px; height: 60em}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff') format('woff'), url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf') format('opentype')}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff') format('woff'), url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf') format('opentype'); font-weight: bold}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff') format('woff'), url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf') format('opentype'); font-style: italic}
+@font-face {font-family: MathJax_Math; src: url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff') format('woff'), url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf') format('opentype'); font-style: italic}
+@font-face {font-family: MathJax_Caligraphic; src: url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff') format('woff'), url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff') format('woff'), url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff') format('woff'), url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff') format('woff'), url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff') format('woff'), url('http://cdn.mathjax.org/mathjax/2.3-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+<body  id="space"   style="zoom: 1;"><div  style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div  id="MathJax_Hidden"></div></div><div  id="MathJax_Message"  style="display: none;"></div><script  src="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/jiathis.php"  charset="utf-8"></script><link  href="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/jiathis_share.css"  rel="stylesheet"  type="text/css"><iframe  frameborder="0"  style="position: absolute; display: none; opacity: 0;"></iframe><div  class="jiathis_style"  style="position: absolute; z-index: 1000000000; display: none; top: 50%; left: 50%; overflow: auto;"></div><div  class="jiathis_style"  style="position: absolute; z-index: 1000000000; display: none; overflow: auto;"></div><iframe  frameborder="0"  src="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/jiathis_utility.htm"  style="display: none;"></iframe>
+<div  id="append_parent"></div>
+<div  id="ajaxwaitid"></div>
+
+
+<div  class="topnav cl">
+<p  class="y navinf">
+<a  href="http://blog.sciencenet.cn/member.php?mod=register" >注册</a>
+<span  class="pipe">|</span><a  href="http://blog.sciencenet.cn/member.php?mod=logging&action=login" >登录</a>
+</p>
+<ul  class="cl">
+<li  class="navlogo"><a  href="http://blog.sciencenet.cn/blog.php"  title="构建全球华人科学博客圈">构建全球华人科学博客圈</a></li>
+
+            <li><span  id="navs"  class="xg1 showmenu" ><a  href="http://www.sciencenet.cn/">返回首页</a></span></li>
+            <li><span  id="wbnavs"  class="xg1 showmenu" ><a  href="http://weibo.sciencenet.cn/">微博</a></span></li>
+            <li><span  id="navs"  class="xg1"><a  href="http://www.sciencenet.cn/blog/userRSS.aspx?uid=588243">RSS订阅</a></span></li>
+             <li><span  id="navs"  class="xg1"><a  href="http://blog.sciencenet.cn/misc.php?mod=faq">帮助</a></span></li>
+</ul>
+</div>
+
+<div  id="hd"  class="wp cl">
+
+<h2  id="spaceinfoshow">            
+<strong  id="spacename"  class="mbn">
+Mu博<a  class="oshr xs1 xw0"   id="share_space"  href="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=share&type=space&id=588243">分享</a></strong>
+<a  id="domainurl"  href="http://blog.sciencenet.cn/u/ywmucn"   class="xs0 xw0">http://blog.sciencenet.cn/u/ywmucn</a> <span  id="spacedescription"  class="xs1 xw0 mtn">http://scholar.google.com/citations?user=ERuLeAsAAAAJ</span>
+</h2>
+
+<div  id="nv">
+<ul>
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=space&uid=588243">博客首页</a></li>
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=space&uid=588243&do=home&view=me&from=space">动态</a></li>
+
+
+
+                <li><a  href="http://weibo.sciencenet.cn/?ywmucn&type=profile">微博</a></li>
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=space&uid=588243&do=blog&view=me&from=space">博文</a></li>
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=space&uid=588243&do=album&view=me&from=space">相册</a></li>
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=space&uid=588243&do=thread&view=me&from=space">主题</a></li>
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=space&uid=588243&do=share&view=me&from=space">分享</a></li>
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=space&uid=588243&do=friend&view=me&from=space">好友</a></li>
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=space&uid=588243&do=wall">留言板</a></li>
+                
+                                <li  style="display:none"><a  href="http://id.sciencenet.cn/u/ywmucn"  title="ywmucn的学术名片"  target="_blank">学术名片</a></li>
+</ul>
+</div>
+</div>
+
+    <ul  id="navs_menu"  class="p_pop topnav_pop"  style="display:none;">                                        <li  id="mn_N59f6"><a  href="http://www.sciencenet.cn/"  hidefocus="true">首页</a></li>                    <li  id="mn_N3b56"><a  href="http://news.sciencenet.cn/"  hidefocus="true">新闻</a></li>                    <li  id="mn_N1db7"><a  href="http://blog.sciencenet.cn/"  hidefocus="true">博客</a></li>                                                            <li  id="mn_forum"><a  href="http://bbs.sciencenet.cn/forum.php"  hidefocus="true"  title="BBS">群组<span>BBS</span></a></li>                                                            <li  id="mn_N968f"><a  href="http://talent.sciencenet.cn/"  hidefocus="true">人才</a></li>                    <li  id="mn_N9d75"><a  href="http://meeting.sciencenet.cn/"  hidefocus="true">会议</a></li>                                        <li  id="mn_Nec23"><a  href="http://paper.sciencenet.cn/"  hidefocus="true">论文</a></li>                    <li  id="mn_N1867"><a  href="http://fund.sciencenet.cn/"  hidefocus="true">基金</a></li>                    <li  id="mn_Nae92"><a  href="http://kepu.sciencenet.cn/"  hidefocus="true">科普</a></li>                    <li  id="mn_Nc317"><a  href="http://minimouse.sciencenet.cn/"  hidefocus="true">小白鼠</a></li>                    <li  id="mn_N0a2c"><a  href="http://blog.sciencenet.cn/misc.php?mod=faq"  hidefocus="true"  title="Help">帮助<span>Help</span></a></li></ul>
+<ul  id="wbnavs_menu"  class="p_pop topnav_pop"  style="display:none;">
+    <li  id="mn_N59f9"><a  href="http://weibo.sciencenet.cn/"  hidefocus="true">微博</a></li>
+    <li  id="mn_N59g9"><a  href="http://weibo.sciencenet.cn/?&act=follower"  hidefocus="true">粉丝</a></li>
+    <li  id="mn_N59g9"><a  href="http://weibo.sciencenet.cn/?&act=comments"  hidefocus="true">评论</a></li>
+    <li  id="mn_N59g9"><a  href="http://weibo.sciencenet.cn/?&act=atme"  hidefocus="true">@我</a></li>
+    <li  id="mn_N59g9"><a  href="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=privacy&op=miniblog"  hidefocus="true">提醒</a></li></ul>
+
+<ul  id="myspace_menu"  class="p_pop"  style="display:none;">
+    <li><a  href="http://blog.sciencenet.cn/home.php?mod=space">我的博客</a></li>
+</ul>
+<style>
+em, cite {
+font-style:italic;
+}
+    #blog_article span { float: none;  }
+p {
+margin: 1.12em 0;
+}
+</style>
+
+<div  id="ct"  class="ct2 wp cl">
+
+<div  class="mn">
+<div  class="bm">
+<div  class="bm_h cl">
+<h1  class="mt"><span  class="z">博文</span> </h1>
+</div>
+<div  class="bm_c">
+
+<div  class="vw mbm">
+<div  class="h pbm">
+<h1  class="ph">
+[转载]RedHat5上配置YUM方法以及YUM的使用方法   
+                        </h1>
+                     
+                    
+<p  class="xg2">
+<span  class="xg1">已有 1521 次阅读</span> 
+<span  class="xg1">2013-4-10 11:14</span>
+
+<span  class="pipe">|</span><span  class="xg1">个人分类:<a  href="http://blog.sciencenet.cn/home.php?mod=space&uid=588243&do=blog&classid=155870&view=me">集群&amp;PC&amp;Code</a></span><span  class="pipe">|</span><span  class="xg1">系统分类:<a  href="http://blog.sciencenet.cn/home.php?mod=space&do=blog&view=all&uid=588243&catid=1">科研笔记</a></span>                    </p>
+</div>
+
+<div  id="blog_article"  class="d cl"><p>转自：</p><p><a  href="http://www.onexin.net/redhat5-methods-yum-and-yum-configured-to-use/"  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;outline:none;color:#21759b;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;line-height:14.666666984558105px;background-color:#ffffff;"  target="_blank">http://www.onexin.net/redhat5-methods-yum-and-yum-configured-to-use/</a><br></p><p><br></p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;"><strong  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">一、YUM的配置方法</strong></p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">在REDHAT 5以后,加入了YUM这个新功能,可以解决RPM包的依赖关系,但不注册RHN的话不这个功能是不能使用的,我们可以使用光盘中自带的RPM包自己动手搭建个本地源，或者更改更新源到开源的网站。</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">而限定yum更新地址的文件在/etc/yum.repos.d/里。首先把系统自带的”rhel-debuginfo.repo“改成备份文件，即在后面加.bak<br  style="word-break:break-all;word-wrap:break-word;"><span  id="more-1981"  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;"></span><br  style="word-break:break-all;word-wrap:break-word;"># mv /etc/yum.repos.d/rhel-debuginfo.repo /etc/yum.repos.d/rhel-debuginfo.repo.bak </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;"><strong  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">1.方法一（使用RedHat光盘中RPM搭建本地YUM）：</strong></p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">（1).将光盘中的Cluster, &nbsp;ClusterStorage, &nbsp;Server, &nbsp;VT,这几个文件COPY到本地目录中,比如我的为/yum/目录</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">（2).编辑/etc/yum.repos.d/rhel-debuginfo.repo文件,如我的配置文件为</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">[Cluster]</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">name=Red Hat Enterprise Linux <span  class="MathJax_Preview"></span><span  class="MathJax"  id="MathJax-Element-1-Frame"  role="textbox"  aria-readonly="true"  style=""><nobr><span  class="math"  id="MathJax-Span-1"  style="width: 5.954em; display: inline-block;"><span  style="display: inline-block; position: relative; width: 4.9em; height: 0px; font-size: 121%;"><span  style="position: absolute; clip: rect(1.305em 999.982em 2.358em -0.555em); top: -2.166em; left: 0.003em;"><span  class="mrow"  id="MathJax-Span-2"><span  class="mi"  id="MathJax-Span-3"  style="font-family: MathJax_Math; font-style: italic;">r</span><span  class="mi"  id="MathJax-Span-4"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-5"  style="font-family: MathJax_Math; font-style: italic;">l</span><span  class="mi"  id="MathJax-Span-6"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-7"  style="font-family: MathJax_Math; font-style: italic;">a</span><span  class="mi"  id="MathJax-Span-8"  style="font-family: MathJax_Math; font-style: italic;">s</span><span  class="mi"  id="MathJax-Span-9"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-10"  style="font-family: MathJax_Math; font-style: italic;">v</span><span  class="mi"  id="MathJax-Span-11"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-12"  style="font-family: MathJax_Math; font-style: italic;">r</span><span  class="mo"  id="MathJax-Span-13"  style="font-family: MathJax_Main;">–</span></span><span  style="display: inline-block; width: 0px; height: 2.173em;"></span></span></span><span  style="border-left-width: 0.004em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.979em; vertical-align: -0.071em;"></span></span></nobr></span><script  type="math/tex"  id="MathJax-Element-1">releasever – </script>basearch – Debug</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">baseurl=file:///yum/Cluster/</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">enabled=1</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">gpgcheck=1</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">[ClusterStorage]</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">name=Red Hat Enterprise Linux <span  class="MathJax_Preview"></span><span  class="MathJax"  id="MathJax-Element-2-Frame"  role="textbox"  aria-readonly="true"  style=""><nobr><span  class="math"  id="MathJax-Span-14"  style="width: 5.954em; display: inline-block;"><span  style="display: inline-block; position: relative; width: 4.9em; height: 0px; font-size: 121%;"><span  style="position: absolute; clip: rect(1.305em 999.982em 2.358em -0.555em); top: -2.166em; left: 0.003em;"><span  class="mrow"  id="MathJax-Span-15"><span  class="mi"  id="MathJax-Span-16"  style="font-family: MathJax_Math; font-style: italic;">r</span><span  class="mi"  id="MathJax-Span-17"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-18"  style="font-family: MathJax_Math; font-style: italic;">l</span><span  class="mi"  id="MathJax-Span-19"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-20"  style="font-family: MathJax_Math; font-style: italic;">a</span><span  class="mi"  id="MathJax-Span-21"  style="font-family: MathJax_Math; font-style: italic;">s</span><span  class="mi"  id="MathJax-Span-22"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-23"  style="font-family: MathJax_Math; font-style: italic;">v</span><span  class="mi"  id="MathJax-Span-24"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-25"  style="font-family: MathJax_Math; font-style: italic;">r</span><span  class="mo"  id="MathJax-Span-26"  style="font-family: MathJax_Main;">–</span></span><span  style="display: inline-block; width: 0px; height: 2.173em;"></span></span></span><span  style="border-left-width: 0.004em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.979em; vertical-align: -0.071em;"></span></span></nobr></span><script  type="math/tex"  id="MathJax-Element-2">releasever – </script>basearch – Debug</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">baseurl=file:///yum/ClusterStorage</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">enabled=1</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">gpgcheck=1</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">[Server]</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">name=Red Hat Enterprise Linux <span  class="MathJax_Preview"></span><span  class="MathJax"  id="MathJax-Element-3-Frame"  role="textbox"  aria-readonly="true"  style=""><nobr><span  class="math"  id="MathJax-Span-27"  style="width: 5.954em; display: inline-block;"><span  style="display: inline-block; position: relative; width: 4.9em; height: 0px; font-size: 121%;"><span  style="position: absolute; clip: rect(1.305em 999.982em 2.358em -0.555em); top: -2.166em; left: 0.003em;"><span  class="mrow"  id="MathJax-Span-28"><span  class="mi"  id="MathJax-Span-29"  style="font-family: MathJax_Math; font-style: italic;">r</span><span  class="mi"  id="MathJax-Span-30"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-31"  style="font-family: MathJax_Math; font-style: italic;">l</span><span  class="mi"  id="MathJax-Span-32"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-33"  style="font-family: MathJax_Math; font-style: italic;">a</span><span  class="mi"  id="MathJax-Span-34"  style="font-family: MathJax_Math; font-style: italic;">s</span><span  class="mi"  id="MathJax-Span-35"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-36"  style="font-family: MathJax_Math; font-style: italic;">v</span><span  class="mi"  id="MathJax-Span-37"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-38"  style="font-family: MathJax_Math; font-style: italic;">r</span><span  class="mo"  id="MathJax-Span-39"  style="font-family: MathJax_Main;">–</span></span><span  style="display: inline-block; width: 0px; height: 2.173em;"></span></span></span><span  style="border-left-width: 0.004em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.979em; vertical-align: -0.071em;"></span></span></nobr></span><script  type="math/tex"  id="MathJax-Element-3">releasever – </script>basearch – Debug</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">baseurl=file:///yum/Server</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">enabled=1</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">gpgcheck=1</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-releasea</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">[VT]</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">name=Red Hat Enterprise Linux <span  class="MathJax_Preview"></span><span  class="MathJax"  id="MathJax-Element-4-Frame"  role="textbox"  aria-readonly="true"  style=""><nobr><span  class="math"  id="MathJax-Span-40"  style="width: 5.954em; display: inline-block;"><span  style="display: inline-block; position: relative; width: 4.9em; height: 0px; font-size: 121%;"><span  style="position: absolute; clip: rect(1.305em 999.982em 2.358em -0.555em); top: -2.166em; left: 0.003em;"><span  class="mrow"  id="MathJax-Span-41"><span  class="mi"  id="MathJax-Span-42"  style="font-family: MathJax_Math; font-style: italic;">r</span><span  class="mi"  id="MathJax-Span-43"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-44"  style="font-family: MathJax_Math; font-style: italic;">l</span><span  class="mi"  id="MathJax-Span-45"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-46"  style="font-family: MathJax_Math; font-style: italic;">a</span><span  class="mi"  id="MathJax-Span-47"  style="font-family: MathJax_Math; font-style: italic;">s</span><span  class="mi"  id="MathJax-Span-48"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-49"  style="font-family: MathJax_Math; font-style: italic;">v</span><span  class="mi"  id="MathJax-Span-50"  style="font-family: MathJax_Math; font-style: italic;">e</span><span  class="mi"  id="MathJax-Span-51"  style="font-family: MathJax_Math; font-style: italic;">r</span><span  class="mo"  id="MathJax-Span-52"  style="font-family: MathJax_Main;">–</span></span><span  style="display: inline-block; width: 0px; height: 2.173em;"></span></span></span><span  style="border-left-width: 0.004em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.979em; vertical-align: -0.071em;"></span></span></nobr></span><script  type="math/tex"  id="MathJax-Element-4">releasever – </script>basearch – Debug</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">baseurl=file:///yum/VT</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">enabled=1</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">gpgcheck=0</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-releasea</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">解释下相关选项意思</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">[] 中的为我的/yum/目录下的文件名称</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">名称而已,随意都行</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">源目录路径</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">enabled 这一定要设为1.要不然,[ ]选项下的设置不生效</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">pgpcheck 是否使用gpg验证RPM包的不可抵赖性,设为0可以省不少事,如果一定要设验证的话,必须保证(6)中的公钥正确</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">如果上一项设为1的话这项须设置</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">(3).安装createrepo命令包,使用此命令创建RPM包依赖性关系,格式为createrepo /yum/Server/,源目录下的所有目录都运行一次,些命令会在指定目录下生成</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">一个repodata,其中有记录依赖性的关系文件.</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;"><strong  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">2.方法二（使用CentOS的RPM升级站点）：</strong></p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">（1）.通过 http://mirror-status.centos.org 网站查找离自己最近的镜像站点</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">（2）.创建和修改/etc/yum.repos.d/centos.repo</p><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;line-height:14.666666984558105px;background-color:#ffffff;">#vim /etc/yum.repos.d/centos.repo</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;line-height:14.666666984558105px;background-color:#ffffff;"><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">[base]</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">name=Red Hat Enterprise Linux $releasever – Base</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">baseurl=http://centos.ustc.edu.cn/centos/5.4/os/$basearch/</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">enabled=1</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">gpgcheck=1</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">[update]</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">name=Red Hat Enterprise Linux $releasever – Update</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">baseurl=http://centos.ustc.edu.cn/centos/5.4/updates/$basearch/</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">enabled=1</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">gpgcheck=1</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">[extras]</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">name=Red Hat Enterprise Linux $releasever – Extras</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">baseurl=http://centos.ustc.edu.cn/centos/5.4/extras/$basearch/</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">enabled=1</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">gpgcheck=1</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">[addons]</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">name=Red Hat Enterprise Linux $releasever – Addons</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">baseurl=http://centos.ustc.edu.cn/centos/5.4/addons/$basearch/</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">enabled=1</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">gpgcheck=1</div></div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;line-height:14.666666984558105px;background-color:#ffffff;"><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">[centosplus]</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">name=Red Hat Enterprise Linux $releasever – centosplus</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">baseurl=http://centos.ustc.edu.cn/centos/5.4/centosplus/$basearch/</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">enabled=1</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">gpgcheck=1</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">[contrib]</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">name=Red Hat Enterprise Linux $releasever – contrib</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">baseurl=http://centos.ustc.edu.cn/centos/5.4/contrib/$basearch/</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">enabled=1</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">gpgcheck=1</div></div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;line-height:14.666666984558105px;background-color:#ffffff;">（3）.下载并导入KEY</div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;line-height:14.666666984558105px;background-color:#ffffff;"><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">#cd /etc/pki/rpm-gpg </div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">#wget http://http://centos.ustc.edu.cn/centos/RPM-GPG-KEY-CentOS-5 </div><div  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">#rpm –import /etc/pki/rpm-gpg/RPM-GPG-KEY-GentOS-5</div></div><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;"> </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;"><strong  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">3.方法三(使用RPMforge)：</strong></p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">（1）.到<a  href="http://rpmfind.net/linux/RPM/"  target="_blank"  wrc_done="true"  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;outline:none;color:#21759b;">http://rpmfind.net/linux/RPM/</a>找到这个包，然后安装</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#rpm -ivh rpmforge-release-0.3.6-1.el5.rf.i386.rpm </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">我这安装地址是<br  style="word-break:break-all;word-wrap:break-word;">#wget ftp://rpmfind.net/linux/dag/redhat/el5/en/i386/dag/RPMS/rpmforge-release-0.3.6-1.el5.rf.i386.rpm</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">（2）.然后导入KEY</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#rpm –import <a  rel="nofollow"  href="http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-5"  target="_new"  wrc_done="true"  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;outline:none;color:#21759b;">http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-5</a> </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">（3）.加速YUM</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum install yum-fastestmirror yum-presto</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">可以在baseurl中将比较慢的mirror去掉 ,你的yum镜像的速度测试记录文件： /var/cache/yum/timedhosts.txt </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">yum Existing lock 错误的解决办法 <br  style="word-break:break-all;word-wrap:break-word;">如果系统启动的时候， yum 出现Existing lock /var/run/yum.pid: another copy is running as pid 3380. Aborting. 可以用下面的办法解决： <br  style="word-break:break-all;word-wrap:break-word;">#/etc/init.d/yum-updatesd stop <br  style="word-break:break-all;word-wrap:break-word;">也可以用以下方法： <br  style="word-break:break-all;word-wrap:break-word;">#rm -f /var/run/yum.pid <br  style="word-break:break-all;word-wrap:break-word;">主要原因就是yum在自动更新只要关掉它就可以了 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">注意：如果风速慢的话可以通过增加yum的超时时间，这样就不会总是因为超时而退出。</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#vi /etc/yum.conf <br  style="word-break:break-all;word-wrap:break-word;">加上这么一句：timeout=120 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;"><strong  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">二、YUM的使用方法</strong></p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">注:当第一次使用yum或yum资源库有更新时,yum会自动下载所有所需的headers放置于/var/cache/yum目录下,所需时间可能较长. </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;"><strong  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">1.rpm包的更新 </strong></p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 检查可更新的rpm包 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum check-update </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 更新所有的rpm包 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum update </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 更新指定的rpm包,如更新kernel和kernel source </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum update kernel kernel-source </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 大规模的版本升级,与yum update不同的是,连旧的淘汰的包也升级 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum upgrade</p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;"><strong  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">2.rpm包的安装和删除 </strong></p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 安装rpm包,如xmms-mp3 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum install xmms-mp3 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 删除rpm包,包括与该包有倚赖性的包 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum remove licq </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 注:同时会提示删除licq-gnome,licq-qt,licq-text </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">yum暂存(/var/cache/yum/)的相关参数 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 清除暂存中rpm包文件 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum clean packages </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 清除暂存中rpm头文件 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum clearn headers </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 清除暂存中旧的rpm头文件 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum clean oldheaders </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 清除暂存中旧的rpm头文件和包文件 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum clearn 或#yum clearn all </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 注:相当于yum clean packages + yum clean oldheaders </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;"><strong  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">3.包列表 </strong></p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 列出资源库中所有可以安装或更新的rpm包 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum list </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 列出资源库中特定的可以安装或更新以及已经安装的rpm包 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum list mozilla </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum list mozilla// </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 注:可以在rpm包名中使用匹配符,如列出所有以mozilla开头的rpm包 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 列出资源库中所有可以更新的rpm包 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum list updates </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 列出已经安装的所有的rpm包 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum list installed </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 列出已经安装的但是不包含在资源库中的rpm包 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum list extras </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 注:通过其它网站下载安装的rpm包 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;"><strong  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">4.rpm包信息显示(info参数同list) </strong></p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 列出资源库中所有可以安装或更新的rpm包的信息 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum info </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 列出资源库中特定的可以安装或更新以及已经安装的rpm包的信息 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum info mozilla </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum info mozilla// </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 注:可以在rpm包名中使用匹配符,如列出所有以mozilla开头的rpm包的信息 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 列出资源库中所有可以更新的rpm包的信息 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum info updates </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 列出已经安装的所有的rpm包的信息 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum info installed </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 列出已经安装的但是不包含在资源库中的rpm包的信息 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum info extras </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 注:通过其它网站下载安装的rpm包的信息 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;"><strong  style="word-break:break-all;word-wrap:break-word;margin:0px;padding:0px;border:0px;vertical-align:baseline;">5.搜索rpm包 </strong></p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 搜索匹配特定字符的rpm包 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum search mozilla </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 注:在rpm包名,包描述等中搜索 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">// 搜索有包含特定文件名的rpm包 </p><p  style="word-break:break-all;word-wrap:break-word;padding:0px;border:0px;font-size:13.333333015441895px;vertical-align:baseline;line-height:14.666666984558105px;color:#444444;font-family:&#39;segoe ui&#39;, helvetica, garuda, arial, sans-serif;background-color:#ffffff;margin-top:0px;margin-bottom:0px;">#yum provides realplay</p><p><br></p>                    <br><br>
+                                        <label  style="font-size:13px; color:#666">本文引用地址：</label><a  href="http://blog.sciencenet.cn/blog-588243-678821.html"  target="_blank"  style="font-size:13px; color:#666">http://blog.sciencenet.cn/blog-588243-678821.html </a>
+  <br>上一篇：<a  href="http://blog.sciencenet.cn/blog-588243-668449.html"  target="_black">[转载]拉普拉斯电子密度</a><br>下一篇：<a  href="http://blog.sciencenet.cn/blog-588243-680416.html"  target="_black">[转载]wannier90的windows</a>                    
+                                        
+</div>
+<div  id="click_div"><table  cellpadding="0"  cellspacing="0"  class="atd">
+<tbody><tr></tr>
+</tbody></table>
+<script  type="text/javascript">
+function errorhandle_clickhandle(message, values) {
+if(values['id']) {
+showCreditPrompt();
+show_click(values['idtype'], values['id'], values['clickid']);
+}
+}
+</script>
+
+</div>
+<div  class="o cl">
+
+<div  class="jiathis_style">
+<a  class="jiathis_button_qzone"  title="分享到QQ空间"><span  class="jiathis_txt jtico jtico_qzone"></span></a>
+<a  class="jiathis_button_tsina"  title="分享到新浪微博"><span  class="jiathis_txt jtico jtico_tsina"></span></a>
+<a  class="jiathis_button_tqq"  title="分享到腾讯微博"><span  class="jiathis_txt jtico jtico_tqq"></span></a>
+<a  class="jiathis_button_weixin"  title="分享到微信"><span  class="jiathis_txt jtico jtico_weixin"></span></a>
+<a  class="jiathis_button_renren"  title="分享到人人网"><span  class="jiathis_txt jtico jtico_renren"></span></a>
+<a  class="jiathis_button_t163"  title="分享到网易微博"><span  class="jiathis_txt jtico jtico_t163"></span></a>
+<a  class="jiathis_button_kaixin001"  title="分享到开心网"><span  class="jiathis_txt jtico jtico_kaixin001"></span></a>
+<a  href="http://www.jiathis.com/share"  class="jiathis jiathis_txt jtico jtico_jiathis"  target="_blank">更多</a>
+</div>
+<script  src="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/jia.js"  type="text/javascript"  charset="utf-8"></script><script  type="text/javascript"  src="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/plugin.client.js"  charset="utf-8"></script><div  style="position:absolute;width:0px;height:0px;"><object  classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"  width="0"  height="0"  id="JIATHISSWF"  codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab"><param  name="allowScriptAccess"  value="always"><param  name="swLiveConnect"  value="true"><param  name="movie"  value="http://www.jiathis.com/code/swf/m.swf"><param  name="FlashVars"  value="z=a"><embed  name="JIATHISSWF"  src="http://www.jiathis.com/code/swf/m.swf"  flashvars="z=a"  width="0"  height="0"  allowscriptaccess="always"  swliveconnect="true"  type="application/x-shockwave-flash"  pluginspage="http://www.macromedia.com/go/getflashplayer"></object></div>
+
+<a  href="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=favorite&type=blog&id=678821&spaceuid=588243&handlekey=favoritebloghk_678821"  id="a_favorite"   class="oshr ofav">收藏</a>
+<a  href="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=share&type=blog&id=678821&handlekey=sharebloghk_678821"  id="a_share"   class="oshr">分享</a>
+
+<a  href="javascript:;" >举报</a>
+</div>
+
+</div>
+
+<div  class="ct_vw cl">
+
+<div>
+<div  id="div_main_content"  class="mbm">
+                    
+                    <h4  class="bbs pbn">
+                        <span><label>当前推荐数：</label><font  color="#FF0000">0</font>
+                                                      </span>
+                    </h4>
+                    <div  style="margin-bottom:20px;">
+                    <form  id="quickrecommendform_678821"  action="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=comment"  method="post"  autocomplete="off" >
+                    
+                        <p  class="pns">
+                            <input  type="hidden"  name="referer"  value="home.php?mod=space&amp;uid=588243&amp;do=blog&amp;id=678821">
+                            <input  type="hidden"  name="id"  value="678821">
+                            <input  type="hidden"  name="idtype"  value="blogid">
+                            <input  type="hidden"  name="handlekey"  value="qcblog_678821">
+                            <input  type="hidden"  name="recommendsubmit"  value="true">
+                            <input  type="hidden"  name="quickcomment"  value="true">
+                            <button  type="submit"  name="recommendsubmit_btn"  value="true"  id="recommendsubmit_btn">推荐到博客首页</button>
+                            <span  id="return_qcrecommend_678821"></span>
+                         
+                        </p>
+                        <input  type="hidden"  name="formhash"  value="733a70cf">
+                    </form>
+                   
+                    
+                    </div>
+                    
+                
+                
+<h3  class="ptn pbn bbs">
+                        	                            <a   href="http://blog.sciencenet.cn/member.php?mod=logging&action=login"  class="y xi2 xw0">该博文允许注册用户评论&nbsp;请点击登录</a>
+                            评论 (<span  id="comment_replynum">0</span> 个评论)
+</h3>
+<div  id="comment_ul"  class="xld xlda">
+                    
+                    <a  name="firstcomment"> </a>
+                        <div  id="discusscontent"><meta  http-equiv="Pragma"  content="no-cache">
+<meta  http-equiv="no-cache">
+<meta  http-equiv="Expires"  content="-1">
+<meta  http-equiv="Cache-Control"  content="no-cache">
+<table  style="MARGIN-TOP: 30px"  cellspacing="0"  cellpadding="0"  width="100%"  border="0"><tbody><tr><td  colspan="3"  height="20"><div  align="center"  class="article"><p  align="right"><font  color="red">1/</font>0 | 总计:0 | 首页 | 上一页 | <input  type="text"  style="height:15px;padding:0; width:20px; margin:0 3px 0 0;border:#90AAB4 1px solid;"  id="skiptopage"  name="skiptopage"><a   href="javascript:;">跳转</a></p></div></td></tr></tbody></table></div>
+                        <div  id="comment"  style="text-align:right">
+                        <a  href="javascript:;" >返回顶部</a>
+                        </div>
+                    </div>
+</div>
+
+<script  type="text/javascript">
+function addFriendCall(){
+var el = $('friendinput');
+if(!el || el.value == "")	return;
+var s = '<input type="checkbox" name="fusername[]" class="pc" value="'+el.value+'" id="'+el.value+'" checked="checked">';
+s += ' <label for="'+el.value+'">'+el.value+'</label>';
+s += '<br />';
+$('friends').innerHTML += s;
+el.value = '';
+}
+resizeImg('div_main_content','450');
+
+var elems = selector('dd[class~=magicflicker]');
+for(var i=0; i<elems.length; i++){
+magicColor(elems[i]);
+}
+</script>
+<script  type="text/javascript">
+/* 方法一
+function commentcontent(url) {
+
+var x = new Ajax('HTML', 'statusid');
+x.get(url+'&inajax=1', function(s) {
+  if(s.length>0) {
+$('discusscontent').innerHTML = s;
+  } else $('discusscontent').innerHTML = '没有评论';
+});
+}
+window.onload = commentcontent('comment.php?mod=space&uid=588243&do=blog&id=678821');
+*/
+function commentcontent(uid, id) {
+var formDara = "uid=" + uid + "&id=" + id;
+if(window.XMLHttpRequest) { 
+var xmlReq = new XMLHttpRequest(); 
+} else if(window.ActiveXObject) { 
+var xmlReq = new ActiveXObject('Microsoft.XMLHTTP'); 
+}
+
+xmlReq.onreadystatechange = function(){
+if(xmlReq.readyState == 4) {
+if(xmlReq.responseText != '0') {
+document.getElementById('discusscontent').innerHTML = xmlReq.responseText;
+} else {
+return false;
+}
+}
+} 
+xmlReq.open("post", "comment.php?mod=space&amp;do=blog", true);
+xmlReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+xmlReq.send(formDara);
+return false;
+}
+//window.onload = commentcontent(588243, 678821);
+//window.onload=function(){commentcontent(588243, 678821);}
+
+function viewpage(p, id) {
+var formData = "page="+p;
+//p:翻页页码; id:博文id
+if(window.XMLHttpRequest) { 
+var xmlReq = new XMLHttpRequest(); 
+} else if(window.ActiveXObject) { 
+var xmlReq = new ActiveXObject('Microsoft.XMLHTTP'); 
+}
+
+//comment.php?mod=space&uid=588243&do=blog&id=678821
+//var formId = "id=414264";
+//var formMod = "mod=space";
+//var formUid = "uid=40247";
+//var formDo = "do=blog";
+
+xmlReq.onreadystatechange = function(){ 
+if(xmlReq.readyState == 4) {
+document.getElementById('discusscontent').innerHTML = xmlReq.responseText;
+//location.href = location.href + "#firstcomment";
+                            window.location.hash = firstcomment;
+}
+}
+xmlReq.open("post", "comment.php?id="+id, true);
+xmlReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+xmlReq.send(formData);
+//xmlReq.send(formId);
+//xmlReq.send(formMod); 
+//xmlReq.send(formUid); 
+//xmlReq.send(formDo); 
+return false; 
+}
+function pagegoto(id, pages) {
+var gopagenum = document.getElementById('skiptopage').value;
+if(pages == '') {
+return false;
+}
+if(gopagenum == '') {
+alert('请先输入您想转到的页码再进行跳转');
+return false;
+}
+if(!isNaN(gopagenum)) {
+gopagenum = parseInt(gopagenum);
+if(gopagenum < 1) { 
+gopagenum = 1;
+}
+if(gopagenum > pages) {
+gopagenum = pages;
+}
+viewpage(gopagenum, id);
+} else {
+alert('请输入数字，进行跳转');
+}
+}
+commentcontent(588243, 678821);
+</script>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+<div  class="sd"><div>
+    <div  id="pcd"  class="bm cl">
+        <div  class="hm">
+            <p><a  href="http://blog.sciencenet.cn/home.php?mod=space&uid=588243"><img  src="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/avatar.php"></a></p>
+            <h2  class="xs2"><a  href="http://blog.sciencenet.cn/home.php?mod=space&uid=588243">穆跃文</a></h2>
+        </div>
+            <ul  class="xl xl2 cl ul_list">
+                                                            <li  class="ul_add"><a  href="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=friend&op=add&uid=588243&handlekey=addfriendhk_588243"  id="a_friend_li_588243" >加为好友</a></li>
+                                <li  class="ul_contect"><a  href="http://blog.sciencenet.cn/home.php?mod=space&uid=588243&do=wall">给我留言</a></li>
+                <li  class="ul_poke"><a  href="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=poke&op=send&uid=588243&handlekey=propokehk_588243"  id="a_poke_588243" >打个招呼</a></li>
+                <li  class="ul_pm"><a  href="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=pm&op=showmsg&handlekey=showmsg_588243&touid=588243&pmid=0&daterange=2"  id="a_sendpm_588243" >发送消息</a></li>
+                        </ul>
+                </div>
+</div></div>
+    <div  class="sd"  style="margin-top:1px;">
+        <div  id="pcd"  class="bm cl"  style="padding-top:0px">
+        	<div  style="width:170px">
+            	
+<div  class="mbm cl">
+<h2  class="mbm ptn pbn bbs"><span  class="xs1 xw0 y"><a  href="http://blog.sciencenet.cn/home.php?mod=space&uid=588243&do=blog&view=me">全部</a></span>作者的其他最新博文</h2>
+<ul  class="xl xl1 cl"><li>&#8226; <a  href="http://blog.sciencenet.cn/blog-588243-778760.html"  target="_blank">[转载]布里渊区的特殊k点采样问题研究</a></li>
+<li>&#8226; <a  href="http://blog.sciencenet.cn/blog-588243-754598.html"  target="_blank">[转载]可视化atomeye</a></li>
+<li>&#8226; <a  href="http://blog.sciencenet.cn/blog-588243-746675.html"  target="_blank">Langevin dynamics介绍及VASP中的使用</a></li>
+<li>&#8226; <a  href="http://blog.sciencenet.cn/blog-588243-741682.html"  target="_blank">BigDFT的安装</a></li>
+<li>&#8226; <a  href="http://blog.sciencenet.cn/blog-588243-741865.html"  target="_blank">[转载]VASP并行设置---KPAR参数</a></li>
+<li>&#8226; <a  href="http://blog.sciencenet.cn/blog-588243-741859.html"  target="_blank">[转载]VASP的并行设置---NPAR及NSIM参数</a></li>
+</ul>
+</div>
+
+<div  class="mbm cl">
+<h2  class="mbm ptn pbn bbs"><span  class="xs1 xw0 y"><a  href="http://blog.sciencenet.cn/blog.php?mod=hot&type=list">全部</a></span>热门博文导读</h2>
+<ul  class="xl xl1 cl"><li><span  class="xl1_elp">&#8226; <a  href="http://blog.sciencenet.cn/blog-53483-782499.html"  target="_blank">【同题作文】喝茶——最近有点意思啊</a></span></li>
+<li><span  class="xl1_elp">&#8226; <a  href="http://blog.sciencenet.cn/blog-69474-782491.html"  target="_blank">失落的古城池之四：土耳其以弗所</a></span></li>
+<li><span  class="xl1_elp">&#8226; <a  href="http://blog.sciencenet.cn/blog-303939-782490.html"  target="_blank">谁说太原不美，我跟他急！</a></span></li>
+<li><span  class="xl1_elp">&#8226; <a  href="http://blog.sciencenet.cn/blog-53483-782488.html"  target="_blank">喝茶：牛饮者陈安同学</a></span></li>
+<li><span  class="xl1_elp">&#8226; <a  href="http://blog.sciencenet.cn/blog-254303-782486.html"  target="_blank">喝茶</a></span></li>
+<li><span  class="xl1_elp">&#8226; <a  href="http://blog.sciencenet.cn/blog-421287-782474.html"  target="_blank">找一个有阳光的地方生长</a></span></li>
+</ul>
+</div>
+                </div>
+        </div>
+</div>
+</div>
+<script  type="text/x-mathjax-config;executed=true">
+                MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+                                    tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+                                    TeX: { noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
+                                    messageStyle: "none"
+                });
+            </script>
+
+<script  src="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/MathJax.js"  type="text/javascript"></script>	
+<div  id="ft"  class="wp cl">
+<div  id="flk"  class="y">
+<p><a  href="http://bbs.sciencenet.cn/forum.php?archiver=1">Archiver</a><span  class="pipe">|</span><strong><a  href="http://www.sciencenet.cn/"  target="_blank">科学网</a></strong>
+( <a  href="http://www.miitbeian.gov.cn/"  target="_blank">京ICP备14006957</a> )<span  style="display:none">
+<script  type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcbf293a46e1e62385b889174378635f1' type='text/javascript'%3E%3C/script%3E"));
+</script><script  src="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/h.js"  type="text/javascript"></script>
+</span>				
+</p>
+<p  class="xs0">
+GMT+8, 2014-4-6 14:29<span  id="debuginfo">
+</span>
+</p>
+</div>
+<div  id="frt">
+<p>Powered by <strong><a  href="http://www.sciencenet.cn/"  target="_blank">ScienceNet.cn</a></strong><em></em></p>
+<p  class="xs0">Copyright &#169; 2007-2014 <a  href="http://www.stimes.cas.cn/"  target="_blank">中国科学报社</a></p>
+</div></div>
+
+<ul  id="usersetup_menu"  class="p_pop"  style="display:none;">
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=avatar">修改头像</a></li>
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=profile">个人资料</a></li>
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=credit">积分</a></li>
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=usergroup">用户组</a></li>
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=privacy">隐私筛选</a></li>
+<li><a  href="http://blog.sciencenet.cn/home.php?mod=spacecp&ac=profile&op=password">密码安全</a></li>
+</ul>
+
+<ul  id="weibo_menu"  class="p_pop"  style="position: absolute; z-index: 301; left: 701.5px; top: 38px; display: none;">
+<li><a  href="http://weibo.sciencenet.cn/">发微博</a></li>
+
+<li><a  href="http://weibo.sciencenet.cn/?m=vote&a=index">投票广场</a></li>
+<li><a  href="http://weibo.sciencenet.cn/?&act=following">关注的人</a></li>
+<li><a  href="http://weibo.sciencenet.cn/?m=find&a=index">查找好友</a></li>
+<li><a  href="http://weibo.sciencenet.cn/?m=find&a=invite">邀请好友</a></li>
+<ul  class="sslct">
+</ul>
+
+<li><a  href="http://weibo.sciencenet.cn/?m=setting&a=privacy">私信过滤</a></li>
+<li><a  href="http://weibo.sciencenet.cn/?m=setting&a=blacklist">黑名单</a></li>
+<li><a  href="http://blog.sciencenet.cn//home.php?mod=spacecp&ac=privacy&op=miniblog">微博设置</a></li>
+<li><a  href="http://weibo.sciencenet.cn/?m=setting&a=index">昵称设置</a></li>
+<li><a  href="http://weibo.sciencenet.cn/?m=app&a=weibo">同步设置</a></li>
+</ul>
+
+
+
+<ul  id="myprompt_menu"  class="p_pop"  style="position: absolute; z-index: 301; left: 0px; top: 278px; display: none;">
+    <li><a  href="http://weibo.sciencenet.cn/?&act=comments">查看评论</a></li>
+    <li><a  href="http://weibo.sciencenet.cn/?&act=follower">查看粉丝</a></li>
+    <li><a  href="http://weibo.sciencenet.cn/?&act=at">查看@我</a></li>
+    <li><a  href="http://blog.sciencenet.cn/home.php?mod=space&do=notice">查看其他</a></li>
+
+
+</ul>
+
+
+<div  id="g_upmine_menu"  class="g_up"  style="display:none;">
+<div  class="crly">
+积分 0, 距离下一级还需  积分
+</div>
+<div  class="mncr"></div>
+</div>
+<script  src="./科学网—[转载]RedHat5上配置YUM方法以及YUM的使用方法 - 穆跃文的博文_files/home.php"  type="text/javascript"></script>
+
+<input  type="hidden"  id="J-rightclick-event"><div  id="MathJax_Font_Test"  style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Main, sans-serif;">&#61438;</div></body></html>

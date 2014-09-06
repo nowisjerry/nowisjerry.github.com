@@ -1,0 +1,627 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0068)http://linux.chinaunix.net/techdoc/beginner/2009/12/20/1150108.shtml -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+ 
+<META http-equiv="Content-Type" content="text/html; charset=gb2312"> 
+<TITLE>vim基本命令 - 技术文档 - 新手入门 Linux时代 - 开源、自由、共享 - 中国最大的Linux技术社区</TITLE> 
+<META name="keywords" content="vim基本命令 - 技术文档 - 新手入门 Linux时代 - 开源、自由、共享 - 中国最大的Linux技术社区"> 
+<META name="description" content="vim基本命令 - 技术文档 - 新手入门  新手入门 Linux 技术文档"> <LINK 
+href="vim基本命令%20-%20技术文档%20-%20新手入门%20Linux时代%20-%20开源、自由、共享%20-%20中国最大的Linux技术社区_files/all.css" 
+rel="stylesheet" type="text/css"> 
+<STYLE type="text/css">
+
+<!--
+
+.STYLE1 {color: #FF0000}
+
+.STYLE2 {font-size: 14px}
+
+-->
+
+</STYLE>
+ 
+<META name="GENERATOR" content="MSHTML 11.00.9600.17207"></HEAD> 
+<BODY>
+<TABLE width="950" align="center" border="0" cellspacing="0" cellpadding="0">
+  <TBODY>
+  <TR>
+    <TD height="27">
+      <TABLE width="100%" style="border-collapse: collapse;" border="0" 
+      cellspacing="0" cellpadding="0">
+        <TBODY>
+        <TR>
+          <FORM name="login" action="http://linux.chinaunix.net/bbs/logging.php?action=login" 
+          method="post"></FORM>
+          <TD>
+<SCRIPT language="javascript" src=""></SCRIPT>
+          </TD>
+          <TD align="right">	·<A class="list1" href="http://www.chinaunix.net/">ChinaUnix首页</A>
+            	 ·<A class="list1" href="http://bbs.chinaunix.net/">论坛</A>	 ·<A 
+            class="list1" href="http://blog.chinaunix.net/">博客</A>&nbsp;
+        	</TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD height="1" bgcolor="#cccccc"></TD></TR>
+  <TR>
+    <TD>
+      <TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+        <TBODY>
+        <TR>
+          <TD height="84"><IMG src="vim基本命令%20-%20技术文档%20-%20新手入门%20Linux时代%20-%20开源、自由、共享%20-%20中国最大的Linux技术社区_files/logo.jpg"></TD>
+          <TD align="right"><IFRAME width="750" height="80" src="res://ieframe.dll/dnserrordiagoff.htm" 
+            frameborder="0" scrolling="no"></IFRAME> </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+        <TBODY>
+        <TR>
+          <TD width="3"><IMG width="3" height="26" src="vim基本命令%20-%20技术文档%20-%20新手入门%20Linux时代%20-%20开源、自由、共享%20-%20中国最大的Linux技术社区_files/bgtop1.jpg"></TD>
+          <TD width="944" class="whitetop" background="vim基本命令%20-%20技术文档%20-%20新手入门%20Linux时代%20-%20开源、自由、共享%20-%20中国最大的Linux技术社区_files/bgtop2.gif"><A 
+            href="http://linux.chinaunix.net/" target="_blank">Linux首页</A> | <A 
+            href="http://linux.chinaunix.net/news/">Linux新闻</A> | <A style="color: red;" 
+            href="http://linux.chinaunix.net/bbs" 
+            target="_blank"><B>Linux论坛</B></A> | <A href="http://linux.chinaunix.net/techdoc/">Linux文档</A> 
+            | <A href="http://download.chinaunix.net/disc/linux/" target="_blank">Linux下载</A> 
+            | <A href="http://blog.chinaunix.net/techart.php?frmid=6" target="_blank">Linux博客</A> 
+            | <A href="http://search.chinaunix.net/" target="_blank">Linux搜索</A> 
+            | <A href="http://linux.chinaunix.net/bbs/index.php?gid=68" target="_blank">开源项目孵化平台</A> 
+             | <A style="color: red;" href="http://linux.chinaunix.net/ebook/" 
+            target="_blank">《开源时代》</A></TD>
+          <TD width="3" align="right"><IMG width="3" height="26" src="vim基本命令%20-%20技术文档%20-%20新手入门%20Linux时代%20-%20开源、自由、共享%20-%20中国最大的Linux技术社区_files/bgtop3.jpg"></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<TABLE width="950" align="center" border="0" cellspacing="0" cellpadding="0">
+  <TBODY>
+  <TR>
+    <TD class="BlkLightblue" valign="bottom"><A href="http://linux.chinaunix.net/techdoc/beginner/" 
+      target="_blank">新手入门</A> | <SPAN lang="zh-cn"><A href="http://linux.chinaunix.net/techdoc/install/" 
+      target="_blank">安装启动</A> | </SPAN>		 <A href="http://linux.chinaunix.net/techdoc/system/" 
+      target="_blank">管理员指南</A> | <A href="http://man.chinaunix.net/" target="_blank">开发手册</A> 
+      		| <A href="http://linux.chinaunix.net/techdoc/desktop/" 
+      target="_blank">桌面应用</A> |		 <A href="http://linux.chinaunix.net/techdoc/develop/" 
+      target="_blank">程序开发</A> |		 <A href="http://linux.chinaunix.net/techdoc/database/" 
+      target="_blank">数据库</A> | <SPAN lang="zh-cn"><A href="http://linux.chinaunix.net/techdoc/net/" 
+      target="_blank">网络技术</A>| <A href="http://linux.chinaunix.net/topics/2007-01-25/15/index.shtml" 
+      target="_blank">CentOS</A></SPAN> | <A href="http://linux.chinaunix.net/search2.php?key=fedora&amp;id=0" 
+      target="_blank">Fedora</A> <SPAN lang="zh-cn">| </SPAN> <A href="http://linux.chinaunix.net/search2.php?key=mysql&amp;id=0" 
+      target="_blank">MySQL</A> <SPAN lang="zh-cn">| </SPAN> <A href="http://linux.chinaunix.net/search2.php?key=apache&amp;id=0" 
+      target="_blank">Apache</A> <SPAN lang="zh-cn">| </SPAN> <A href="http://linux.chinaunix.net/search2.php?key=ubuntu&amp;id=0" 
+      target="_blank"><FONT color="#ff0000">Ubuntu</FONT></A> <SPAN 
+      lang="zh-cn">| </SPAN> <A href="http://linux.chinaunix.net/topics/2008-07-10/18/index.shtml" 
+      target="_blank"><FONT color="#ff0000">Gentoo</FONT></A>|  <B><A href="http://linux.chinaunix.net/topics/2008-07-30/19/index.shtml" 
+      target="_blank"><FONT color="#ff0000">OSCON08</FONT></A></B> </TD></TR>
+  <TR>
+    <TD></TD></TR>
+  <TR>
+    <TD height="30" valign="bottom">&nbsp;&nbsp;<A href="http://linux.chinaunix.net/">Linux时代</A> 
+      &gt;&gt;  <A class="list1" 
+      href="http://linux.chinaunix.net/techdoc/">技术文档</A> &gt;&gt; <A class="list1" 
+      href="http://linux.chinaunix.net/techdoc/beginner/">新手入门</A></TD></TR>
+  <TR>
+    <TD height="1" bgcolor="#cccccc"></TD></TR>
+  <TR>
+    <TD height="8"></TD></TR></TBODY></TABLE>
+<TABLE width="950" align="center" border="0" cellspacing="0" cellpadding="0">
+  <TBODY>
+  <TR>
+    <TD class="BLKtext" valign="top">
+      <TABLE width="660" align="center" border="0" cellspacing="0" cellpadding="0">
+        <TBODY>
+        <TR>
+          <TD height="8">&nbsp;</TD></TR>
+        <TR>
+          <TD height="30" class="Ftext1">vim基本命令</TD></TR>
+        <TR>
+          <TD>
+            <TABLE width="80%" align="center" border="0" cellspacing="0" 
+            cellpadding="0">
+              <TBODY>
+              <TR>
+                <TD height="1" bgcolor="#cccccc"></TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD height="40" align="center">来源:   ChinaUnix博客 　日期： 2009.12.20 
+            23:33　(共有<SPAN class="STYLE1" id="postcount"></SPAN>条评论)  <A href="http://linux.chinaunix.net/bbs/thread-1150108-1-1.html" 
+            target="_blank">我要评论</A></TD></TR>
+        <TR>
+          <TD>&nbsp;</TD></TR>
+        <TR>
+          <TD class="F14">1.<BR>vim<BR>#在命令行中输入vim,进入vim编辑器<BR>2.<BR>i<BR>
+            #按一下i键,下端显示 --INSERT--<BR>#插入命令,在vim中可能任意字符都有作用<BR>3.<BR>Esc<BR>
+            #退出i(插入)命令进行其它命令使用<BR>4.<BR>:r filename<BR>
+            #读入一个文件内容,并写入到当前编辑器中<BR><FONT color="#ff0000">5.<BR>:w 
+            newfilename<BR>#将该编辑器中的内容写入到一个新文件中<BR></FONT>6.<BR>:w<BR>
+            #在编辑的过程中保存文件,相当于word中的ctrl+s<BR>7.<BR>:! command<BR>暂时离开 vi 
+            到指令列模式下执行 command 的显示结果！例如<BR><FONT color="#ff0000">:!ls<BR>
+            #在编辑过程中执行shell命令ls<BR></FONT>8.<BR><FONT color="#ff0000">:sh<BR>
+            #进入shell命令行,执行完命令后ctrl+d退出重新进入vim编辑继续编辑</FONT><BR><FONT color="#ff0000">在shell命令下，执行ctral+l完成清屏<BR></FONT>9.<BR>
+            :wq<BR>#保存文件并退出<BR>10.<BR>ZZ<BR>#保存文件并退出,同上一个命令,注意大写<BR>11.<BR>
+            :q!<BR>#强制退出,不保存<BR>12.<BR>:set number或者：set nu<BR>
+            #使编辑中的文件显示行号<BR>13.<BR>:set nonumber或者：set nonu <BR>
+            #与上一条命令相反,不显示行号<BR>14.<BR>:help i<BR>#查看插入命令帮助<BR>15.<BR>u <BR>
+            #撤消上一步操作<BR>16.<BR>/Fedora<BR>#查找Fedora字符<BR>17.<BR>:s 
+            /Fedora/Redhat<BR>#将Fedora字符替换为Redhat(只替换在光标所在的行)<BR>18.<BR>dw<BR>
+            #删除单词<BR>dd<BR>#删除行<BR>19.<BR>o<BR>#打开空白一行<BR>20.<BR>vim + 
+            filename<BR>#进行文件最后一行进行编辑<BR>21.<BR>vim +n filename<BR>
+            #进入文件第n行进行编辑<BR>22.<BR>:1,.s/redhat/fedora<BR>
+            #.号表示当前行,即光标所在行<BR>#将第1行到当前行(.)第一次出现的redhat字符代替为fedora<BR>23.<BR>
+            :1,.s/redhat/fedora/g<BR>
+            #将第1行到当前行(.)所有出现的redhat字符代替为fedora,g<BR>全局标志<BR>24.<BR>
+            :1,$s/redhat/fedora/g<BR>
+            #$表示最后一行<BR>#将第1行到最后一行所有出现的redhat字符代替为fedora<BR>25.<BR>
+            :%s/redhat/fedora/g<BR>#同上一个命令<BR>26.<BR>:%s/\/fedora/g<BR>
+            #将第1行到最后一行所有出现的redhat字代替为fedora<BR>#字,而不是字符<BR>27.<BR>:f<BR>
+            #显示文件内容,状态等等<BR>#同ctrl+g命令<BR>28.<BR>:e!<BR>#当前文件,返回到上次保存<BR>:e 
+            file<BR>#切换编辑文件<BR>29.<BR>:n<BR>#当编辑时有多个文件(比如vim file1 
+            file2)时切换到下一个文件,与:e file<BR>结合使用<BR><BR><BR><BR><BR>&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; <BR><BR>
+            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;VIM命令大全<BR>光标控制命令<BR>命令&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            光标移动<BR>h&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 向左移一个字符<BR>j&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 向下移一行<BR>k&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp; 向上移一行<BR>l&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 向右移一个字符<BR>G&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            移到文件的最后一行<BR>w&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 移到下一个字的开头<BR>W&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            移到下一个字的开头，忽略标点符号<BR>b&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 移到前一个字的开头<BR>B&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            移到前一个字的开头，忽略标点符号<BR>L&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 移到屏幕的最后一行<BR>M&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            移到屏幕的中间一行<BR>H&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 移到屏幕的第一行<BR>e&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            移到下一个字的结尾<BR>E&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 移到下一个字的结尾，忽略标点符号<BR>(&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;移到句子的开头<BR>)&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;移到句子的结尾<BR>{&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;移到段落的开头<BR>}&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;移到下一个段落的开头<BR>0(数字), |&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 移到当前行的第一列<BR>^&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;移到当前行的第一个非空字符<BR>$&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;移到当前行的最后一个字符<BR>+, Enter&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 移到下一行的第一个字符<BR>-&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;移到前一行的第一个非空字符<BR>在 vi 中添加文本<BR>命令&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp; 插入动作<BR>a&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 在光标后插入文本<BR>A&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            在当前行插入文本<BR>i&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 在光标前插入文本<BR>I&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            在当前行前插入文本<BR>o&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 在当前行的下边插入新行<BR>O&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            在当前行的上边插入新行<BR>s&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 删除光标所在处字符，并进入插入模式<BR>S&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp; 删除光标所在的行，并进入插入模式<BR>:r file&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 读入文件 file 内容，并插在当前行后<BR>:nr file&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;读入文件 file 内容，并插在第 n 
+            行后<BR>Esc&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;回到命令模式<BR>^v char&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 插入时忽略 char 的指定意义，这是为了插入特殊字符<BR>在 vi 中删除文本<BR>
+            命令&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 删除操作<BR>x&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 删除光标处的字符<BR>dw&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;删至下一个字的开头<BR>dG&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;删除行，直到文件结束<BR>dd&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;删除整行<BR>db&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;删除光标前面的字<BR>:n,md&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;从第 m 行开始往前删除 n 行<BR>d, 
+            d$&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;从光标处删除到行尾<BR>^h, backspace&nbsp; &nbsp;&nbsp; &nbsp; 
+            插入时，删除前面的字符<BR>^w&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;插入时，删除前面的字<BR>修改 vi 文本<BR>
+            每个命令前面的数字表示该命令重复的次数<BR>命令&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 替换操作<BR>rchar&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 用 char 替换当前字符<BR>R text escape&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;用 text 替换当前字符直到按下 Esc 键<BR>stext escape&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;用 text 代替当前字符<BR>S 或 cctext escape&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 用 text 代替整行<BR>cwtext escape&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;将当前字改为 text<BR>Ctext escape&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;将当前行余下的改为 
+            text<BR>cG escape&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;修改至文件的末尾<BR>ccursor_cmd 
+            text escape&nbsp; &nbsp;&nbsp; &nbsp; 从当前位置处到光标命令位置处都改为 text<BR>在 vi 
+            中查找与替换<BR>命令&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 查找与替换操作<BR>/text&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp; 在文件中向前查找 text<BR>?text&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp; 在文件中向后查找 text<BR>n&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;在同一方向重复查找<BR>N&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;在相反方向重复查找<BR>ftext&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 在当前行向前查找 text<BR>Ftext&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 在当前行向后查找 text<BR>ttext&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 在当前行向前查找 text，并将光标定位在 text 
+            的第一个字符<BR>Ttext&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 在当前行向后查找 
+            text，并将光标定位在 text 的第一个字符<BR>:set ic&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;查找时忽略大小写<BR>:set noic&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;查找时对大小写敏感<BR>:ranges/pat1/pat2/g&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;用 newtext 替换 oldtext<BR>
+            :m,ns/oldtext/newtext&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;在 m 行通过 
+            n，用 newtext 替换 oldtext<BR>&amp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 重复最后的 :s 
+            命令<BR>:g/text1/s/text2/text3&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;查找包含 text1 的行，用 text3 替换 text2<BR>
+            :g/text/command&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;在所有包含 text 的行运行 command 
+            所表示的命令<BR>:v/text/command&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;在所有不包含 text 的行运行 command 所表示的命令<BR>在 
+            vi 中复制文本<BR>命令&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 复制操作<BR>yy&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;将当前行的内容放入临时缓冲区<BR>nyy&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 将 n 
+            行的内容放入临时缓冲区<BR>p&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;将临时缓冲区中的文本放入光标后<BR>P&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;将临时缓冲区中的文本放入光标前<BR>"(a-z)nyy&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 复制 n 行放入名字为圆括号内的可命名缓冲区，省略 n 
+            表示当前行<BR>"(a-z)ndd&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp; 删除 n 行放入名字为圆括号内的可命名缓冲区，省略 n 表示当前行<BR>"(a-z)p&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;将名字为圆括号的可命名缓冲区的内容放入当前行后<BR>"(a-z)P&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;将名字为圆括号的可命名缓冲区的内容放入当前行前<BR>在 vi 中撤消与重复<BR>命令&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;撤消操作<BR>u&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;撤消最后一次修改<BR>U&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;撤消当前行的所有修改<BR>.&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;重复最后一次修改<BR>,&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;以相反的方向重复前面的 f、F、t 或 T 
+            查找命令<BR>;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;重复前面的 f、F、t 或 T 查找命令<BR>"np&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 取回最后第 n 次的删除(缓冲区中存有一定次数的删除内容，一般为 
+            9)<BR>n&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;重复前面的 / 或 ? 查找命令<BR>N&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;以相反方向重复前面的 / 或 ? 命令<BR>保存文本和退出 
+            vi<BR>命令&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 保存和/或退出操作<BR>:w&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;保存文件但不退出 vi<BR>:w file&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;将修改保存在 file 中但不退出 
+            vi<BR>:wq 或 ZZ 或 :x&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;保存文件并退出 
+            vi<BR>:q!&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 不保存文件，退出 vi<BR>:e!&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            放弃所有修改，从上次保存文件开始再编辑<BR>vi 中的选项<BR>选项&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            作用<BR>:set all&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;打印所有选项<BR>:set nooption&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;关闭 option 选项<BR>:set nu&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;每行前打印行号<BR>:set 
+            showmode&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;显示是输入模式还是替换模式<BR>:set 
+            autoindent&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            继承前一行的缩进方式，特别适用于多行注释<BR>:set smartindent&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;为C程序提供自动缩进<BR>:set list&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 显示制表符(^I)和行尾符号<BR>:set ts=8&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 为文本输入设置 tab stops<BR>
+            :set window=n&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;设置文本窗口显示 n 
+            行<BR>:set number&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;显示行数<BR>:set nonumber&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;取消显示行数<BR>vi 的状态<BR>选项&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            作用<BR>:.=&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;打印当前行的行号<BR>:=&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;打印文件中的行数<BR>ctrl+g&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 显示文件名、当前的行号、文件的总行数和文件位置的百分比<BR>:l&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;使用字母 "l" 来显示许多的特殊字符，如制表符和换行符<BR>在文本中定位段落和放置标记<BR>
+            选项&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 作用<BR>{&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 在第一列插入 { 来定义一个段落<BR>[[&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 回到段落的开头处<BR>]]&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp; 向前移到下一个段落的开头处<BR>m(a-z)&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 用一个字母来标记当前位置，如用 mz 表示标记 z<BR>
+            '(a-z)&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp; 将光标移动到指定的标记，如用 'z 表示移动到 z<BR>在 vi 中连接行<BR>选项&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 作用<BR>J&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;将下一行连接到当前行的末尾<BR>nJ&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;连接后面 n 
+            行<BR>光标放置与屏幕调整<BR>选项&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 作用<BR>H&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;将光标移动到屏幕的顶行<BR>nH&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;将光标移动到屏幕顶行下的第 n 行<BR>M&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;将光标移动到屏幕的中间<BR>L&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;将光标移动到屏幕的底行<BR>nL&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;将光标移动到屏幕底行上的第 n 行<BR>^e(ctrl+e)&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;将屏幕上滚一行<BR>ctrl+y&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            将屏幕下滚一行<BR>ctrl+u&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 将屏幕上滚半页<BR>ctrl+d&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            将屏幕下滚半页<BR>ctrl+b&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 将屏幕上滚一页<BR>ctrl+f&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            将屏幕下滚一页<BR>ctrl+l&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 重绘屏幕<BR>z-return&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;将当前行置为屏幕的顶行<BR>nz-return&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 将当前行下的第 n 
+            行置为屏幕的顶行<BR>z.&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;将当前行置为屏幕的中央<BR>nz.&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp; 将当前行上的第 n 行置为屏幕的中央<BR>z-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;将当前行置为屏幕的底行<BR>nz-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 将当前行上的第 n 
+            行置为屏幕的底行<BR>vi 中的 shell 转义命令<BR>选项&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            作用<BR>:!command&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 
+            执行 shell 的 command 命令，如 :!ls<BR>:!!&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp; 执行前一个 shell 命令<BR>:r!command&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;读取 command 命令的输入并插入，如 :r!ls 会先执行 
+            ls，然后读入内容<BR>:w!command&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;将当前已编辑文件作为 command 命令的标准输入并执行 command 命令，如 :w!grep all<BR>:cd 
+            directory&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;将当前工作目录更改为 directory 
+            所表示的目录<BR>:sh&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 将启动一个子 shell，使用 ^d(ctrl+d) 返回 
+            vi<BR>:so file&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;在 shell 程序 file 中读入和执行命令<BR>vi 
+            中的宏与缩写<BR>(避免使用控制键和符号，不要使用字符 K、V、g、q、v、*、= 和功能键)<BR>选项&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 作用<BR>:map key command_seq 定义一个键来运行 
+            command_seq，如 :map e ea，无论什么时候都可以 e 移到一个字的末尾来追加文本<BR>:map&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;在状态行显示所有已定义的宏<BR>:umap key&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 删除该键的宏<BR>:ab string1 string2&nbsp; 
+            &nbsp;定义一个缩写，使得当插入 string1 时，用 string2 替换 string1。当要插入文本时，键入 string1 
+            然后按 Esc 键，系统就插入了 string2<BR>:ab&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 显示所有缩写<BR>:una 
+            string&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;取消 string 
+            的缩写<BR>在 vi 中缩进文本<BR>选项&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;作用<BR>ctrl+i或 tab&nbsp; 
+            &nbsp;&nbsp;&nbsp;插入文本时，插入移动的宽度，移动宽度是事先定义好的<BR>:set ai&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;打开自动缩进<BR>:set sw=n&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp; 将移动宽度设置为 n 个字符<BR>n&gt;&nbsp; &nbsp;&nbsp; 
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 使 n 
+            行都向右移动一个宽度，例如 3&gt;&gt; 
+            就将接下来的三行每行都向右移动一个移动宽度<BR><BR><B>本文来自ChinaUnix博客，如果查看原文请点：</B><A 
+            href="http://blog.chinaunix.net/u3/104223/showart_2126523.html" 
+            target="_blank">http://blog.chinaunix.net/u3/104223/showart_2126523.html</A> 
+            </TD></TR>
+        <TR>
+          <TD height="20" align="right">　 <A href="http://linux.chinaunix.net/bbs/thread-1150108-1-1.html" 
+            target="_blank">发表评论</A>   <A href="http://linux.chinaunix.net/bbs/thread-1150108-1-1.html" 
+            target="_blank">查看评论</A>(共有<SPAN class="STYLE1" 
+            id="postcount2"></SPAN>条评论) </TD></TR>
+        <TR>
+          <TD>&nbsp;</TD></TR></TBODY></TABLE></TD>
+    <TD width="8">&nbsp;</TD>
+    <TD width="245" valign="top" bgcolor="#fff9eb">
+      <CENTER><BR>
+      <FORM action="/search2.php" 
+method="GET"><INPUT name="key" type="text" size="15"><INPUT name="id" type="hidden" value="0"><INPUT type="submit" value="搜索"> 
+      </FORM><BR></CENTER>
+      <TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+        <TBODY>
+        <TR>
+          <TD height="27" class="F13" background="vim基本命令%20-%20技术文档%20-%20新手入门%20Linux时代%20-%20开源、自由、共享%20-%20中国最大的Linux技术社区_files/bg245.jpg">
+            <TABLE width="100%">
+              <TBODY>
+              <TR>
+                <TD class="F13">最新资讯</TD>
+                <TD align="right"><A href="http://linux.chinaunix.net/news" 
+                  target="_blank">更多&gt;&gt;</A>&nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD class="BLKtext" valign="top" bgcolor="#ffffff">
+            <TABLE width="97%" align="center" border="0" cellspacing="0" 
+            cellpadding="0">
+              <TBODY>
+              <TR>
+                <TD height="5"></TD></TR>
+              <TR>
+                <TD>· <A title="谷歌劝说诺基亚采用Android操作系统" href="http://linux.chinaunix.net/news/2010/12/10/1175491.shtml" 
+                  target="_blank">谷歌劝说诺基亚采用Android操作..</A><BR>· <A title="Apache 基金会确认退出 JCP 执行委员会" 
+                  href="http://linux.chinaunix.net/news/2010/12/10/1175493.shtml" 
+                  target="_blank">Apache 基金会确认退出 JCP 执..</A><BR>· <A title="Chrome 10 新功能探秘：新增GPU混合加速功能" 
+                  href="http://linux.chinaunix.net/news/2010/12/07/1175306.shtml" 
+                  target="_blank">Chrome 10 新功能探秘：新增GP..</A><BR>· <A title="金山宣布开源其安全软件" 
+                  href="http://linux.chinaunix.net/news/2010/12/07/1175307.shtml" 
+                  target="_blank">金山宣布开源其安全软件</A><BR>· <A title="女黑客在开源会议上抱受骚扰" 
+                  href="http://linux.chinaunix.net/news/2010/12/07/1175309.shtml" 
+                  target="_blank">女黑客在开源会议上抱受骚扰</A><BR>· <A title="21款值得关注的Linux游戏" 
+                  href="http://linux.chinaunix.net/news/2010/12/07/1175310.shtml" 
+                  target="_blank">21款值得关注的Linux游戏</A><BR>· <A title="马化腾：腾讯半年后彻底转型，开放和分享" 
+                  href="http://linux.chinaunix.net/news/2010/12/07/1175311.shtml" 
+                  target="_blank">马化腾：腾讯半年后彻底转型，..</A><BR>· <A title="[多图] Chrome OS 预发布版本多图赏析" 
+                  href="http://linux.chinaunix.net/news/2010/12/07/1175305.shtml" 
+                  target="_blank">[多图] Chrome OS 预发布版本多..</A><BR>· <A title="Lubuntu 11.04 默认应用抢先一览" 
+                  href="http://linux.chinaunix.net/news/2010/12/01/1175001.shtml" 
+                  target="_blank">Lubuntu 11.04 默认应用抢先一览</A><BR>· <A title="Red Hat宣布收购云计算软件提供商Makara" 
+                  href="http://linux.chinaunix.net/news/2010/12/01/1175002.shtml" 
+                  target="_blank">Red Hat宣布收购云计算软件提供..</A><BR></TD></TR>
+              <TR>
+                <TD height="5"></TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD height="10" bgcolor="#ffffff"></TD></TR>
+        <TR></TR></TBODY></TABLE>
+      <TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+        <TBODY>
+        <TR>
+          <TD height="27" class="F13" background="vim基本命令%20-%20技术文档%20-%20新手入门%20Linux时代%20-%20开源、自由、共享%20-%20中国最大的Linux技术社区_files/bg245.jpg">
+            <TABLE width="100%">
+              <TBODY>
+              <TR>
+                <TD class="F13">论坛热点</TD>
+                <TD align="right"><A href="http://linux.chinaunix.net/bbs" 
+                  target="_blank">更多&gt;&gt;</A>&nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD class="BLKtext" valign="top" bgcolor="#ffffff">
+            <TABLE width="97%" align="center" border="0" cellspacing="0" 
+            cellpadding="0">
+              <TBODY>
+              <TR>
+                <TD height="5"></TD></TR>
+              <TR>
+                <TD>· <A title="do_execve时候用户栈中参数的位置问题" href="http://bbs.chinaunix.net/thread-3687970-1-1.html" 
+                  target="_blank">do_execve时候用户栈中参数的..</A><BR>· <A title="swapinfo -atm 问题" 
+                  href="http://bbs.chinaunix.net/thread-3687969-1-1.html" 
+                  target="_blank">swapinfo -atm 问题</A><BR>· <A title="Linux 的优点简述" 
+                  href="http://bbs.chinaunix.net/thread-3687968-1-1.html" 
+                  target="_blank">Linux 的优点简述</A><BR>· <A title="VM虚拟机上得Red Hat Linux上搭建的ftp服务器，windows登陆不进去，但一个局域网其他" 
+                  href="http://bbs.chinaunix.net/thread-3687967-1-1.html" 
+                  target="_blank">VM虚拟机上得Red Hat Linux上..</A><BR>· <A title="我看成了上海男人喜欢女人毛多还是毛少" 
+                  href="http://bbs.chinaunix.net/thread-3687965-1-1.html" 
+                  target="_blank">我看成了上海男人喜欢女人毛..</A><BR>· <A title="校车展览，看了你就知道" 
+                  href="http://bbs.chinaunix.net/thread-3687964-1-1.html" 
+                  target="_blank">校车展览，看了你就知道</A><BR>· <A title="在遇到他之前，唯一需要做的，就是让自己足够优秀。在遇到他之前，请把最好的年华留给" 
+                  href="http://bbs.chinaunix.net/thread-3687963-1-1.html" 
+                  target="_blank">在遇到他之前，唯一需要做的..</A><BR>· <A title="GRUB的疑问" 
+                  href="http://bbs.chinaunix.net/thread-3687962-1-1.html" 
+                  target="_blank">GRUB的疑问</A><BR>· <A title="从来没有人真正付足书价——所付的只是印刷费" 
+                  href="http://bbs.chinaunix.net/thread-3687961-1-1.html" 
+                  target="_blank">从来没有人真正付足书价——..</A><BR>· <A title="云存储 vs 网盘" 
+                  href="http://bbs.chinaunix.net/thread-3687960-1-1.html" 
+                  target="_blank">云存储 vs 网盘</A><BR></TD></TR>
+              <TR>
+                <TD height="5"></TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD height="10" bgcolor="#ffffff"></TD></TR>
+        <TR></TR></TBODY></TABLE>
+      <TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+        <TBODY>
+        <TR>
+          <TD height="27" class="F13" background="vim基本命令%20-%20技术文档%20-%20新手入门%20Linux时代%20-%20开源、自由、共享%20-%20中国最大的Linux技术社区_files/bg245.jpg">
+            <TABLE width="100%">
+              <TBODY>
+              <TR>
+                <TD class="F13">文档更新</TD>
+                <TD align="right"><A href="http://linux.chinaunix.net/techdoc" 
+                  target="_blank">更多&gt;&gt;</A>&nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD class="BLKtext" valign="top" bgcolor="#ffffff">
+            <TABLE width="97%" align="center" border="0" cellspacing="0" 
+            cellpadding="0">
+              <TBODY>
+              <TR>
+                <TD height="5"></TD></TR>
+              <TR>
+                <TD>· <A title="orcale queue" href="http://linux.chinaunix.net/techdoc/develop/2012/03/16/3686893.shtml" 
+                  target="_blank">orcale queue</A><BR>· <A title="谁可以推荐几本经典的操作系统的书（英文版）" 
+                  href="http://linux.chinaunix.net/techdoc/develop/2012/03/16/3686868.shtml" 
+                  target="_blank">谁可以推荐几本经典的操作系统的..</A><BR>· <A title="【北京】某物联网公司招云计算应用高级开发工程师" 
+                  href="http://linux.chinaunix.net/techdoc/develop/2012/03/16/3686867.shtml" 
+                  target="_blank">【北京】某物联网公司招云计算应..</A><BR>· <A title="【北京】某物联网公司招云计算应用高级开发工程师" 
+                  href="http://linux.chinaunix.net/techdoc/develop/2012/03/16/3686866.shtml" 
+                  target="_blank">【北京】某物联网公司招云计算应..</A><BR>· <A title="谁能推荐几本关于操作系统的书" 
+                  href="http://linux.chinaunix.net/techdoc/develop/2012/03/16/3686865.shtml" 
+                  target="_blank">谁能推荐几本关于操作系统的书</A><BR>· <A title="如何添加网络接口eth1" 
+                  href="http://linux.chinaunix.net/techdoc/develop/2012/03/16/3686864.shtml" 
+                  target="_blank">如何添加网络接口eth1</A><BR>· <A title="葡萄牙语入门教材的选取与经验分享" 
+                  href="http://linux.chinaunix.net/techdoc/develop/2012/03/16/3686863.shtml" 
+                  target="_blank">葡萄牙语入门教材的选取与经验分享</A><BR>· <A title="葡萄牙语就业前景分析" 
+                  href="http://linux.chinaunix.net/techdoc/develop/2012/03/16/3686862.shtml" 
+                  target="_blank">葡萄牙语就业前景分析</A><BR>· <A title="葡萄牙语学习经验交流" 
+                  href="http://linux.chinaunix.net/techdoc/develop/2012/03/16/3686861.shtml" 
+                  target="_blank">葡萄牙语学习经验交流</A><BR>· <A title="Щ" href="http://linux.chinaunix.net/techdoc/develop/2012/03/16/3686860.shtml" 
+                  target="_blank">Щ</A><BR></TD></TR></TBODY></TABLE></TD></TR>
+        <TR></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<SCRIPT src=""></SCRIPT>
+ 
+<TABLE width="950" align="center" border="0" cellspacing="0" cellpadding="0">
+  <TBODY>
+  <TR>
+    <TD>&nbsp;</TD></TR></TBODY></TABLE>
+<TABLE width="950" align="center" border="0" cellspacing="0" cellpadding="0">
+  <TBODY>
+  <TR>
+    <TD height="2" bgcolor="#308cf6"></TD></TR>
+  <TR>
+    <TD height="30" align="center"><A href="http://www.chinaunix.net/about/index.shtml" 
+      target="_blank">关于我们</A> | <A href="http://www.chinaunix.net/about/connect.html" 
+      target="_blank">联系方式</A> | <A href="http://www.chinaunix.net/about/service.html" 
+      target="_blank">广告合作</A> | <A href="http://www.wintalent.cn:8031/wt5/sequelmedia/web/index" 
+      target="_blank">诚聘英才</A> | <A href="http://www.chinaunix.net/about/channel.html" 
+      target="_blank">网站地图</A> | <A href="http://www.chinaunix.net/about/friend.html" 
+      target="_blank">友情链接</A> | <A href="http://linux.chinaunix.net/bbs/register.php" 
+      target="_blank">免费注册</A></TD></TR>
+  <TR>
+    <TD height="2" bgcolor="#308cf6"></TD></TR>
+  <TR>
+    <TD align="center">
+      <P>Copyright &copy; 2001-2009 ChinaUnix.net All Rights Reserved</P>
+      <P>感谢所有关心和支持过ChinaUnix的朋友们<BR>
+      <P><A href="http://www.it168.com/images/icp.jpg" 
+      target="_blank">京ICP证:060528号</A></P></TD></TR></TBODY></TABLE><!-- 统计 START --> 
+<SCRIPT src="vim基本命令%20-%20技术文档%20-%20新手入门%20Linux时代%20-%20开源、自由、共享%20-%20中国最大的Linux技术社区_files/pv.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT>
+function sendPV(){
+    var pvTrack = new PvTrack();
+    pvTrack.type = 10; // 频道类别ID
+    pvTrack.channel = 22; // 频道ID
+   
+    pvTrack.pageType = 0;
+    pvTrack.track();
+}
+window.setTimeout("sendPV()", 0);
+</SCRIPT>
+ 
+<SCRIPT language="javascript" src="vim基本命令%20-%20技术文档%20-%20新手入门%20Linux时代%20-%20开源、自由、共享%20-%20中国最大的Linux技术社区_files/pv(1).js" type="text/javascript"></SCRIPT>
+ <!-- 统计 .END --> 
+<DIV style="display: none;">
+<SCRIPT type="text/javascript"> 
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F0ee5e8cdc4d43389b3d1bfd76e83216b' type='text/javascript'%3E%3C/script%3E"));
+</SCRIPT>
+ </DIV>
+<SCRIPT type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-11982772-4");
+pageTracker._trackPageview();
+} catch(err) {}
+</SCRIPT>
+ 
+<SCRIPT src="vim基本命令%20-%20技术文档%20-%20新手入门%20Linux时代%20-%20开源、自由、共享%20-%20中国最大的Linux技术社区_files/601.js" type="text/javascript"></SCRIPT>
+ </BODY></HTML>

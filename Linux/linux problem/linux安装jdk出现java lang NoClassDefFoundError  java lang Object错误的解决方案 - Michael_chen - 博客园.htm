@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>linux安装jdk出现java/lang/NoClassDefFoundError: java/lang/Object错误的解决方案 - Michael_chen - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=gdNkSiQMyBMkpTeO1ex9qW-60UbMszQItnCUpBAT3LQ1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="http://common.cnblogs.com/Skins/BlackSun/style.css?id=20140110"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/chenguangyu/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/chenguangyu/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/chenguangyu/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'chenguangyu', cb_enable_mathjax=false;</script>
+<script src="/bundles/blog-common.js?v=9WslCdIxaXIBx_n41HxLAr9cTc3_MqacqpN7Z8rSo401" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="top">
+	
+<div>
+	<table class="HeaderTitles">
+		<tr>
+			<td>
+				<h1 class="HeaderTitle"><a id="Header1_HeaderTitle" class="HeaderMainTitle" href="http://www.cnblogs.com/chenguangyu/">Michael_chen</a></h1>
+				<p id="tagline"></p>
+			</td>
+		</tr>
+	</table>
+</div>
+<div>
+	<table id="HeaderBar" class="HeaderBar">
+		<tr>
+			<td class="HeaderBarTab" nowrap>
+				
+&nbsp;
+<a id="Header1_MyLinks1_HomeLink" href="http://www.cnblogs.com/">博客园</a>&nbsp;::
+<a id="Header1_MyLinks1_MyHomeLink" href="http://www.cnblogs.com/chenguangyu/">首页</a>&nbsp;::
+<a id="Header1_MyLinks1_NewPostLink" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a>&nbsp;::
+<a id="Header1_MyLinks1_ContactLink" accesskey="9" rel="nofollow" href="http://space.cnblogs.com/msg/send/Michael_chen">联系</a>&nbsp;::
+<a id="Header1_MyLinks1_Syndication" href="http://www.cnblogs.com/chenguangyu/rss">订阅</a>
+<a id="Header1_MyLinks1_XMLLink" class="XMLLink" href="http://www.cnblogs.com/chenguangyu/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>&nbsp;::
+<a id="Header1_MyLinks1_Admin" rel="nofollow" href="http://i.cnblogs.com/">管理</a>
+
+			</td>
+			
+			<td class="HeaderBarTabBack" nowrap width="100%">
+				
+
+	<table class="BlogStatsBar">
+		<tr>
+			<td width="100%">
+			</td>
+			<td class="BlogStatsBar" nowrap>
+				&nbsp;
+				3 
+				Posts&nbsp;::
+				7 Stories
+				::
+				1 Comments
+				::
+				0 Trackbacks
+			</td>
+		</tr>
+	</table>
+
+			</td>
+		</tr>
+	</table>
+</div>
+
+</div>
+<table id="maintable">
+	<tr><td id="leftmenu">
+	
+		
+<h3>公告</h3>
+<div class="News">
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+		<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+	
+</td><td id="main">
+	
+
+<div class="post">
+			<div class="postTitle">
+				<a id="cb_post_title_url" href="http://www.cnblogs.com/chenguangyu/archive/2009/11/06/1597706.html">linux安装jdk出现java/lang/NoClassDefFoundError: java/lang/Object错误的解决方案</a>
+			</div>
+	
+	<div class="postText">
+		<div id="cnblogs_post_body"><p>近日在redhat上安装jdk出现了一个莫名的错误</p><p>Error occurred during initialization of VM<br /> 	java/lang/<span style="background-color: #ffffff;">NoClassDefFoundError</span><span>: java/lang/Object</span></p><p>辛苦google了一个小时，终于找到了解决方案</p><p>首先要确认的是环境变量的设置是否正确</p><p>相信大家都是很细心的，这方面如果有错误也会很容易发现</p><p>然而还有一个隐蔽的地方也会产生上述的错误</p><p>就是lib和jre/lib文件夹中的rt和tools是否是打包后的形式</p><p>如果发现rt.pack 和 tools.pack 那么多半问题就出在这里&nbsp;</p><p>解决方法也很简单，只要将相应文件解压成rt.jar 和 tools.jar<br /></p><p>可以使用bin里面的unpack200工具</p><p>如：unpack200 rt.pack rt.jar</p><p>解压后java -version应该就没有问题了~~ <br /></p><p>&nbsp;</p><p> <br /></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+	</div>
+	
+	<div class="postfoot">
+		posted on <span id="post-date">2009-11-06 22:25</span> <a href='http://www.cnblogs.com/chenguangyu/'>Michael_chen</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="http://i.cnblogs.com/EditPosts.aspx?postid=1597706" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(1597706);return false;">收藏</a>
+	</div>
+</div>
+<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=62505,cb_entryId=1597706,cb_blogApp=currentBlogApp,cb_blogUserGuid='6cdf314e-87c7-de11-ba8f-001cf0cd104b',cb_entryCreatedDate='2009/11/6 22:25:00';loadViewCount(cb_entryId);</script>
+
+<a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="程序员的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="ad_under_post_holder"></div>
+<script type="text/javascript">
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+fixPostBodyFormat();
+loadAdUnderPost();
+</script>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+loadBlogSignature();
+LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+</script>
+<script type="text/javascript">
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+</script>
+</div>
+
+</tr>
+</table>
+
+<p id="footer">
+	Copyright @
+	Michael_chen<BR>
+	Powered by:
+	<a href="http://scottwater.com/blog" target=_blank>.Text</a> and 
+	<a href="http://asp.net" target=_blank>ASP.NET</a>
+	<br>
+	Theme by: <a href="http://www.DotNetMonster.com" target=_blank>.NET Monster</a>
+</p>
+
+
+</body>
+</html>

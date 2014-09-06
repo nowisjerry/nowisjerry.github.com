@@ -1,0 +1,18 @@
+如下是在虚拟机中安装搜索
+点击VM-Install VMware Tools在桌面上出现一张光盘包含3个文件，分别为manifest.txt；Vmware-tools-版本号.rpm和Vmware-tools-版本号.tar.gz
+在此安装tar.gz包
+(1)将Vmware-tools-版本号.tar.gz拷贝至tmp目录下
+cp Vmware-tools-版本号.tar.gz  /tmp
+(2)切换至tmp目录 
+cd /tmp
+(3)解压Vmware-tools-版本号.tar.gz文件
+tar –zxvf Vmware-tools-版本号.tar.gz
+(4)查看tmp目录下所拥有的文件
+ls
+(5)将目录切换至vmware-tools-distrib
+cd vmware-tools-distrib
+(6)执行vmware-intall.pl文件
+./vmware-install.pl
+之后一直回车（默认）
+出现选择屏幕分辨率输入数字12    (1024*768)
+重启系统reboot

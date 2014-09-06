@@ -1,0 +1,395 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0052)http://www.cnblogs.com/yisohoo/articles/1423940.html -->
+<html  xmlns="http://www.w3.org/1999/xhtml"  lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script  async=""  type="text/javascript"  src="./RedHat Linux Enterprise 5 yum 配置 - Yisohoo - 博客园_files/gpt.js"></script>
+
+<title>RedHat Linux Enterprise 5 yum 配置 - Yisohoo - 博客园</title>
+<link  type="text/css"  rel="stylesheet"  href="./RedHat Linux Enterprise 5 yum 配置 - Yisohoo - 博客园_files/blog-common.css">
+<link  id="MainCss"  type="text/css"  rel="stylesheet"  href="./RedHat Linux Enterprise 5 yum 配置 - Yisohoo - 博客园_files/style.css">
+<link  title="RSS"  type="application/rss+xml"  rel="alternate"  href="http://www.cnblogs.com/yisohoo/rss">
+<link  title="RSD"  type="application/rsd+xml"  rel="EditURI"  href="http://www.cnblogs.com/yisohoo/rsd.xml">
+<link  type="application/wlwmanifest+xml"  rel="wlwmanifest"  href="http://www.cnblogs.com/yisohoo/wlwmanifest.xml">
+<script  src="./RedHat Linux Enterprise 5 yum 配置 - Yisohoo - 博客园_files/jquery.js"  type="text/javascript"></script><style  type="text/css"  adt="123"></style>  
+<script  type="text/javascript">var currentBlogApp = 'yisohoo', cb_enable_mathjax=false;</script>
+<script  src="./RedHat Linux Enterprise 5 yum 配置 - Yisohoo - 博客园_files/blog-common.js"  type="text/javascript"></script>
+<script  src="./RedHat Linux Enterprise 5 yum 配置 - Yisohoo - 博客园_files/rightclick.js"></script><script  async=""  type="text/javascript"  src="./RedHat Linux Enterprise 5 yum 配置 - Yisohoo - 博客园_files/pubads_impl_36.js"></script></head>
+<body  style="zoom: 1;">
+<a  name="top"></a>
+
+<div  id="home">
+<div  id="header">
+	<div  id="blogTitle">
+		
+
+<div  class="title"><a  id="Header1_HeaderTitle"  class="headermaintitle"  href="http://www.cnblogs.com/yisohoo/">www.google.com.hk</a></div>
+<div  class="subtitle">google's handbook~</div>
+
+
+
+		
+	</div>
+	<div  id="navigator">
+		
+<ul  id="navList">
+<li  id="nav_sitehome"><a  id="MyLinks1_HomeLink"  class="menu"  href="http://www.cnblogs.com/">博客园</a></li>
+<li  id="nav_myhome"><a  id="MyLinks1_MyHomeLink"  class="menu"  href="http://www.cnblogs.com/yisohoo/">首页</a></li>
+<li  id="nav_q"><a  class="menu"  href="http://q.cnblogs.com/">博问</a></li>
+<li  id="nav_ing"><a  class="menu"  href="http://home.cnblogs.com/ing/">闪存</a></li>
+<li  id="nav_newpost"><a  id="MyLinks1_NewPostLink"  class="menu"  rel="nofollow"  href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li  id="nav_contact"><a  id="MyLinks1_ContactLink"  class="menu"  rel="nofollow"  href="http://space.cnblogs.com/msg/send/Yisohoo">联系</a></li>
+<li  id="nav_rss"><a  id="MyLinks1_Syndication"  class="menu"  href="http://www.cnblogs.com/yisohoo/rss">订阅</a>
+</li>
+<li  id="nav_admin"><a  id="MyLinks1_Admin"  class="menu"  rel="nofollow"  href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div  class="blogStats">
+			
+			
+
+随笔-6&nbsp;
+文章-3&nbsp;
+评论-1&nbsp;
+
+			
+		</div>
+	</div>
+</div>
+<div  id="main">
+	<div  id="mainContent">
+	<div  class="forFlow">
+		
+
+
+<div  id="topics">
+	<div  class="post">
+		<h1  class="postTitle">
+			<a  id="cb_post_title_url"  class="postTitle2"  href="http://www.cnblogs.com/yisohoo/articles/1423940.html">RedHat Linux Enterprise 5 yum 配置</a>
+		</h1>
+		<div  class="clear"></div>
+		<div  class="postBody">
+			<div  id="cnblogs_post_body"><p><span  style="color: #999999;">以前用fedora配置yum很方便,可是来到RHLE就不是那么顺手了,如果不做如下设置,经常出现不能通过yum安装软件的情况,下面是详细配置(网上找的)</span><span  style="background-color: #ffff99;"><span  style="color: #ffffff;"><span  style="background-color: #808080;"><br><span  style="color: #333333;"></span></span></span></span></p>
+<p><span  style="color: #666699;">首先，rhel5系统安装的时候其实已经有yum了，只是因为如果用官方的网站更新的话除非你是用钱买的rhel5.否则它会提示注册之类的。所以只要把
+yum的更新地址改成开源的就行了。而限定yum更新地址的文件在/etc/yum.repos.d/里。先把它们改成备份文件，即在后面加.bak。
+<br>[root@killgoogle ~]# mv /etc/yum.repos.d/rhel-debuginfo.repo /etc/yum.repos.d/rhel-debuginfo.repo.bak
+<br>[root@killgoogle ~]# mv /etc/yum.repos.d/rpmforge.repo.rpmnew /etc/yum.repos.d/rpmforge.repo.rpmnew.bak
+<br>建立新的配置文件：
+<br>[root@killgoogle ~]# cd /etc/yum.repos.d
+<br>[root@killgoogle ~]# touch rhel-debuginfo.repo
+<br>[root@killgoogle ~]# touch mirrors-rpmforge
+<br>[root@killgoogle ~]# touch rpmforge.repo
+<br>往新的配置文件写东西：
+<br>[root@killgoogle ~]#vi rhel-debuginfo.repo
+<br>[base]
+<br>name=CentOS-5 - Base
+<br>#mirrorlist=<a  href="http://mirrorlist.centos.org/?release=$releasever5&arch=$basearch&"  target="_blank">http://mirrorlist.centos.org/?release=$releasever5&amp;arch=$basearch&amp;</a><br>repo=os
+<br>#baseurl=<a  href="http://mirror.centos.org/centos/$releasever/os/$basearch/"  target="_blank">http://mirror.centos.org/centos/$releasever/os/$basearch/</a><br>baseurl=<a  href="http://ftp.sjtu.edu.cn/centos/5/os/$basearch/"  target="_blank">http://ftp.sjtu.edu.cn/centos/5/os/$basearch/</a><br>gpgcheck=1
+<br>gpgkey=<a  href="http://mirror.centos.org/centos/RPM-GPG-KEY-centos5"  target="_blank">http://mirror.centos.org/centos/RPM-GPG-KEY-centos5</a><br><br>#released updates
+<br>[update]
+<br>name=CentOS-5 - Updates
+<br>#mirrorlist=<a  href="http://mirrorlist.centos.org/?release=4&arch=$basearch&repo=updates"  target="_blank">http://mirrorlist.centos.org/?release=4&amp;arch=$basearch&amp;repo=updates</a><br>baseurl=<a  href="http://ftp.sjtu.edu.cn/centos/5/updates/$basearch/"  target="_blank">http://ftp.sjtu.edu.cn/centos/5/updates/$basearch/</a><br>gpgcheck=1
+<br>gpgkey=<a  href="http://mirror.centos.org/centos/RPM-GPG-KEY-centos5"  target="_blank">http://mirror.centos.org/centos/RPM-GPG-KEY-centos5</a><br><br>#packages used/produced in the build but not released
+<br>[addons]
+<br>name=CentOS-5 - Addons
+<br>#mirrorlist=<a  href="http://mirrorlist.centos.org/?release=4&arch=$basearch&repo=addons"  target="_blank">http://mirrorlist.centos.org/?release=4&amp;arch=$basearch&amp;repo=addons</a><br><br>baseurl=<a  href="http://ftp.sjtu.edu.cn/centos/5/addons/$basearch/"  target="_blank">http://ftp.sjtu.edu.cn/centos/5/addons/$basearch/</a><br>gpgcheck=1
+<br>gpgkey=<a  href="http://mirror.centos.org/centos/RPM-GPG-KEY-centos5"  target="_blank">http://mirror.centos.org/centos/RPM-GPG-KEY-centos5</a><br><br>#additional packages that may be useful
+<br>[extras]
+<br>name=CentOS-5 - Extras
+<br>#mirrorlist=<a  href="http://mirrorlist.centos.org/?release=4&arch=$basearch&repo=extras"  target="_blank">http://mirrorlist.centos.org/?release=4&amp;arch=$basearch&amp;repo=extras</a><br><br>baseurl=<a  href="http://ftp.sjtu.edu.cn/centos/5/extras/$basearch/"  target="_blank">http://ftp.sjtu.edu.cn/centos/5/extras/$basearch/</a><br>gpgcheck=1
+<br>gpgkey=<a  href="http://mirror.centos.org/centos/RPM-GPG-KEY-centos5"  target="_blank">http://mirror.centos.org/centos/RPM-GPG-KEY-centos5</a><br><br>#additional packages that extend functionality of existing packages
+<br>[centosplus]
+<br>name=CentOS-5 - Plus
+<br>#mirrorlist=<a  href="http://mirrorlist.centos.org/?release=4&arch=$basearch&repo=centosplus"  target="_blank">http://mirrorlist.centos.org/?release=4&amp;arch=$basearch&amp;repo=centosplus</a><br>baseurl=<a  href="http://ftp.sjtu.edu.cn/centos/5/centosplus/$basearch/"  target="_blank">http://ftp.sjtu.edu.cn/centos/5/centosplus/$basearch/</a><br>gpgcheck=1
+<br>enabled=0
+<br>gpgkey=<a  href="http://mirror.centos.org/centos/RPM-GPG-KEY-centos5"  target="_blank">http://mirror.centos.org/centos/RPM-GPG-KEY-centos5</a><br><br>#contrib - packages by Centos Users
+<br>[contrib]
+<br>name=CentOS-5 - Contrib
+<br>#mirrorlist=<a  href="http://mirrorlist.centos.org/?release=4&arch=$basearch&repo=contrib"  target="_blank">http://mirrorlist.centos.org/?release=4&amp;arch=$basearch&amp;repo=contrib</a><br>baseurl=<a  href="http://ftp.sjtu.edu.cn/centos/5/contrib/$basearch/"  target="_blank">http://ftp.sjtu.edu.cn/centos/5/contrib/$basearch/</a><br>gpgcheck=1
+<br>enabled=0
+<br>gpgkey=<a  href="http://mirror.centos.org/centos/RPM-GPG-KEY-centos5"  target="_blank">http://mirror.centos.org/centos/RPM-GPG-KEY-centos5</a><br><br># vi dag.repo
+<br>[dag]
+<br>name=Dag RPM Repository for RHEL5
+<br>baseurl=<a  href="http://ftp.riken.jp/Linux/dag/redhat/el5/en/$basearch/dag/"  target="_blank">http://ftp.riken.jp/Linux/dag/redhat/el5/en/$basearch/dag/</a><br>enabled=1
+<br>gpgcheck=1
+<br>gpgkey=<a  href="http://ftp.riken.jp/Linux/dag/packages/RPM-GPG-KEY.dag.txt"  target="_blank">http://ftp.riken.jp/Linux/dag/packages/RPM-GPG-KEY.dag.txt</a><br>修改第二个配置文件：
+<br>[root@killgoogle ~]vi mirrors-rpmforge
+<br><a  href="http://apt.sw.be/redhat/el5/en/$ARCH/dag"  target="_blank">http://apt.sw.be/redhat/el5/en/$ARCH/dag</a><br><a  href="http://archive.cs.uu.nl/mirror/dag.wieers/redhat/el5/en/$ARCH/dag"  target="_blank">http://archive.cs.uu.nl/mirror/dag.wieers/redhat/el5/en/$ARCH/dag</a><br><a  href="http://ftp2.lcpe.uni-sofia.bg/freshrpms/pub/dag/redhat/el5/en/$ARCH/dag"  target="_blank">http://ftp2.lcpe.uni-sofia.bg/freshrpms/pub/dag/redhat/el5/en/$ARCH/dag</a><br>#<a  href="http://ftp.heanet.ie/pub/freshrpms/pub/dag/redhat/el5/en/$ARCH/dag"  target="_blank">http://ftp.heanet.ie/pub/freshrpms/pub/dag/redhat/el5/en/$ARCH/dag</a><br><a  href="http://ftp-stud.fht-esslingen.de/dag/redhat/el5/en/$ARCH/dag"  target="_blank">http://ftp-stud.fht-esslingen.de/dag/redhat/el5/en/$ARCH/dag</a><br><a  href="http://mirror.cpsc.ucalgary.ca/mirror/dag/redhat/el5/en/$ARCH/dag"  target="_blank">http://mirror.cpsc.ucalgary.ca/mirror/dag/redhat/el5/en/$ARCH/dag</a><br><a  href="http://mirrors.ircam.fr/pub/dag/redhat/el5/en/$ARCH/dag"  target="_blank">http://mirrors.ircam.fr/pub/dag/redhat/el5/en/$ARCH/dag</a><br><a  href="http://rh-mirror.linux.iastate.edu/pub/dag/redhat/el5/en/$ARCH/dag"  target="_blank">http://rh-mirror.linux.iastate.edu/pub/dag/redhat/el5/en/$ARCH/dag</a><br><a  href="http://rpmfind.net/linux/dag/redhat/el5/en/$ARCH/dag"  target="_blank">http://rpmfind.net/linux/dag/redhat/el5/en/$ARCH/dag</a><br><a  href="http://wftp.tu-chemnitz.de/pub/linux/dag/redhat/el5/en/$ARCH/dag"  target="_blank">http://wftp.tu-chemnitz.de/pub/linux/dag/redhat/el5/en/$ARCH/dag</a><br><a  href="http://www.mirrorservice.org/sites/apt.sw.be/redhat/el5/en/$ARCH/dag"  target="_blank">http://www.mirrorservice.org/sites/apt.sw.be/redhat/el5/en/$ARCH/dag</a><br>修改第三个配置文件：
+<br>[root@killgoogle ~]# vi rpmforge.repo
+<br># Name: RPMforge RPM Repository for Red Hat Enterprise 5 - dag
+<br># URL: <a  href="http://rpmforge.net/"  target="_blank">http://rpmforge.net/</a><br>[rpmforge]
+<br>name = Red Hat Enterprise $releasever - RPMforge.net - dag
+<br>#baseurl = <a  href="http://apt.sw.be/redhat/el5/en/$basearch/dag"  target="_blank">http://apt.sw.be/redhat/el5/en/$basearch/dag</a><br>mirrorlist = <a  href="http://apt.sw.be/redhat/el5/en/mirrors-rpmforge"  target="_blank">http://apt.sw.be/redhat/el5/en/mirrors-rpmforge</a><br>#mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
+<br>enabled = 1
+<br>protect = 0
+<br>gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
+<br>gpgcheck = 1
+<br><br>如果风速慢的话可以通过增加yum的超时时间，这样就不会总是因为超时而退出。
+<br>[root@killgoogle ~]vi /etc/yum.conf
+<br>加上这么一句：timeout=120
+<br>到这里配置差不多就完了。还有一个包需要安装：rpmforge-release-0.3.6-1.el5.rf.i386.rpm
+<br>如果不安装的话有可能会出现以下错误：GPG key retrieval failed: [Errno 5] OSError: [Errno 2] 没有那个文件或目录: '/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag'
+<br>到<a  href="http://rpmfind.net/linux/RPM/"  target="_blank">http://rpmfind.net/linux/RPM/</a>找到这个包，然后
+<br>[root@killgoogle ~]rpm -ivh rpmforge-release-0.3.6-1.el5.rf.i386.rpm
+<br>接下来就是输入KEY了。
+<br>[root@killgoogle ~] rpm --import <a  href="http://mirror.be10.com/centos/RPM-GPG-KEY-CentOS-5"  target="_blank">http://mirror.be10.com/centos/RPM-GPG-KEY-CentOS-5</a><br>这样基本上yum就可以用了。不过如果觉得不爽的话还可以优化：
+<br>加速yum
+<br>[root@killgoogle ~]yum install yum-fastestmirror yum-presto
+<br>指定或去掉软件源的mirror:
+<br>可以在baseurl中将比较慢的mirror去掉
+<br>你的yum镜像的速度测试记录文件：
+<br>/var/cache/yum/timedhosts.txt
+<br>yum Existing lock 错误的解决办法
+<br>如果系统启动的时候， yum 出现Existing lock /var/run/yum.pid: another copy is running as pid 3380. Aborting. 可以用下面的办法解决：
+<br>[root@killgoogle ~]/etc/init.d/yum-updatesd stop
+<br>也可以用以下方法： 
+<br>[root@killgoogle ~]rm -f /var/run/yum.pid
+<br>主要原因就是yum在自动更新只要关掉它就可以了
+<br><br>完了。现在就可以测试能不能用了哦：
+<br>[root@killgoogle ~]yum install mplayer
+<br>这是安装mplayer如果要删除则是：
+<br>[root@killgoogle ~]yum remove mplayer</span>
+
+
+
+
+
+
+
+
+
+
+
+</p></div><div  id="MySignature"></div>
+<div  class="clear"></div>
+<div  id="blog_post_info_block">
+<div  id="blog_post_info"><div  id="BlogPostCategory">分类: <a  href="http://www.cnblogs.com/yisohoo/category/183164.html">Linux/Unix</a></div>
+<div  id="EntryTag"></div>
+<div  id="green_channel">
+绿色通道：
+<a  href="javascript:void(0);"  id="green_channel_digg" >好文要顶</a>
+<a  id="green_channel_follow"   href="javascript:void(0);">关注我</a>
+<a  id="green_channel_favorite"   href="javascript:void(0);">收藏该文</a><a  id="green_channel_contact"  href="http://space.cnblogs.com/msg/send/Yisohoo"  target="_blank">与我联系</a>
+<a  id="green_channel_weibo"  href="javascript:void(0);"  title="分享至新浪微博" ><img  src="./RedHat Linux Enterprise 5 yum 配置 - Yisohoo - 博客园_files/icon_weibo_24.png"  alt=""></a>
+</div>
+<div  id="digg_block">
+<div  id="author_profile">
+<div  id="author_profile_info"  class="author_profile_info">
+<a  href="http://home.cnblogs.com/u/yisohoo/"  target="_blank"><img  src="./RedHat Linux Enterprise 5 yum 配置 - Yisohoo - 博客园_files/u56774.png"  class="author_avatar"  alt=""></a>
+<div  id="author_profile_detail"  class="author_profile_info">
+<a  href="http://home.cnblogs.com/u/yisohoo/">Yisohoo</a><br>
+<a  href="http://home.cnblogs.com/u/yisohoo/followees">关注 - 0</a><br>
+<a  href="http://home.cnblogs.com/u/yisohoo/followers">粉丝 - 0</a>
+</div>
+</div>
+<div  class="clear"></div>
+<div  id="author_profile_honor"></div>
+<div  id="author_profile_follow">
+<a  href="javascript:void(0);" >+加关注</a>
+</div>
+</div>
+<div  id="div_digg">										
+	<div  class="diggit" > 
+		<span  class="diggnum"  id="digg_count">0</span>
+	</div>
+	<div  class="buryit" > 
+		<span  class="burynum"  id="bury_count">0</span>
+	</div>
+	<div  class="clear"></div>	
+	<div  class="diggword"  id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div></div>
+<div  class="clear"></div>
+<div  id="post_next_prev"><a  href="http://www.cnblogs.com/yisohoo/archive/2009/03/29/1424269.html"  class="p_n_p_prefix">» </a> 下一篇：<a  href="http://www.cnblogs.com/yisohoo/archive/2009/03/29/1424269.html"  title="发布于2009-03-29 09:11">这样玩linux还不错</a><br></div>
+</div>
+
+
+		</div>
+		<div  class="postDesc">posted @ <span  id="post-date">2009-03-28 13:52</span> <a  href="http://www.cnblogs.com/yisohoo/">Yisohoo</a> 阅读(<span  id="post_view_count">6789</span>) 评论(<span  id="post_comment_count">1</span>) &nbsp;<a  href="http://i.cnblogs.com/EditArticles.aspx?postid=1423940"  rel="nofollow">编辑</a> <a  href="http://www.cnblogs.com/yisohoo/articles/1423940.html#" >收藏</a></div>
+	</div>
+	<script  type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=54540,cb_entryId=1423940,cb_blogApp=currentBlogApp,cb_blogUserGuid='b394e985-db1a-de11-9510-001cf0cd104b',cb_entryCreatedDate='2009/3/28 13:52:00';loadViewCount(cb_entryId);</script>
+	
+</div>
+<a  name="!comments"></a><div  id="blog-comments-placeholder"><div  id="comments_pager_top"></div>
+
+<div  class="feedback_area_title">评论列表</div>
+<div  class="feedbackNoItems"></div>
+	
+
+		<div  class="feedbackItem">
+			<div  class="feedbackListSubtitle">
+				<div  class="feedbackManage">
+					&nbsp;&nbsp;<span  class="comment_actions"></span>
+				</div>
+				<a  href="http://www.cnblogs.com/yisohoo/articles/1423940.html#2235571"  class="layer">#1楼</a><a  name="2235571"  id="comment_anchor_2235571"></a><span  id="comment-maxId"  style="display:none;">2235571</span><span  id="comment-maxDate"  style="display:none;">2011/11/4 14:18:38</span>  <span  class="comment_date">2011-11-04 14:18</span> <a  id="a_comment_author_2235571"  href="http://home.cnblogs.com/u/302617/"  target="_blank">陈月游</a> <a  href="http://space.cnblogs.com/msg/send/%e9%99%88%e6%9c%88%e6%b8%b8"  title="发送站内短消息"  class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div  class="feedbackCon">
+				<div  id="comment_body_2235571"  class="blog_comment_body">rpm --import <a  href="http://mirror.be10.com/centos/RPM-GPG-KEY-CentOS-5"  target="_blank">http://mirror.be10.com/centos/RPM-GPG-KEY-CentOS-5</a><br><br><br>您好，到了这一步的时候<br>[root@localhost yum.repos.d]# rpm --import <a  href="http://mirror.be10.com/centos/RPM-GPG-KEY-CentOS-5"  target="_blank">http://mirror.be10.com/centos/RPM-GPG-KEY-CentOS-5</a><br>error: <a  href="http://mirror.be10.com/centos/RPM-GPG-KEY-CentOS-5"  target="_blank">http://mirror.be10.com/centos/RPM-GPG-KEY-CentOS-5</a>: import read failed(-1).<br>提示如上的错误，请问，导入的这个，是导入到哪个文件?</div><div  class="comment_vote"><a  href="javascript:void(0);"  class="comment_digg" >支持(0)</a><a  href="javascript:void(0);"  class="comment_bury" >反对(0)</a></div>
+			</div>
+		</div>
+	<div  id="comments_pager_bottom"></div></div><script  type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div  id="comment_form"  class="commentform">
+<a  name="commentform"></a>
+<div  id="divCommentShow"></div>
+<div  id="comment_nav"><span  id="span_refresh_tips"></span><a  href="javascript:void(0);"  id="lnk_RefreshComments" >刷新评论</a><a  href="http://www.cnblogs.com/yisohoo/articles/1423940.html#" >刷新页面</a><a  href="http://www.cnblogs.com/yisohoo/articles/1423940.html#top">返回顶部</a></div>
+<div  id="comment_form_container"><div  class="login_tips">注册用户登录后才能发表评论，请 <a  rel="nofollow"  href="javascript:void(0);"  class="underline" >登录</a> 或 <a  rel="nofollow"  href="javascript:void(0);"  class="underline" >注册</a>，<a  href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div  class="ad_text_commentbox"  id="ad_text_under_commentbox"><a  href="http://www.cnblogs.com/cmt/p/3643566.html"  target="_blank">上阿里-聚无线平台，云服务器免费拿</a></div>
+<div  id="site_nav_under"><a  href="http://www.cnblogs.com/"  target="_blank"  title="程序员的网上家园">博客园首页</a><a  href="http://q.cnblogs.com/"  target="_blank"  title="程序员问答社区">博问</a><a  href="http://news.cnblogs.com/"  target="_blank"  title="IT新闻">新闻</a><a  href="http://home.cnblogs.com/ing/"  target="_blank">闪存</a><a  href="http://job.cnblogs.com/"  target="_blank">程序员招聘</a><a  href="http://kb.cnblogs.com/"  target="_blank">知识库</a></div>
+<div  id="ad_under_post_holder">
+
+<div  id="google_ad_c1"  class="c_ad_block">
+    
+    <div  id="div-gpt-ad-1346480159711-0"  style="width:300px; height:250px;">
+    
+    </div>
+</div>
+<div  id="blog_news_kb"><div  class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a  href="http://news.cnblogs.com/n/204803/"  target="_blank">关于不可变操作系统的设想</a><br> ·  <a  href="http://news.cnblogs.com/n/204802/"  target="_blank">分享开发者在创业前应该明确的10件事</a><br> ·  <a  href="http://news.cnblogs.com/n/204801/"  target="_blank">Blender开源动画在YouTube收到索尼的版权通知</a><br> ·  <a  href="http://news.cnblogs.com/n/204800/"  target="_blank">Android TV 泄露，Google 的电视设备也是一款机顶盒</a><br> ·  <a  href="http://news.cnblogs.com/n/204799/"  target="_blank">打造团队精神的法宝：在线团队如何进行远程协作</a><br>» <a  href="http://news.cnblogs.com/"  title="IT新闻"  target="_blank">更多新闻...</a></div><div  class="itnews c_ad_block"  id="kb_block"><b>最新知识库文章</b>:<br><div  id="kb_recent"> ·  <a  href="http://kb.cnblogs.com/page/181030/"  target="_blank">声明式编程和命令式编程的比较</a><br> ·  <a  href="http://kb.cnblogs.com/page/188214/"  target="_blank">如何写出让自己满意的代码</a><br> ·  <a  href="http://kb.cnblogs.com/page/188928/"  target="_blank">GET和POST有什么区别？</a><br> ·  <a  href="http://kb.cnblogs.com/page/202642/"  target="_blank">金庸笔下的良好代码风格</a><br> ·  <a  href="http://kb.cnblogs.com/page/203220/"  target="_blank">编程语言中一些令人抓狂的规则</a><br></div>» <a  href="http://kb.cnblogs.com/"  target="_blank">更多知识库文章...</a></div></div></div>
+<script  type="text/javascript">
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+fixPostBodyFormat();
+loadAdUnderPost();
+</script>
+<div  id="HistoryToday"  class="c_ad_block"></div>
+<script  type="text/javascript">
+loadBlogSignature();
+LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+</script>
+<script  type="text/javascript">
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+</script>
+</div>
+
+	</div>
+	</div>
+
+	<div  id="sideBar">
+		<div  id="sideBarMain">
+			
+
+<div  class="newsItem">
+<h3  class="catListTitle">公告</h3>
+	<div  id="blog-news"><div  id="profile_block">昵称：<a  href="http://home.cnblogs.com/u/yisohoo/">Yisohoo</a><br>园龄：<a  href="http://home.cnblogs.com/u/yisohoo/"  title="入园时间：2009-03-27">5年</a><br>粉丝：<a  href="http://home.cnblogs.com/u/yisohoo/followers/">0</a><br>关注：<a  href="http://home.cnblogs.com/u/yisohoo/followees/">0</a><div  id="p_b_follow"><a  href="javascript:void(0);" >+加关注</a></div></div></div><script  type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div  id="calendar"><div  id="blog-calendar"  style=""><table  id="blogCalendar"  class="Cal"  cellspacing="0"  cellpadding="0"  title="日历">
+	<tbody><tr><td  colspan="7"><table  class="CalTitle"  cellspacing="0">
+		<tbody><tr><td  class="CalNextPrev"><a  href="javascript:void(0);" >&lt;</a></td><td  align="center">2014年4月</td><td  class="CalNextPrev"  align="right"><a  href="javascript:void(0);" >&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th  class="CalDayHeader"  align="center"  abbr="日"  scope="col">日</th><th  class="CalDayHeader"  align="center"  abbr="一"  scope="col">一</th><th  class="CalDayHeader"  align="center"  abbr="二"  scope="col">二</th><th  class="CalDayHeader"  align="center"  abbr="三"  scope="col">三</th><th  class="CalDayHeader"  align="center"  abbr="四"  scope="col">四</th><th  class="CalDayHeader"  align="center"  abbr="五"  scope="col">五</th><th  class="CalDayHeader"  align="center"  abbr="六"  scope="col">六</th></tr><tr><td  class="CalOtherMonthDay"  align="center">30</td><td  class="CalOtherMonthDay"  align="center">31</td><td  align="center">1</td><td  align="center">2</td><td  align="center">3</td><td  align="center">4</td><td  class="CalWeekendDay"  align="center">5</td></tr><tr><td  class="CalTodayDay"  align="center">6</td><td  align="center">7</td><td  align="center">8</td><td  align="center">9</td><td  align="center">10</td><td  align="center">11</td><td  class="CalWeekendDay"  align="center">12</td></tr><tr><td  class="CalWeekendDay"  align="center">13</td><td  align="center">14</td><td  align="center">15</td><td  align="center">16</td><td  align="center">17</td><td  align="center">18</td><td  class="CalWeekendDay"  align="center">19</td></tr><tr><td  class="CalWeekendDay"  align="center">20</td><td  align="center">21</td><td  align="center">22</td><td  align="center">23</td><td  align="center">24</td><td  align="center">25</td><td  class="CalWeekendDay"  align="center">26</td></tr><tr><td  class="CalWeekendDay"  align="center">27</td><td  align="center">28</td><td  align="center">29</td><td  align="center">30</td><td  class="CalOtherMonthDay"  align="center">1</td><td  class="CalOtherMonthDay"  align="center">2</td><td  class="CalOtherMonthDay"  align="center">3</td></tr><tr><td  class="CalOtherMonthDay"  align="center">4</td><td  class="CalOtherMonthDay"  align="center">5</td><td  class="CalOtherMonthDay"  align="center">6</td><td  class="CalOtherMonthDay"  align="center">7</td><td  class="CalOtherMonthDay"  align="center">8</td><td  class="CalOtherMonthDay"  align="center">9</td><td  class="CalOtherMonthDay"  align="center">10</td></tr>
+</tbody></table></div><script  type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div  id="leftcontentcontainer">
+				<div  id="blog-sidecolumn">
+<div  class="catListEssay">
+<h3  class="catListTitle">最新随笔</h3>
+<ul>
+<li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/04/07/1430611.html">1. 利用 AWK 的数值计算功能提升工作效率</a></li><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/04/07/1430609.html">2. Linux安全手册(转载)</a></li><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/04/07/1430604.html">3. My plan.</a></li><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/04/07/1430602.html">4. bad conditions</a></li><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/03/30/1424755.html">5. 警戒!</a></li><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/03/29/1424269.html">6. 这样玩linux还不错</a></li><li><a  href="http://www.cnblogs.com/yisohoo/articles/1424113.html">7. Linux常用网络配置</a></li><li><a  href="http://www.cnblogs.com/yisohoo/articles/1423940.html">8. RedHat Linux Enterprise 5 yum 配置</a></li><li><a  href="http://www.cnblogs.com/yisohoo/articles/1423936.html">9. 欢迎我来到cnblogs</a></li>
+</ul>
+</div>
+
+<div  class="catListPostCategory">
+<h3  class="catListTitle">随笔分类<span  style="font-size:11px;font-weight:normal">(2)</span></h3>
+
+<ul>
+
+<li><a  id="ctl02_CatList_LinkList_0_Link_0"  href="http://www.cnblogs.com/yisohoo/category/183405.html">CMS</a> </li>
+
+<li><a  id="ctl02_CatList_LinkList_0_Link_1"  href="http://www.cnblogs.com/yisohoo/category/184531.html">Linux/Unix(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div  class="catListPostArchive">
+<h3  class="catListTitle">随笔档案<span  style="font-size:11px;font-weight:normal">(6)</span></h3>
+
+<ul>
+
+<li><a  id="ctl02_CatList_LinkList_1_Link_0"  href="http://www.cnblogs.com/yisohoo/archive/2009/04.html">2009年4月 (4)</a> </li>
+
+<li><a  id="ctl02_CatList_LinkList_1_Link_1"  href="http://www.cnblogs.com/yisohoo/archive/2009/03.html">2009年3月 (2)</a> </li>
+
+</ul>
+
+</div>
+
+<div  class="catListArticleCategory">
+<h3  class="catListTitle">文章分类<span  style="font-size:11px;font-weight:normal">(2)</span></h3>
+
+<ul>
+
+<li><a  id="ctl02_CatList_LinkList_2_Link_0"  href="http://www.cnblogs.com/yisohoo/category/183168.html">Database</a> </li>
+
+<li><a  id="ctl02_CatList_LinkList_2_Link_1"  href="http://www.cnblogs.com/yisohoo/category/183165.html">Editor</a> </li>
+
+<li><a  id="ctl02_CatList_LinkList_2_Link_2"  href="http://www.cnblogs.com/yisohoo/category/183164.html">Linux/Unix(2)</a> </li>
+
+<li><a  id="ctl02_CatList_LinkList_2_Link_3"  href="http://www.cnblogs.com/yisohoo/category/183166.html">php</a> </li>
+
+<li><a  id="ctl02_CatList_LinkList_2_Link_4"  href="http://www.cnblogs.com/yisohoo/category/183167.html">web</a> </li>
+
+</ul>
+
+</div>
+
+<div  class="catListArticleArchive">
+<h3  class="catListTitle">文章档案<span  style="font-size:11px;font-weight:normal">(3)</span></h3>
+
+<ul>
+
+<li><a  id="ctl02_CatList_LinkList_3_Link_0"  rel="nofollow"  href="http://www.cnblogs.com/yisohoo/archives/2009/03.html">2009年3月 (3)</a> </li>
+
+</ul>
+
+</div>
+
+
+<div  class="catListBlogRank">
+<h3  class="catListTitle">积分与排名</h3>
+<ul>
+	<li  class="liScore">
+		积分 -	2195
+	</li>
+	<li  class="liRank">
+		排名 -	31008
+	</li>
+</ul>
+</div>
+
+
+
+<div  class="catListComment">
+<h3  class="catListTitle">最新评论</h3>
+	<div  id="RecentCommentsBlock"><ul>
+</ul>
+</div>
+</div>
+
+<div  class="catListView">
+<h3  class="catListTitle">阅读排行榜</h3>
+	<div  id="TopViewPostsBlock"><ul><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/04/07/1430611.html">1. 利用 AWK 的数值计算功能提升工作效率(150)</a></li><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/03/29/1424269.html">2. 这样玩linux还不错(84)</a></li><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/04/07/1430609.html">3. Linux安全手册(转载)(70)</a></li><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/03/30/1424755.html">4. 警戒!(31)</a></li><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/04/07/1430604.html">5. My plan.(12)</a></li></ul></div>
+</div>
+
+<div  class="catListFeedback">
+<h3  class="catListTitle">评论排行榜</h3>
+	<div  id="TopFeedbackPostsBlock"><ul><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/03/29/1424269.html">1. 这样玩linux还不错(0)</a></li><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/03/30/1424755.html">2. 警戒!(0)</a></li><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/04/07/1430609.html">3. Linux安全手册(转载)(0)</a></li><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/04/07/1430611.html">4. 利用 AWK 的数值计算功能提升工作效率(0)</a></li><li><a  href="http://www.cnblogs.com/yisohoo/archive/2009/04/07/1430602.html">5. bad conditions(0)</a></li></ul></div>
+</div>
+</div><script  type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div>
+	</div>
+	<div  class="clear"></div>
+	</div>
+	<div  class="clear"></div>
+	<div  id="footer">
+		
+
+Copyright ©2014 Yisohoo
+	</div>
+</div>
+
+
+<input  type="hidden"  id="J-rightclick-event"></body></html>

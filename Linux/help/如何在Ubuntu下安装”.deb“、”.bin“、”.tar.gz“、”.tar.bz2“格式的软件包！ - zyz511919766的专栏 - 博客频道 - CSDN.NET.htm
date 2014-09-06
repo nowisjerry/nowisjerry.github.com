@@ -1,0 +1,834 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>如何在Ubuntu下安装”.deb“、”.bin“、”.tar.gz“、”.tar.bz2“格式的软件包！ - zyz511919766的专栏
+        - 博客频道 - CSDN.NET</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="今天在Ubuntu11.10中安装Google chrome浏览器是遇到了问题，下载好的“.deb”格式的安装文件google-chrome-stable.deb双击后或者右键快捷菜单选择Synaptic Package Manager 打开时均提示错误，改用命令的方式安装：dpkg -i &#160;google-chrome-stable.deb&#160;提示缺少一个依赖的软件包，按照提示安装完" />
+    <script src="http://static.blog.csdn.net/scripts/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+        <!--new top-->
+               <link rel="stylesheet" href="http://static.csdn.net/public/common/toolbar/css/index.css">        <!--new top-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/default/css/style.css?v=1.1" />
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/zyz511919766/rss/list" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+ 
+
+</head>
+<body>
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://static.csdn.net/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/zyz511919766">zyz511919766的专栏</a></h2>
+            <h3></h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+                <li id="btnContents"><a href="http://blog.csdn.net/zyz511919766?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/zyz511919766?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/zyz511919766/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "zyz511919766";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/zyz511919766";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+
+<a href="http://hero.csdn.net/Question/Details?ID=351&ExamID=346" target="_blank"><font color=blue>英雄会第四届在线编程大赛·线上初赛：带通配符的数
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://www.csdn.net/article/2014-03-18/2818827">
+<font color=red>专访王然：与历史共舞的Linux程序员</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/21389277"target="_blank">
+<font color=blue>CSDN博客“我的IT成长路”活动 </font></a>
+
+
+
+
+</div>                    <link href="http://static.blog.csdn.net/css/comment1.css" type="text/css" rel="stylesheet" />
+<link href="http://static.blog.csdn.net/css/style1.css" type="text/css" rel="stylesheet" />
+<div id="article_details" class="details">
+    <div class="article_title">
+    <span class="ico ico_type_Original"></span>
+    <h1>
+        <span class="link_title"><a href="/zyz511919766/article/details/7574040">
+        如何在Ubuntu下安装”.deb“、”.bin“、”.tar.gz“、”.tar.bz2“格式的软件包！
+        </a></span>
+    </h1>
+</div>
+
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="/zyz511919766/article/category/1084340" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">linux</a> 
+            <a href="/zyz511919766/article/category/1143730" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">Ubuntu</a> 
+        </span>
+    <span class="link_postdate">2012-05-16 20:50</span>
+    <span class="link_view" title="阅读次数">8926人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(3)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shoucang']);collectArticle('如何在Ubuntu下安装”.deb“、”.bin“、”.tar.gz“、”.tar.bz2“格式的软件包！','7574040');return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="#report"  onclick="javascript:_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_jubao']);report(7574040,2);return false;" title="举报">举报</a></span>
+    
+</div>
+<div class="tag2box"><a href='http://www.csdn.net/tag/ubuntu' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">ubuntu</a><a href='http://www.csdn.net/tag/manager' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">manager</a><a href='http://www.csdn.net/tag/%e6%96%87%e6%a1%a3' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">文档</a><a href='http://www.csdn.net/tag/linux' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">linux</a><a href='http://www.csdn.net/tag/%e5%9b%be%e5%bd%a2' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">图形</a><a href='http://www.csdn.net/tag/debian' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">debian</a></div>
+
+    
+<div id="article_content" class="article_content">
+
+<p><br>
+今天在Ubuntu11.10中安装Google chrome浏览器是遇到了问题，下载好的“.deb”&#26684;式的安装文件google-chrome-stable.deb双击后或者右键快捷菜单选择Synaptic Package Manager 打开时均提示错误，改用命令的方式安装：</p>
+<p><br>
+dpkg -i &nbsp;google-chrome-stable.deb&nbsp;</p>
+<p><br>
+提示缺少一个依赖的软件包，按照提示安装完成后 Google Chrome浏览器顺利的安装完成。鉴于我们搞开发的人士或者一些linux爱好者需要时常在linux系统中安装一些软件，在此，对相关问题做一总结，以利己利人。<br>
+<br>
+<br>
+首先介绍两个简单的方式</p>
+<p>第一：sudo apt-get install packagename 命令</p>
+<p>如果我们知道我们要安装的软件的确切的名称，那么我们可以简单的通过此条命令来获取和安装软件。apt-get是一条linux命令，适用于deb包管理式的操作系统，如ubuntu，主要用于自动从互联网的软件仓库中搜索、安装、升级、卸载软件。apt-get命令一般需要root执行，所以一般跟着sudo命令。</p>
+<p>一些常用的apt命令参数（更具体的可参见相关的帮助文档）：</p>
+<p>&nbsp; &nbsp; apt-cache search package 搜索包<br>
+&nbsp; &nbsp; apt-cache show package 获取包的相关信息，如说明、大小、版本等<br>
+&nbsp; &nbsp; sudo apt-get install package 安装包<br>
+&nbsp; &nbsp; sudo apt-get install package - - reinstall 重新安装包<br>
+&nbsp; &nbsp; sudo apt-get -f install 修复安装&quot;-f = - -fix-missing&quot;<br>
+&nbsp; &nbsp; sudo apt-get remove package 删除包<br>
+&nbsp; &nbsp; sudo apt-get remove package - - purge 删除包，包括删除配置文件等<br>
+&nbsp; &nbsp; sudo apt-get update 更新源<br>
+&nbsp; &nbsp; sudo apt-get upgrade 更新已安装的包<br>
+&nbsp; &nbsp; sudo apt-get dist-upgrade 升级系统<br>
+&nbsp; &nbsp; sudo apt-get dselect-upgrade 使用 dselect 升级<br>
+&nbsp; &nbsp; apt-cache depends package 了解使用依赖<br>
+&nbsp; &nbsp; apt-cache rdepends package 是查看该包被哪些包依赖<br>
+&nbsp; &nbsp; sudo apt-get build-dep package 安装相关的编译环境<br>
+&nbsp; &nbsp; apt-get source package 下载该包的源代码<br>
+&nbsp; &nbsp; sudo apt-get clean &amp;&amp; sudo apt-get autoclean 清理无用的包<br>
+&nbsp; &nbsp; sudo apt-get check 检查是否有损坏的依赖<br>
+<br>
+第二： 通过Synaptic Package Manager</p>
+<p>中文名称叫做新立得软件包管理器，起源于Debian，是dpkg命令的图形化前端，或者说是前端软件套件管理工具。它能够在图形界面内完成linux系统软件的搜寻、安装和删除，相当于终端里的apt命令。在ubuntu最近的长期支持版里已经预装了新立得软件包管理器。在没有安装它的系统中，可以通过apt-get install synaptic 进行安装。</p>
+<p>要运行新立得，点击系统 &gt; 系统管理 &gt; 新立得软件包管理器（System &gt; Administration &gt; Synaptic Package Manager）不同版本的Ubuntu进入Synaptic的方式可能会有所不同，不同版本的Synaptic也会存在一点点差异，但总体来讲是大同小异，包管理器的使用方法也非常简单，完全是图形化的界面，摸索几次边一目了然，遇到不能解决的问题时可参考其帮助文档。此方法的缺点就是比较慢，尤其对于一些开发人士来讲，另外，一些比较小众化的，不叫特殊的软件也不一定在此处找的到，这是我们就学要手动去下载一些软件来自行安装了。</p>
+<p><br>
+如果不是通过上如两种方式来安装软件的话，便是通过自己下载所需软件然后手动安装了。我们下载到的软件无是“.deb”,&quot;.bin&quot;,&quot;.rpm&quot;&quot;.tar.gz&quot;这些&#26684;式，我们对此进行一一的说明：</p>
+<p>1、”“.deb” &#26684;式是Ubuntu可安装的类型，我们可以通过直接双击该&#26684;式的文件进行安装，就行Windows系统中的“.exe”安装程序一样。当然，我们也可以通过dpkg命令来安装我们下载好的软件，例如：</p>
+<p>&nbsp;dpkg -i xxx.deb&nbsp;</p>
+<p>其中参数 “-i” 表示安装的意思。dpkg的用法如下：</p>
+<p>dpkg &nbsp; [&lt;选项&gt;] &nbsp;[参数] &nbsp;软件全名</p>
+<p>其中，选项可省，比如上例，更具体的用法请参阅其帮助文档（dpkg -h 或者 dpkg --help）。</p>
+<p>2、'.rpm'&#26684;式是Red Hat Package Manager的简称，此工具包最先是由Red Hat公司推出的，后来被其他Linux开发商所借用。由于它为Linux使用者省去了很多时间，所以被广泛应用于在Linux下安装、删除软件。在Ubuntu上不能双击运行“.rpm”&#26684;式的软件包，一般的方法是我们用alien把rpm转换为deb&#26684;式后再安装。Ubuntu没有默认安装alien，所以先安装alien，命令为：</p>
+<p>sudo apt-get install alien（详细参数可参见其帮助文档）</p>
+<p>然后用alien命令进行转换：</p>
+<p>sudo alien xxx.rpm （详细参数可参见其帮助文档）</p>
+<p>这一步以后会生成一个同名的xxx.deb文件， 然后就可以双击或者通过dpkg命令安装了，但是这种方式不能保证100%成功。另外我们也可以在Ubuntu系统中安装RPM包管理器，通过rpm命令来安装，删除“.rpm”&#26684;式的软件包。命令用法如下：</p>
+<p>rpm 参数 软件包名</p>
+<p>常用的一些rpm命令参数如下（详细参数可参见其帮助文档）：</p>
+<p><br>
+-i 安装软件包；<br>
+-e 移除软件包<br>
+&nbsp;-vh：显示安装进度；<br>
+&nbsp;-U：升级软件包；<br>
+&nbsp;-qpl：列出RPM软件包内的文件信息；<br>
+&nbsp;-qpi：列出RPM软件包的描述信息；<br>
+&nbsp;-qf：查找指定文件属于哪个RPM软件包；<br>
+&nbsp;-Va：校验所有的RPM软件包，查找丢失的文件；<br>
+&nbsp;-qa: 查找相应文件</p>
+<p><br>
+3、有时候，我们会下载到一些“.bin”&#26684;式的文件，如最近下载安装的 jdk-6u32-linux-i586.bin。对于这种类型的文件，我们一般赋予其可执行的属性，命令为：</p>
+<p>chmod &#43;x 文件名（具体用法可参见其帮助文档）</p>
+<p>然后直接在命令行中执行该文件既可，比如我的当前目录下含有具有可执行属性的jdk-6u32-linux-i586.bin，直接执行</p>
+<p>./jdk-6u32-linux-i586.bin</p>
+<p>命令既可。当然，不同的软件可能还会有一些后续的命令，这个要以具体情况而定，比如安装这个jdk-6u32-linux-i586.bin就需要执行一些额外的后续命令来进行相关的配置。这个依照每个软件官方给出的指示，一步步执行既是。<br>
+<br>
+4、最后要说的是“tar.gz”或者“.tar.bz2”这种&#26684;式的文件.“tar.gz”或者“.tar.bz2”一般情况下都是源代码的安装包，对于此种类型的软件包，我们一般先要通过命令将压缩包解压，然<br>
+后才能进行编译，继而进行安装。以”.tar.gz“&#26684;式为例，我们先要执行</p>
+<p>&nbsp;tar -zxvf FileName.tar.gz</p>
+<p>以解压软件包，然后通过执行</p>
+<p>./configure&nbsp;</p>
+<p>来进行配置，执行</p>
+<p>make</p>
+<p>来进行编译，执行make install</p>
+<p>来进行安装，这里边每条命令都有详细的参数以完成完善复杂的功能，详请参阅每个命令的帮助文档。<br>
+<br>
+<br>
+谈完了安装接下来谈一谈如何卸载软件把。随着时间的推移我们不可避免要卸载掉一些软件，所以，掌握这些方法也是非常有必要的。</p>
+<p><br>
+一开始，我们讲了两种简单的安装软件包的方法，与此对应，有两种简易的移除软件包的方式：</p>
+<p>1、apt命令</p>
+<p>移除式卸载，移除软件包:apt-get remove xxx<br>
+清除式卸载，把与软件安装有关的配置一起卸载：apt-get --purge remove xxx</p>
+<p>2、通过Synaptic Package Manager&nbsp;</p>
+<p>简单的图形化界面，非常容易。找到要移除的软件包，点击移除（Remove）既可</p>
+<p>还有一些其他的移除方式，如</p>
+<p>dpkg方式：<br>
+移除式卸载：dpkg -r xxx<br>
+清除式卸载：dpkg -P xxx</p>
+<p>rpm方式：<br>
+rpm -e xxx<br>
+<br>
+尽管已经说得非常详细了，不过相信很多同人在进行这些操作时仍然会遇到诸多问题，此时我们应当保持冷静，应当通过输出内容认真分析造成错误的原因，参阅相应的帮助文档，或者像互联网求助，问题一定能得以解决。要多加培养分析解决问题的能力!<br>
+<br>
+<br>
+<br>
+<br>
+</p>
+
+</div>
+
+
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="float: right;">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more">更多</span>
+<a class="shareCount"></a>
+</div>
+<!-- Baidu Button END -->
+
+
+<!--192.168.100.34-->
+<div class="article_next_prev">
+            <li class="prev_article"><span>上一篇：</span><a href="/zyz511919766/article/details/7554171" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">Ubuntu下安装JDK/JRE受难记！</a></li>
+            <li class="next_article"><span>下一篇：</span><a href="/zyz511919766/article/details/7629437" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian'])">linux下压缩/解压命令大全</a></li>
+</div>
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+        <div id="digg" ArticleId="7574040">
+            <dl id="btnDigg" class="digg digg_disable">
+                <dt onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_ding'])">顶</dt>
+                <dd>2</dd>
+            </dl>
+            <dl id="btnBury" class="digg digg_disable">
+                <dt onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_cai'])">踩</dt>
+                <dd>0</dd>
+            </dl>
+        </div>
+</div>
+      <dl class="blog-associat-tag">
+        <dt>相关主题推荐</dt>
+        <dd>
+                <a href="http://www.csdn.net/tag/ubuntu" target="_blank">ubuntu</a> 
+                <a href="http://www.csdn.net/tag/软件" target="_blank">软件</a> 
+                <a href="http://www.csdn.net/tag/google chrome" target="_blank">google chrome</a> 
+                <a href="http://www.csdn.net/tag/操作系统" target="_blank">操作系统</a> 
+                <a href="http://www.csdn.net/tag/源代码" target="_blank">源代码</a> 
+        </dd>
+    </dl> 
+    <dl class="blog-ass-articl">
+        <dt>相关博文推荐</dt>
+            <dd>
+                <a href="http://blog.csdn.net/u012427937/article/details/21741269" title="3 浏览器调用自定义标签过程以及源代码分析" target="_blank">3 浏览器调用自定义标签过程以及源代码分析</a></dd>
+            <dd>
+                <a href="http://blog.csdn.net/lijing805326040/article/details/21739737" title="第二章~~作业管理（1）" target="_blank">第二章~~作业管理（1）</a></dd>
+            <dd>
+                <a href="http://blog.csdn.net/u013239111/article/details/21739537" title="论文一篇-软件工程未来的发展" target="_blank">论文一篇-软件工程未来的发展</a></dd>
+            <dd>
+                <a href="http://blog.csdn.net/www19940501a/article/details/21738757" title="怎样安装在ubuntu12.04上安装mysql" target="_blank">怎样安装在ubuntu12.04上安装m...</a></dd>
+            <dd>
+                <a href="http://blog.csdn.net/CaesarZou/article/details/21736691" title="Ubuntu Server 网络管理操作备忘" target="_blank">Ubuntu Server 网络管理操作...</a></dd>
+            <dd>
+                <a href="http://blog.csdn.net/u012176591/article/details/21737101" title="Ubuntu下装QQ2013" target="_blank">Ubuntu下装QQ2013</a></dd>
+            <dd>
+                <a href="http://blog.csdn.net/dassadassda/article/details/21731049" title="Ubuntu 安装jdk 命令详解" target="_blank">Ubuntu 安装jdk 命令详解</a></dd>
+            <dd>
+                <a href="http://blog.csdn.net/ytp151730/article/details/21724589" title="Ubuntu Server 12.04高速apt-get源" target="_blank">Ubuntu Server 12.04高...</a></dd>
+    </dl>
+
+    <div id="ad_cen">
+        <script type="text/javascript">            BAIDU_CLB_SLOT_ID = "117306";</script>
+        <script type="text/javascript" src="http://cbjs.baidu.com/js/o.js"></script>
+    </div>
+    <script type="text/javascript">
+        //new Ad(4, 'ad_cen');
+    </script>
+<div id="comment_title" class="panel_head">
+    查看评论<a name="comments"></a></div>
+<div id="comment_list">
+</div>
+<div id="comment_bar">
+</div>
+<div id="comment_form">
+</div>
+<div class="announce">
+    * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+<script type="text/javascript">
+    var fileName = '7574040';
+    var commentscount = 3;
+    var islock = false
+</script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+    <script type="text/javascript">
+    new Ad(5, 'ad_bot');
+    </script>
+<div id="report_dialog">
+</div>
+<div id="d-top" style="display: none;">
+    <a id="d-top-a" href="#" title="回到顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])">
+        <img src="http://static.blog.csdn.net/images/top.png" alt="TOP" /></a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        var d_top = $('#d-top');
+        document.onscroll = function ()
+        {
+            var scrTop = (document.body.scrollTop || document.documentElement.scrollTop);
+            if (scrTop > 500)
+            {
+                d_top.show();
+            } else
+            {
+                d_top.hide();
+            }
+        }
+        $('#d-top-a').click(function ()
+        {
+            scrollTo(0, 0);
+            this.blur();
+            return false;
+        });
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+<div class="tag_list">
+    <h5>
+        <a href="http://www.csdn.net/tag/" target="_blank">核心技术类目</a></h5>
+    <div class="classify">
+<a title="全部主题" href="http://www.csdn.net/tag" target="_blank" onclick="LogClickCount(this,336);">全部主题</a>
+<a title="Java" href="http://www.csdn.net/tag/Java" target="_blank" onclick="LogClickCount(this,336);">Java</a>
+<a title="VPN" href="http://www.csdn.net/tag/vpn" target="_blank" onclick="LogClickCount(this,336);">VPN</a>
+<a title="Android" href="http://www.csdn.net/tag/android" target="_blank" onclick="LogClickCount(this,336);">Android</a>
+<a title="iOS" href="http://www.csdn.net/tag/ios" target="_blank" onclick="LogClickCount(this,336);">iOS</a>
+<a title="ERP" href="http://www.csdn.net/tag/erp" target="_blank" onclick="LogClickCount(this,336);">ERP</a>
+<a title="IE10" href="http://www.csdn.net/tag/ie10" target="_blank" onclick="LogClickCount(this,336);">IE10</a>
+<a title="Eclipse" href="http://www.csdn.net/tag/eclipse" target="_blank" onclick="LogClickCount(this,336);">Eclipse</a>
+<a title="CRM" href="http://www.csdn.net/tag/crm" target="_blank" onclick="LogClickCount(this,336);">CRM</a>
+<a title="JavaScript" href="http://www.csdn.net/tag/javascript" target="_blank" onclick="LogClickCount(this,336);">JavaScript</a>
+<a title="Ubuntu" href="http://www.csdn.net/tag/ubuntu" target="_blank" onclick="LogClickCount(this,336);">Ubuntu</a>
+<a title="NFC" href="http://www.csdn.net/tag/nfc" target="_blank" onclick="LogClickCount(this,336);">NFC</a>
+<a title="WAP" href="http://www.csdn.net/tag/wap" target="_blank" onclick="LogClickCount(this,336);">WAP</a>
+<a title="jQuery" href="http://www.csdn.net/tag/jquery" target="_blank" onclick="LogClickCount(this,336);">jQuery</a>
+<a title="数据库" href="http://www.csdn.net/tag/数据库" target="_blank" onclick="LogClickCount(this,336);">数据库</a>
+<a title="BI" href="http://www.csdn.net/tag/bi" target="_blank" onclick="LogClickCount(this,336);">BI</a>
+<a title="HTML5" href="http://www.csdn.net/tag/html5" target="_blank" onclick="LogClickCount(this,336);">HTML5</a>
+<a title="Spring" href="http://www.csdn.net/tag/spring" target="_blank" onclick="LogClickCount(this,336);">Spring</a>
+<a title="Apache" href="http://www.csdn.net/tag/apache" target="_blank" onclick="LogClickCount(this,336);">Apache</a>
+<a title="Hadoop" href="http://www.csdn.net/tag/hadoop" target="_blank" onclick="LogClickCount(this,336);">Hadoop</a>
+<a title=".NET" href="http://www.csdn.net/tag/.net" target="_blank" onclick="LogClickCount(this,336);">.NET</a>
+<a title="API" href="http://www.csdn.net/tag/api" target="_blank" onclick="LogClickCount(this,336);">API</a>
+<a title="HTML" href="http://www.csdn.net/tag/html" target="_blank" onclick="LogClickCount(this,336);">HTML</a>
+<a title="SDK" href="http://www.csdn.net/tag/sdk" target="_blank" onclick="LogClickCount(this,336);">SDK</a>
+<a title="IIS" href="http://www.csdn.net/tag/iis" target="_blank" onclick="LogClickCount(this,336);">IIS</a>
+<a title="Fedora" href="http://www.csdn.net/tag/fedora" target="_blank" onclick="LogClickCount(this,336);">Fedora</a>
+<a title="XML" href="http://www.csdn.net/tag/xml" target="_blank" onclick="LogClickCount(this,336);">XML</a>
+<a title="LBS" href="http://www.csdn.net/tag/lbs" target="_blank" onclick="LogClickCount(this,336);">LBS</a>
+<a title="Unity" href="http://www.csdn.net/tag/unity" target="_blank" onclick="LogClickCount(this,336);">Unity</a>
+<a title="Splashtop" href="http://www.csdn.net/tag/splashtop" target="_blank" onclick="LogClickCount(this,336);">Splashtop</a>
+<a title="UML" href="http://www.csdn.net/tag/uml" target="_blank" onclick="LogClickCount(this,336);">UML</a>
+<a title="components" href="http://www.csdn.net/tag/components" target="_blank" onclick="LogClickCount(this,336);">components</a>
+<a title="Windows Mobile" href="http://www.csdn.net/tag/windowsmobile" target="_blank" onclick="LogClickCount(this,336);">Windows Mobile</a>
+<a title="Rails" href="http://www.csdn.net/tag/rails" target="_blank" onclick="LogClickCount(this,336);">Rails</a>
+<a title="QEMU" href="http://www.csdn.net/tag/qemu" target="_blank" onclick="LogClickCount(this,336);">QEMU</a>
+<a title="KDE" href="http://www.csdn.net/tag/kde" target="_blank" onclick="LogClickCount(this,336);">KDE</a>
+<a title="Cassandra" href="http://www.csdn.net/tag/cassandra" target="_blank" onclick="LogClickCount(this,336);">Cassandra</a>
+<a title="CloudStack" href="http://www.csdn.net/tag/cloudstack" target="_blank" onclick="LogClickCount(this,336);">CloudStack</a>
+<a title="FTC" href="http://www.csdn.net/tag/ftc" target="_blank" onclick="LogClickCount(this,336);">FTC</a>
+<a title="coremail" href="http://www.csdn.net/tag/coremail" target="_blank" onclick="LogClickCount(this,336);">coremail</a>
+<a title="OPhone " href="http://www.csdn.net/tag/ophone " target="_blank" onclick="LogClickCount(this,336);">OPhone </a>
+<a title="CouchBase" href="http://www.csdn.net/tag/couchbase" target="_blank" onclick="LogClickCount(this,336);">CouchBase</a>
+<a title="云计算" href="http://www.csdn.net/tag/云计算" target="_blank" onclick="LogClickCount(this,336);">云计算</a>
+<a title="iOS6" href="http://www.csdn.net/tag/iOS6" target="_blank" onclick="LogClickCount(this,336);">iOS6</a>
+<a title="Rackspace " href="http://www.csdn.net/tag/rackspace " target="_blank" onclick="LogClickCount(this,336);">Rackspace </a>
+<a title="Web App" href="http://www.csdn.net/tag/webapp" target="_blank" onclick="LogClickCount(this,336);">Web App</a>
+<a title="SpringSide" href="http://www.csdn.net/tag/springside" target="_blank" onclick="LogClickCount(this,336);">SpringSide</a>
+<a title="Maemo" href="http://www.csdn.net/tag/maemo" target="_blank" onclick="LogClickCount(this,336);">Maemo</a>
+<a title="Compuware" href="http://www.csdn.net/tag/compuware" target="_blank" onclick="LogClickCount(this,336);">Compuware</a>
+<a title="大数据" href="http://www.csdn.net/tag/大数据" target="_blank" onclick="LogClickCount(this,336);">大数据</a>
+<a title="aptech" href="http://www.csdn.net/tag/aptech" target="_blank" onclick="LogClickCount(this,336);">aptech</a>
+<a title="Perl" href="http://www.csdn.net/tag/perl" target="_blank" onclick="LogClickCount(this,336);">Perl</a>
+<a title="Tornado" href="http://www.csdn.net/tag/tornado" target="_blank" onclick="LogClickCount(this,336);">Tornado</a>
+<a title="Ruby" href="http://www.csdn.net/tag/ruby" target="_blank" onclick="LogClickCount(this,336);">Ruby</a>
+<a title="Hibernate" href="http://www.csdn.net/hibernate" target="_blank" onclick="LogClickCount(this,336);">Hibernate</a>
+<a title="ThinkPHP" href="http://www.csdn.net/tag/thinkphp" target="_blank" onclick="LogClickCount(this,336);">ThinkPHP</a>
+<a title="Spark" href="http://www.csdn.net/tag/spark" target="_blank" onclick="LogClickCount(this,336);">Spark</a>
+<a title="HBase" href="http://www.csdn.net/tag/hbase" target="_blank" onclick="LogClickCount(this,336);">HBase</a>
+<a title="Pure" href="http://www.csdn.net/tag/pure" target="_blank" onclick="LogClickCount(this,336);">Pure</a>
+<a title="Solr" href="http://www.csdn.net/tag/solr" target="_blank" onclick="LogClickCount(this,336);">Solr</a>
+<a title="Angular" href="http://www.csdn.net/tag/angular" target="_blank" onclick="LogClickCount(this,336);">Angular</a>
+<a title="Cloud Foundry" href="http://www.csdn.net/tag/cloudfoundry" target="_blank" onclick="LogClickCount(this,336);">Cloud Foundry</a>
+<a title="Redis" href="http://www.csdn.net/tag/redis" target="_blank" onclick="LogClickCount(this,336);">Redis</a>
+<a title="Scala" href="http://www.csdn.net/tag/scala" target="_blank" onclick="LogClickCount(this,336);">Scala</a>
+<a title="Django" href="http://www.csdn.net/tag/django" target="_blank" onclick="LogClickCount(this,336);">Django</a>
+<a title="Bootstrap" href="http://www.csdn.net/tag/bootstrap" target="_blank" onclick="LogClickCount(this,336);">Bootstrap</a>
+    </div>
+</div>
+
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+            <div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/zyz511919766" target="_blank">
+    <img src="http://avatar.csdn.net/A/D/4/1_zyz511919766.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/zyz511919766" class="user_name" target="_blank">zyz511919766</a></span>
+</div>
+<div class="interact">
+<a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_guanzhu'])"></a>
+<a href="javascript:void(0);" class="letter" onclick="loginto(1)" title="[发私信]" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>
+</div>
+<div id="blog_medal">
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>132155次</span></li>
+    <li>积分：<span>1268分</span></li>
+    <li>排名：<span>第10398名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>31篇</span></li>
+    <li>转载：<span>21篇</span></li>
+    <li>译文：<span>8篇</span></li>
+    <li>评论：<span>29条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="submit" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1095365" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">MySQL</a><span>(19)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1084340" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">linux</a><span>(20)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1077724" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">web前端开发</a><span>(9)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1077725" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">html5</a><span>(5)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1077727" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">javascript</a><span>(12)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1081555" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">jQuery</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1084341" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">svn</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1095364" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">PHP</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1095366" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">WampServer</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1095367" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">phpMyAdmin</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1098679" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">HTML DOM</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1100318" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Google chrome</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1104116" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">canvas</a><span>(2)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1120143" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Android</a><span>(5)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1120221" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Eclipse</a><span>(3)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1120222" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">IDE</a><span>(2)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1120223" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">JRE</a><span>(3)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1120224" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">JDK</a><span>(3)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1143730" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Ubuntu</a><span>(6)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1175777" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">dbus</a><span>(3)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1175782" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">dbus-glib</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1175783" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">clutter</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1175784" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">glib</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1689711" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">vim</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1689783" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">LVM</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1689807" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">FULLTEXT</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1689809" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">index</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1689811" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">InnoDB</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1693893" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">mysqldump</a><span>(2)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1711361" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">SQL</a><span>(2)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1720159" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">CentOS</a><span>(6)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1720161" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">python</a><span>(7)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1730297" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">mysqlbinlog</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1747113" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Replication</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1747123" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">sysbench</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1747373" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Percona</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1765943" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Django</a><span>(3)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1823111" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">crontab</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1861233" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">shell</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/1861299" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">procedure</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/2035253" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">MySQLdb</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/2035269" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Nginx</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/2035271" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">uws</a><span>(0)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zyz511919766/article/category/2035275" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">uwsgi</a><span>(1)</span>
+            </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="http://blog.csdn.net/zyz511919766/article/month/2014/03">2014年03月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/zyz511919766/article/month/2014/01">2014年01月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/zyz511919766/article/month/2013/11">2013年11月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/zyz511919766/article/month/2013/10">2013年10月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/zyz511919766/article/month/2012/06">2012年06月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/zyz511919766/article/month/2012/05">2012年05月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/zyz511919766/article/month/2012/04">2012年04月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/zyz511919766/article/month/2012/03">2012年03月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/zyz511919766/article/month/2012/02">2012年02月</a><span>(6)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head"><span>阅读排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/zyz511919766/article/details/7442633" title="启动 Eclipse 弹出“Failed to load the JNI shared library jvm.dll”错误的解决方法！">启动 Eclipse 弹出“Failed to load the JNI shared library jvm.dll”错误的解决方法！</a><span>(58724)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7276309" title="jquery中attr()方法的使用">jquery中attr()方法的使用</a><span>(9689)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7574040" title="如何在Ubuntu下安装”.deb“、”.bin“、”.tar.gz“、”.tar.bz2“格式的软件包！">如何在Ubuntu下安装”.deb“、”.bin“、”.tar.gz“、”.tar.bz2“格式的软件包！</a><span>(8926)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7447041" title="Eclipse安装ADT Plugin时发生错误，提示连接不到 https://dl-ssl.google.com/android/eclipse/...的解决办法！">Eclipse安装ADT Plugin时发生错误，提示连接不到 https://dl-ssl.google.com/android/eclipse/...的解决办法！</a><span>(6776)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7356306" title="关于Google Chrome 浏览器的一些命令及用法">关于Google Chrome 浏览器的一些命令及用法</a><span>(5299)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7700494" title="U盘安装Ubuntu12.04成功后系统无法启动的原因及解决办法">U盘安装Ubuntu12.04成功后系统无法启动的原因及解决办法</a><span>(3949)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7401792" title="提高HTML5 canvas性能的几种方法！">提高HTML5 canvas性能的几种方法！</a><span>(3257)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7276089" title="Javascript：谈谈JS的全局变量跟局部变量">Javascript：谈谈JS的全局变量跟局部变量</a><span>(2348)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7442239" title="Android SDK Manager：Failed to fetch URL http://dl-ssl.google.com/android/repository/addons_list.解决办法">Android SDK Manager：Failed to fetch URL http://dl-ssl.google.com/android/repository/addons_list.解决办法</a><span>(2129)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7336279" title="让MySQL同时执行多条SQL语句的解决办法">让MySQL同时执行多条SQL语句的解决办法</a><span>(1929)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/zyz511919766/article/details/7442633" title="启动 Eclipse 弹出“Failed to load the JNI shared library jvm.dll”错误的解决方法！">启动 Eclipse 弹出“Failed to load the JNI shared library jvm.dll”错误的解决方法！</a><span>(9)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7276089" title="Javascript：谈谈JS的全局变量跟局部变量">Javascript：谈谈JS的全局变量跟局部变量</a><span>(7)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7447041" title="Eclipse安装ADT Plugin时发生错误，提示连接不到 https://dl-ssl.google.com/android/eclipse/...的解决办法！">Eclipse安装ADT Plugin时发生错误，提示连接不到 https://dl-ssl.google.com/android/eclipse/...的解决办法！</a><span>(4)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7574040" title="如何在Ubuntu下安装”.deb“、”.bin“、”.tar.gz“、”.tar.bz2“格式的软件包！">如何在Ubuntu下安装”.deb“、”.bin“、”.tar.gz“、”.tar.bz2“格式的软件包！</a><span>(3)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/14229335" title="结合mysqlbinlog与mysqldump进行MySQL数据备份与恢复（适用于较小的数据量）">结合mysqlbinlog与mysqldump进行MySQL数据备份与恢复（适用于较小的数据量）</a><span>(1)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7356306" title="关于Google Chrome 浏览器的一些命令及用法">关于Google Chrome 浏览器的一些命令及用法</a><span>(1)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7349251" title="javascript中innerHTML、innerText、outertHTML的区别与各自的用法">javascript中innerHTML、innerText、outertHTML的区别与各自的用法</a><span>(1)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7554171" title="Ubuntu下安装JDK/JRE受难记！">Ubuntu下安装JDK/JRE受难记！</a><span>(1)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7442239" title="Android SDK Manager：Failed to fetch URL http://dl-ssl.google.com/android/repository/addons_list.解决办法">Android SDK Manager：Failed to fetch URL http://dl-ssl.google.com/android/repository/addons_list.解决办法</a><span>(1)</span>
+</li>
+<li>
+<a href="/zyz511919766/article/details/7700494" title="U盘安装Ubuntu12.04成功后系统无法启动的原因及解决办法">U盘安装Ubuntu12.04成功后系统无法启动的原因及解决办法</a><span>(1)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend"></ul>
+</div>
+<script type="text/javascript">
+ new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+    <a href="/zyz511919766/article/details/7442633#comments">启动 Eclipse 弹出“Failed to load the JNI shared library jvm.dll”错误的解决方法！</a>
+    <p style="margin:0px;"><a href="/u011604556" class="user_name">u011604556</a>:
+对策：要么两者都安装64位的，要么都安装32位的，不能一个是32位一个是64位。太赞了  我解决了
+    </p>
+    </li>
+    <li>
+    <a href="/zyz511919766/article/details/7276089#comments">Javascript：谈谈JS的全局变量跟局部变量</a>
+    <p style="margin:0px;"><a href="/yebai" class="user_name">yebai</a>:
+呵呵，不错不错。
+    </p>
+    </li>
+    <li>
+    <a href="/zyz511919766/article/details/14229335#comments">结合mysqlbinlog与mysqldump进行MySQL数据备份与恢复（适用于较小的数据量）</a>
+    <p style="margin:0px;"><a href="/yebai" class="user_name">yebai</a>:
+比较负载。
+    </p>
+    </li>
+    <li>
+    <a href="/zyz511919766/article/details/7447041#comments">Eclipse安装ADT Plugin时发生错误，提示连接不到 https://dl-ssl.google.com/android/eclipse/...的解决办法！</a>
+    <p style="margin:0px;"><a href="/yebai" class="user_name">yebai</a>:
+不错，呵呵，GFW
+    </p>
+    </li>
+    <li>
+    <a href="/zyz511919766/article/details/7276089#comments">Javascript：谈谈JS的全局变量跟局部变量</a>
+    <p style="margin:0px;"><a href="/xiaoliuhuiyuan123" class="user_name">xiaoliuhuiyuan123</a>:
+总结的不错，但最后一个例子的06行注释：//a为2,这里的a是全局变量哦！，a应该是局部变量吧？
+    </p>
+    </li>
+    <li>
+    <a href="/zyz511919766/article/details/7442633#comments">启动 Eclipse 弹出“Failed to load the JNI shared library jvm.dll”错误的解决方法！</a>
+    <p style="margin:0px;"><a href="/Josslin025" class="user_name">Josslin025</a>:
+Java study mark
+    </p>
+    </li>
+    <li>
+    <a href="/zyz511919766/article/details/7574040#comments">如何在Ubuntu下安装”.deb“、”.bin“、”.tar.gz“、”.tar.bz2“格式的软件包！</a>
+    <p style="margin:0px;"><a href="/hesiyuan4" class="user_name">hesiyuan4</a>:
+信息量很全。 排版如果能够优化下，那就perfect了
+    </p>
+    </li>
+    <li>
+    <a href="/zyz511919766/article/details/7276089#comments">Javascript：谈谈JS的全局变量跟局部变量</a>
+    <p style="margin:0px;"><a href="/personball" class="user_name">personball</a>:
+js确实蛮折腾的。。。
+    </p>
+    </li>
+    <li>
+    <a href="/zyz511919766/article/details/7442633#comments">启动 Eclipse 弹出“Failed to load the JNI shared library jvm.dll”错误的解决方法！</a>
+    <p style="margin:0px;"><a href="/xcder" class="user_name">xcder</a>:
+在cmd下只要java指令可以运行，绝对是原因2.
+    </p>
+    </li>
+    <li>
+    <a href="/zyz511919766/article/details/7442633#comments">启动 Eclipse 弹出“Failed to load the JNI shared library jvm.dll”错误的解决方法！</a>
+    <p style="margin:0px;"><a href="/u011800825" class="user_name">u011800825</a>:
+我就是第二种情况。。。解决了
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+
+            <div class="clear">
+            </div>
+        </div>
+        
+
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/newblog.min.js"></script>
+<script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=455910"></script>
+<script type="text/javascript">
+    document.write('<script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/publib_footer.js?' + Math.floor(new Date() / 120000).toString(36) + '="></' + 'script>');
+</script>
+    <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script>
+<script type="text/javascript" src="http://www.csdn.net/ui/scripts/Csdn/counter.js"></script>
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+<script type="text/javascript" src="http://zz.csdn.net/js/count.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a>"
+                    + "<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+    });
+</script>
+
+    </div>
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnId="header_notice_num" wrapId="note1" count="5" subCount="5" type="text/javascript" src="http://static.csdn.net/public/common/toolbar/js/toolbar.js"></script>     <!--new top-->
+</body>
+</html>

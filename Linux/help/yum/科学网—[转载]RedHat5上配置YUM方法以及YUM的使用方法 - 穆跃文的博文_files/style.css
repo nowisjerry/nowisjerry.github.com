@@ -1,0 +1,42 @@
+
+
+html { background: #FAF6ED url("http://blog.sciencenet.cn/template/default/style/t1/background.png"); }
+body { background: transparent url("http://blog.sciencenet.cn/template/default/style/t1/bgimg.jpg") no-repeat 50% 0; }
+#nv { background-color: #BA350F; background-image: url("http://blog.sciencenet.cn/template/default/style/t1/nv.png"); }
+	#nv li { background-image: url("http://blog.sciencenet.cn/template/default/style/t1/nv_a.png") !important; }
+	#nv li.a { background: #840000 url("http://blog.sciencenet.cn/template/default/style/t1/nv_a.png") no-repeat 50% 100%; }
+	#qmenu { background-image: url("http://blog.sciencenet.cn/template/default/style/t1/qmenu.png"); }
+
+.fl .bm_h { border-color: #FCC; background: #FFECEC url("http://blog.sciencenet.cn/template/default/style/t1/titlebg.png") repeat-x 0 0; }
+
+
+.appl, .bmn, .bm_h, .pn, td.pls, .ad td.plc, div.exfm, .tb a, .tb_h, .ttp li.a a, div.uo a, input#addsubmit_btn, #gh .bm .bm_h { background-color: #FFECEC; }
+
+
+.bmn, .pg a, .pgb a, .pg strong, .card, .card .o, div.exfm  { border-color: #FCC; }
+.pg strong { background-color: #FCC; }
+.pn { border-color: #FFCCCC #666 #666 #FFCCCC; }
+
+.mi .hover .moodfm_input { background-color: #FCC !important; }
+
+
+.ad td.pls { background-color: #FCC; }
+
+
+.fl .bm_h h2 a, .xi1, #um .new, .topnav .new, .sch .new, .el .ec .hot em, .pll .s a.joins { color: #BA350F; }
+.pll .s a.go { color: #FFF; }
+.xi2, .xi2 a { color: #000; }
+
+
+.pgs #newspecial, .pgs #newspecialtmp { float: left; background: url("http://blog.sciencenet.cn/template/default/style/t1/pn_post.png") no-repeat 0 0; }
+#post_reply, #post_replytmp { float: left; background: url("http://blog.sciencenet.cn/template/default/style/t1/pn_reply.png") no-repeat 0 0; }
+	#newspecial img, #newspecialtmp img, #post_reply img, #post_replytmp img { opacity: 0; filter: alpha(opacity=0); }
+.moodfm_btn { background-image: url("http://blog.sciencenet.cn/template/default/style/t1/mood_input_btn.png") !important; }
+#create_group_btn { display: block; background: url("http://blog.sciencenet.cn/template/default/style/t1/create_group.png") no-repeat 0 0; }
+	#create_group_btn img { opacity: 0; filter: alpha(opacity=0); }
+.tb .o, .tb .o a { background-image: url("http://blog.sciencenet.cn/template/default/style/t1/pnp2.png"); }
+.el .ec .hot { background-image: url("http://blog.sciencenet.cn/template/default/style/t1/hotspot.gif"); }
+.pll .s { background-image:url("http://blog.sciencenet.cn/template/default/style/t1/polljoins.gif"); }
+
+
+.tb .a a { border-bottom-color: #FAF6ED; background: url("http://blog.sciencenet.cn/template/default/style/t1/background.png"); }

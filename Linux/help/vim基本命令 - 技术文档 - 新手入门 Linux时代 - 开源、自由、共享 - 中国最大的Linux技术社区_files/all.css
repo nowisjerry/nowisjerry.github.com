@@ -1,0 +1,120 @@
+body {
+	margin: 0px; line-height: 168%; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;
+}
+table {
+	-ms-word-wrap: break-word;
+}
+.whitetop {
+	color: rgb(255, 255, 255); text-indent: 12px; word-spacing: 5px;
+}
+.whitetop a:link {
+	color: rgb(255, 255, 255); text-decoration: none;
+}
+.whitetop a:visited {
+	color: rgb(255, 255, 255); text-decoration: none;
+}
+.whitetop a:hover {
+	color: rgb(255, 51, 0); text-decoration: none;
+}
+.BLKtext {
+	border: 1px solid rgb(204, 204, 204); border-image: none;
+}
+.BLKallgrey {
+	padding: 7px 0px 5px 7px; border: 1px solid rgb(204, 204, 204); border-image: none;
+}
+.Ftext1 {
+	text-align: center; color: rgb(51, 51, 51); line-height: normal; font-family: "ËÎÌו"; font-size: 18px; font-weight: bold;
+}
+.Ftext2 {
+	color: rgb(102, 102, 102);
+}
+.Ftext2 a:link {
+	color: rgb(255, 0, 0);
+}
+.Ftext2 a:visited {
+	color: rgb(255, 0, 0);
+}
+.Ftext2 a:hover {
+	color: rgb(255, 0, 0);
+}
+.Ftext2 a:active {
+	color: rgb(255, 0, 0);
+}
+.BlkLightblue {
+	padding: 10px 5px; border: 1px solid rgb(123, 189, 255); border-image: none; color: rgb(102, 102, 102); background-color: rgb(245, 250, 255);
+}
+.F14 {
+	width: 650px; color: rgb(0, 0, 0); font-size: 14px; -ms-word-wrap: break-word;
+}
+.F14BL {
+	color: rgb(0, 68, 182); font-size: 14px; font-weight: bold;
+}
+.F13 {
+	color: rgb(0, 68, 182); line-height: normal; text-indent: 10px; font-size: 13px; font-weight: bold; vertical-align: middle;
+}
+.more {
+	padding: 0px 0px 0px 122px; font-weight: normal;
+}
+.more702 {
+	padding-left: 415px;
+}
+.F12 {
+	padding: 5px 5px 5px 10px;
+}
+a:link {
+	color: rgb(0, 68, 182); text-decoration: none;
+}
+a:visited {
+	color: rgb(0, 68, 182); text-decoration: none;
+}
+a:hover {
+	color: rgb(255, 0, 0); text-decoration: underline;
+}
+a:active {
+	color: rgb(0, 68, 182); text-decoration: none;
+}
+.BlkBlue {
+	border: 1px solid rgb(123, 189, 255); border-image: none; height: 120px; background-color: rgb(231, 244, 255);
+}
+.Fred {
+	color: rgb(255, 0, 0); font-size: 15px; font-weight: bold;
+}
+.gray {
+	padding: 1px; border: 1px solid rgb(204, 204, 204); border-image: none; width: 83px; height: 72px;
+}
+.gray2 {
+	padding: 1px; border: 1px solid rgb(204, 204, 204); border-image: none; width: 125px; height: 90px;
+}
+.orange {
+	color: rgb(255, 102, 0); font-weight: bold;
+}
+.orange a:link {
+	color: rgb(255, 102, 0); font-weight: bold; text-decoration: none;
+}
+.orange a:visited {
+	color: rgb(255, 102, 0); font-weight: bold; text-decoration: none;
+}
+.orange a:hover {
+	color: rgb(255, 102, 0); font-weight: bold; text-decoration: underline;
+}
+.orange a:active {
+	color: rgb(255, 102, 0); font-weight: bold; text-decoration: none;
+}
+.darkpred {
+	color: rgb(153, 0, 0);
+}
+.darkpred a:link {
+	color: rgb(153, 0, 0); text-decoration: none;
+}
+.darkpred a:visited {
+	color: rgb(153, 0, 0); text-decoration: none;
+}
+.darkpred a:hover {
+	color: rgb(153, 0, 0); text-decoration: none;
+}
+.darkpred a:active {
+	color: rgb(153, 0, 0); text-decoration: none;
+}
+.f13 {
+	color: rgb(0, 68, 182); font-size: 13px; font-weight: bold;
+}

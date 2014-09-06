@@ -1,0 +1,701 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0056)http://blog.csdn.net/yhf19881015/article/details/8885406 -->
+<html  xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta  name="description"  content="第一步：激活网卡系统装好后默认的网卡是eth0，用下面的命令将这块网卡激活。# ifconfig eth0 up　　第二步：设置网卡进入系统时启动    想要每次开机就可以自动获取IP地址上网，就要设置网络服务在系统启动时也启动。Linux有一点与windows不同的是很多服务默认是停止的，而且你在某次使用该服务时启动这个服务，但是没设置它为默认启动，则下次进入系统这个">
+    <script  type="text/javascript"  async=""  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/ga.js"></script><script  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/jquery.js"  type="text/javascript"></script><style  type="text/css"  adt="123"></style>
+    <script  type="text/javascript"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/ad.js"></script>
+        
+       
+        <link  rel="stylesheet"  href="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/index.css">
+        
+
+    <link  rel="Stylesheet"  type="text/css"  href="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/style.css">
+    <link  id="RSSLink"  title="RSS"  type="application/rss+xml"  rel="alternate"  href="http://blog.csdn.net/yhf19881015/rss/list">
+    <link  rel="shortcut icon"  href="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/favicon.ico">
+    <link  type="text/css"  rel="stylesheet"  href="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/blue.css">
+ 
+
+<link  href="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/bdsstyle.css"  rel="stylesheet"  type="text/css"><script  type="text/javascript"  charset="utf-8"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/tracking.js"></script><script  type="text/javascript"  charset="utf-8"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/main.js"></script><link  type="text/css"  rel="stylesheet"  href="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/style(1).css"><script  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/logger.js"></script><script  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/rightclick.js"></script></head>
+<body  style="zoom: 1;"><div  id="BAIDU_DUP_fp_wrapper"  style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe  id="BAIDU_DUP_fp_iframe"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/o.htm"  style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><iframe  frameborder="0"  style="display: none;"></iframe><div  id="bdshare_s"  style="display: block;"><iframe  id="bdsIfr"  style="position:absolute;display:none;z-index:9999;"  frameborder="0"></iframe><div  id="bdshare_l"  style="display: none;"><div  id="bdshare_l_c"><h6>分享到</h6><ul><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_mshare mshare">一键分享</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_qzone qqkj">QQ空间</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_tsina xlwb">新浪微博</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_bdysc bdysc">百度云收藏</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_renren rrw">人人网</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_tqq txwb">腾讯微博</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_bdxc bdxc">百度相册</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_kaixin001 kxw">开心网</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_tqf txpy">腾讯朋友</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_tieba bdtb">百度贴吧</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_douban db">豆瓣网</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_tsohu shwb">搜狐微博</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_bdhome bdhome">百度新首页</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_sqq sqq">QQ好友</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_thx thx">和讯微博</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="bds_more">更多...</a></li></ul><p><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  class="goWebsite">百度分享</a></p></div></div></div>
+    
+   
+      
+    <script  id="toolbar-tpl-scriptId"  fixed="true"  prod="blog"  skin="black"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/html.js"  type="text/javascript"></script><div  class="csdn-toolbar csdn-toolbar-skin-black ">        <div  class="container row center-block ">          <div  class="col-md-3 pull-left logo clearfix"><a  href="http://www.csdn.net/?ref=toolbar"  title="CSDN首页"  target="_blank"  class="icon"></a><a  title="频道首页"  href="http://blog.csdn.net/?ref=toolbar_logo"  target="_blank"  class="img blog-icon"></a></div>          <div  class="pull-right login-wrap unlogin">            <ul  class="btns">              <li  class="loginlink"><a  href="https://passport.csdn.net/account/login?ref=toolbar"  target="_top">登录&nbsp;</a>|<a  target="_top"  href="https://passport.csdn.net/account/register?ref=toolbar">&nbsp;注册</a></li>              <li  class="search">                <div  class="icon on-search-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <form  action="http://so.csdn.net/search"  method="get"  target="_blank">                      <input  type="hidden"  value="toolbar"  name="ref"  accesskey="2">                      <div  class="border">                        <input  placeholder="搜索"  type="text"  value=""  name="q"  accesskey="2"><span  class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li  class="favor">                <div  class="icon on-favor-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  style="display:none;"  class="favor-success"><span  class="msg">收藏成功</span>                      <div  class="btns"><span  class="btn btn-primary ok">确定</span></div>                    </div>                    <div  style="display:none;"  class="favor-failed"><span  class="icon-danger-lg"></span><span  class="msg">收藏失败，请重新收藏</span>                      <div  class="btns"><span  class="btn btn-primary ok">确定</span></div>                    </div>                    <form  role="form"  class="form-horizontal favor-form">                      <div  class="form-group">                        <div  class="clearfix">                          <label  for="input-title"  class="col-sm-2 control-label">标题</label>                          <div  class="col-sm-10">                            <input  id="inputTitle"  type="text"  placeholder=""  class="title form-control">                          </div>                        </div>                        <div  class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div  class="form-group">                        <label  for="input-url"  class="col-sm-2 control-label">网址</label>                        <div  class="col-sm-10">                          <input  id="input-url"  type="text"  placeholder=""  class="url form-control">                        </div>                      </div>                      <div  class="form-group">                        <label  for="input-tag"  class="col-sm-2 tag control-label">标签</label>                        <div  class="col-sm-10">                          <input  id="input-tag"  type="text"  class="form-control tag">                        </div>                      </div>                      <div  class="form-group">                        <label  for="input-description"  class="description col-sm-2 control-label">摘要</label>                        <div  class="col-sm-10">                          <textarea  id="input-description"  class="form-control description"></textarea>                        </div>                      </div>                      <div  class="form-group">                        <div  class="col-sm-offset-2 col-sm-10 ft">                          <div  class="col-sm-4 pull-left">                            <div  class="checkbox">                              <label>                                <input  type="checkbox"  name="share"  checked="checked"  class="share">公开                              </label>                            </div>                          </div>                          <div  class="col-sm-8 pull-right favor-btns">                            <button  type="button"  class="cancel btn btn-default">取消</button>                            <button  type="submit"  class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li  class="notify">                <div  style="display:none"  class="number"></div>                <div  style="display:none"  class="icon-hasnotes-sm"></div>                <div  id="header_notice_num"></div>                <div  class="icon on-notify-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  id="note1"  class="csdn_note">                      <div  class="box"></div>                    <iframe  src="about:block"  frameborder="0"  allowtransparency="true"  style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li  class="ugc">                <div  class="icon on-ugc-icon">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <dl>                      <dt><a  href="http://geek.csdn.net/news/expert?ref=toolbar"  target="_blank"  class="p-news clearfix"><em  class="icon"></em><span>分享资讯</span></a></dt>                      <dt><a  href="http://share.csdn.net/slides/new?ref=toolbar"  target="_blank"  class="p-doc clearfix"><em  class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a  href="http://bbs.csdn.net/topics/new?ref=toolbar"  target="_blank"  class="p-ask clearfix"><em  class="icon"></em><span>提问题</span></a></dt>                      <dt><a  href="http://write.blog.csdn.net/postedit?ref=toolbar"  target="_blank"  class="p-blog clearfix"><em  class="icon"></em><span>写博客</span></a></dt>                      <dt><a  href="http://u.download.csdn.net/upload?ref=toolbar"  target="_blank"  class="p-src clearfix"><em  class="icon"></em><span>传资源</span></a></dt>                      <dt><a  href="https://code.csdn.net/projects/new?ref=toolbar"  target="_blank"  class="c-obj clearfix"><em  class="icon"></em><span>创建项目</span></a></dt>                      <dt><a  href="https://code.csdn.net/snippets/new?ref=toolbar"  target="_blank"  class="c-code clearfix"><em  class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li  class="profile">                <div  class="icon on-profile-icon"><img  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/100x100.jpg"  class="curr-icon-img">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  class="bd">                      <dl  class="clearfix">                        <dt  class="pull-left img"><a  target="_blank"  href="http://my.csdn.net/?ref=toolbar"  class="avatar"><img  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/100x100.jpg"></a></dt>                        <dd  class="info"><a  target="_blank"  href="http://my.csdn.net/?ref=toolbar"  class="nickname"></a><a  class="set-nick"  href="https://passport.csdn.net/account/profile">设置昵称<span  class="write-icon"></span></a><span  class="dec"><a  class="fill-dec"  href="https://passport.csdn.net/account/profile"  target="_blank">编辑自我介绍，让更多人了解你<span  class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div  class="ft clearfix"><a  target="_blank"  href="https://passport.csdn.net/account/profile?ref=toolbar"  class="pull-left"><span  class="icon settings"></span>设置</a><a  href="https://passport.csdn.net/account/logout?ref=toolbar"  target="_top"  class="pull-right"><span  class="icon quit"></span>退出</a></div>                  </div>                </div>              </li>              <li  class="apps">                <div  class="icon on-apps-icon">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                  <div  class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a  href="http://blog.csdn.net/?ref=toolbar"  target="_blank">博客</a></dd>                      <dd> <a  href="http://bbs.csdn.net/?ref=toolbar"  target="_blank">论坛</a></dd>                      <dd> <a  href="http://download.csdn.net/?ref=toolbar"  target="_blank">下载</a></dd>                      <dd><a  href="http://share.csdn.net/?ref=toolbar"  target="_blank">Share</a></dd>                      <dd><a  href="http://geek.csdn.net/?ref=toolbar"  target="_blank">极客头条</a></dd>                    </dl>                  </div>                  <div  class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd> <a  href="https://code.csdn.net/?ref=toolbar"  target="_blank">CODE</a></dd>                      <dd> <a  href="http://hero.csdn.net/?ref=toolbar"  target="_blank">英雄会</a></dd>                      <dd> <a  href="http://huiyi.csdn.net/meeting?ref=toolbar"  target="_blank">会议</a></dd>                    </dl>                  </div>                  <div  class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a  href="http://student.csdn.net/?ref=toolbar"  target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     
+    <div  id="container">
+        <div  id="header">
+    <div  class="header">
+        <div  id="blog_title">
+            <h2>
+                <a  href="http://blog.csdn.net/yhf19881015">yhf19881015的专栏</a></h2>
+            <h3>扬帆起航</h3>
+            <div  class="clear">
+            </div>
+        </div>
+        <div  class="clear">
+        </div>
+    </div>
+</div>
+<div  id="navigator">
+    <div  class="navigator_bg">
+    </div>
+    <div  class="navigator">
+        <ul>
+                <li  id="btnContents"><a  href="http://blog.csdn.net/yhf19881015?viewmode=contents"><span >
+                    <img  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li  id="btnView"><a  href="http://blog.csdn.net/yhf19881015?viewmode=list"><span >
+                    <img  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li  id="btnRss"><a  href="http://blog.csdn.net/yhf19881015/rss/list"><span >
+                    <img  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script  type="text/javascript">
+    var username = "yhf19881015";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/yhf19881015";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";
+</script>
+
+        <div  id="body">
+            <div  id="main">
+                <div  class="main">
+<div  class="notice tracking-ad"  data-mod="popu_3"> 
+
+<a  href="http://bbs.csdn.net/topics/390749605"  target="_blank">
+<font  color="red">2014年7月微软MVP申请开始了</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a  href="http://blog.csdn.net/lyq8479/article/details/23314367"  target="_blank">
+<font  color="blue">参与CSDN社区问答活动“基于Java的微信公众平台开发”赢签名赠书
+</font></a>
+
+
+
+</div>                    <link  href="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/comment1.css"  type="text/css"  rel="stylesheet">
+<link  href="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/style1.css"  type="text/css"  rel="stylesheet">
+<div  id="article_details"  class="details">
+    <div  class="article_title">
+    <span  class="ico ico_type_Repost"></span>
+    <h1>
+        <span  class="link_title"><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406">
+        Linux如何自动获取IP地址及配置静态IP地址上网
+        </a></span>
+    </h1>
+</div>
+
+    <div  class="article_manage">
+        <span  class="link_categories">
+        分类：
+            <a  href="http://blog.csdn.net/yhf19881015/article/category/1192537" >linux开发</a> 
+        </span>
+    <span  class="link_postdate">2013-05-04 23:02</span>
+    <span  class="link_view"  title="阅读次数">255人阅读</span>
+    <span  class="link_comments"  title="评论次数"><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#comments" >评论</a>(1)</span>
+    <span  class="link_collect"><a  href="javascript:void(0);"   title="收藏">收藏</a></span>
+    <span  class="link_report"><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#report"   title="举报">举报</a></span>
+    
+</div>
+
+    
+<div  style="clear:both"></div><div  style="border:solid 1px #ccc; background:#eee; float:left; min-width:200px;padding:4px 10px;"><p  style="text-align:right;margin:0;"><span  style="float:left;">目录<a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  title="系统根据文章中H1到H6标签自动生成文章目录">(?)</a></span><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"   title="展开">[+]</a></p><ol  style="display:none;margin-left:14px;padding-left:14px;line-height:160%;"><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#t0">第一步激活网卡</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#t1">第二步设置网卡进入系统时启动</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#t2">第三步修改网卡文件ifcfg-eth0</a></li><li><a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#t3">总结</a></li></ol></div><div  style="clear:both"></div><div  id="article_content"  class="article_content">
+
+<h4  style="margin:0px; padding:0px; border:0px; list-style:none; color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px; line-height:25px"><a  name="t0"></a>
+第一步：激活网卡</h4>
+<p  style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal; line-height:21.14285659790039px; color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px">
+系统装好后默认的网卡是eth0，用下面的命令将这块网卡激活。<br  style="line-height:25px">
+# ifconfig eth0 up　　</p>
+<h4  style="margin:0px; padding:0px; border:0px; list-style:none; color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px; line-height:25px"><a  name="t1"></a>
+第二步：设置网卡进入系统时启动</h4>
+<p  style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal; line-height:21.14285659790039px; color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px">
+&nbsp;<wbr><wbr>&nbsp;<wbr><wbr>&nbsp;<wbr><wbr>&nbsp;<wbr>想要每次开机就可以自动获取IP地址上网，就要设置网络服务在系统启动时也启动。Linux有一点与windows不同的是很多服务默认是停止的，而且你在某次使用该服务时启动这个服务，但是没设置它为默认启动，则下次进入系统这个服务依然是停止的。下面是设置网络服务在系统启动时也启动的方法。</p>
+<p  style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal; line-height:21.14285659790039px; color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px">
+&nbsp;<wbr><wbr>&nbsp;<wbr><wbr>&nbsp;<wbr><wbr>&nbsp;<wbr>使用chkconfig命令让网络服务在系统启动级别是2345时默认启动。</p>
+<div  style="color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px; line-height:25px">
+# chkconfig --level 2345 network&nbsp;<wbr><wbr>&nbsp;<wbr>on</div>
+<h4  style="margin:0px; padding:0px; border:0px; list-style:none; color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px; line-height:25px"><a  name="t2"></a>
+第三步：修改网卡文件ifcfg-eth0</h4>
+<p  style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal; line-height:21.14285659790039px; color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px">
+&nbsp;<wbr><wbr>&nbsp;<wbr><wbr>&nbsp;<wbr><wbr>&nbsp;<wbr>修改ifcfg-eth0文件，设置ONBOOT的值为yes，让网络服务启动时使用该网卡。设置BOOTPROTO的值为dhcp，让网卡从DHCP服务器自动获取IP地址。</p>
+<div  style="color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px; line-height:25px">
+# vi /etc/sysconfig/network-scripts/ifcfg-eth0<br>
+ONBOOT=yes<br>
+BOOTPROTO=dhcp</div>
+<h4  style="margin:0px; padding:0px; border:0px; list-style:none; color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px; line-height:25px"><a  name="t3"></a>
+总结：</h4>
+<p  style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal; line-height:21.14285659790039px; color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px">
+&nbsp;<wbr><wbr>&nbsp;<wbr><wbr>&nbsp;<wbr><wbr>&nbsp;<wbr>通常情况下第三步是最重要的，因为大部分Linux系统默认网络服务是系统启动时也启动的，网卡也是启用的，只要设置好第三步，然后使用下面的命令启动网络服务就OK。</p>
+<div  style="color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px; line-height:25px">
+# service network start</div>
+<p  style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal; line-height:21.14285659790039px; color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px">
+&nbsp;<wbr><wbr>&nbsp;<wbr><wbr>&nbsp;<wbr><wbr>&nbsp;<wbr>配置静态IP地址上网与动态IP地址上网同出一辙，修改ifcfg-eth0，然后用命令service network retart重启网络服务。</p>
+<div  style="color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px; line-height:25px">
+DEVICE=eth0<br>
+IPADDR=192.168.1.100<br>
+NETMASK=255.255.255.0<br>
+GATEWAY=192.168.1.1<br>
+DNS=8.8.8.8<br>
+BOOTPROTO=static<br>
+ONBOOT=yes</div>
+<div  style="color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px; line-height:25px">
+<br>
+</div>
+<div  style="color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px; line-height:25px">
+debian：</div>
+<div  style="color:rgb(102,102,102); font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14.285714149475098px; line-height:25px">
+<p  style="margin-top:0px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal; line-height:normal; color:rgb(51,51,51); font-family:Arial">
+编辑/etc/network/interfaces</p>
+<p  style="margin-top:0px; margin-bottom:5px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal; line-height:normal; color:rgb(51,51,51); font-family:Arial">
+# The loopback network interface<br>
+auto lo<br>
+iface lo inet loopback<br>
+&nbsp;<wbr><br>
+# The primary network interface<br>
+allow-hotplug eth0<br>
+auto eth0<br>
+iface eth0 inet static<br>
+address 192.168.1.36<br>
+netmask 255.255.255.0<br>
+gateway 192.168.1.10&nbsp;<wbr>&nbsp;<wbr>&nbsp;#公司的网关是192.168.1.10，一般是192.168.1.1<br>
+<br>
+保存编辑结果，并重启网络服务<br>
+/etc/init.d/networking restart<br>
+<br>
+已经可以用新的静态IP访问internet了</p>
+</div>
+
+</div>
+
+
+
+
+<div  id="bdshare"  class="bdshare_t bds_tools get-codes-bdshare"  style="float: right;">
+<a  class="bds_qzone"  title="分享到QQ空间"  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"></a>
+<a  class="bds_tsina"  title="分享到新浪微博"  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"></a>
+<a  class="bds_tqq"  title="分享到腾讯微博"  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"></a>
+<a  class="bds_renren"  title="分享到人人网"  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"></a>
+<a  class="bds_t163"  title="分享到网易微博"  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"></a>
+<span  class="bds_more">更多</span>
+<a  class="shareCount"  href="http://blog.csdn.net/yhf19881015/article/details/8885406#"  title="累计分享0次">0</a>
+</div>
+
+
+
+
+<ul  class="article_next_prev">
+            <li  class="prev_article"><span >上一篇</span><a  href="http://blog.csdn.net/yhf19881015/article/details/8876371" >linux下串口应用程序编程</a></li>
+            <li  class="next_article"><span >下一篇</span><a  href="http://blog.csdn.net/yhf19881015/article/details/8896024" >在Linux的应用程序里面调用shell</a></li>
+</ul>
+
+
+<script  type="text/javascript"  id="bdshare_js"  data="type=tools&amp;uid=1536434"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/bds_s_v2.js"></script>
+
+<script  type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+
+
+</div>
+      <dl  class="blog-associat-tag">
+        <dt>主题推荐</dt>
+        <dd>
+                <a  href="http://www.csdn.net/tag/linux"  target="_blank"  class="blog-tage-red">linux</a> 
+                <a  href="http://www.csdn.net/tag/interface"  target="_blank"  class="blog-tage-red">interface</a> 
+                <a  href="http://www.csdn.net/tag/networking"  target="_blank"  class="blog-tage-red">networking</a> 
+                <a  href="http://www.csdn.net/tag/%E6%9C%8D%E5%8A%A1%E5%99%A8"  target="_blank"  class="blog-tage-red">服务器</a> 
+                <a  href="http://www.csdn.net/tag/gateway"  target="_blank"  class="blog-tage-red">gateway</a> 
+        </dd>
+    </dl> 
+    <dl  class="blog-ass-articl tracking-ad"  data-mod="popu_17">
+        <dt><span>博文推荐</span></dt>
+            <dd>
+                <a  href="http://blog.csdn.net/Erli11/article/details/23341109"  title="【linux】应该知道的Linux技巧"  target="_blank">【linux】应该知道的Linux技巧</a></dd>
+            <dd>
+                <a  href="http://blog.csdn.net/lhb19891029/article/details/23334451"  title="linux环境下动态链接和静态链接"  target="_blank">linux环境下动态链接和静态链接</a></dd>
+            <dd>
+                <a  href="http://blog.csdn.net/cnisme/article/details/23339597"  title="debug code example in Kernel"  target="_blank">debug code example i...</a></dd>
+            <dd>
+                <a  href="http://blog.csdn.net/q1596948728/article/details/23338187"  title="linux服务器下LNMP安装与配置方法"  target="_blank">linux服务器下LNMP安装与配置方法</a></dd>
+            <dd>
+                <a  href="http://blog.csdn.net/yzgonline/article/details/23272673"  title="分析监控linux资源的方法"  target="_blank">分析监控linux资源的方法</a></dd>
+            <dd>
+                <a  href="http://blog.csdn.net/mh370/article/details/23279173"  title="nmon结果分析研究"  target="_blank">nmon结果分析研究</a></dd>
+            <dd>
+                <a  href="http://blog.csdn.net/TCH8502/article/details/23339233"  title="Centos下解压rar、zip文件的方法"  target="_blank">Centos下解压rar、zip文件的方法</a></dd>
+            <dd>
+                <a  href="http://blog.csdn.net/u013701713/article/details/23338385"  title="赛维特A11M资料介绍"  target="_blank">赛维特A11M资料介绍</a></dd>
+    </dl>
+
+    <div  id="ad_cen">
+        <script  type="text/javascript">            BAIDU_CLB_SLOT_ID = "117306";</script>
+        <script  type="text/javascript"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/o.js"></script><div  id="BAIDU_DUP_wrapper_117306_0"></div><script  charset="utf-8"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/ecom"></script>
+    </div>
+    <script  type="text/javascript">
+        //new Ad(4, 'ad_cen');
+    </script>
+<div  id="comment_title"  class="panel_head">
+    查看评论<a  name="comments"></a></div>
+<div  id="comment_list"><dl  class="comment_item comment_topic"  id="comment_item_2623984"><dt  class="comment_head"  floor="1">1楼 <span  class="user"><a  class="username"  href="http://blog.csdn.net/yhf19881015"  target="_blank">yhf19881015</a> <span  class="ptime">2013-05-10 14:59发表</span>  <a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#reply"  class="cmt_btn reply"  title="回复">[回复]</a> <span  class="comment_manage"  style="display:none;"  commentid="2623984"  username="yhf19881015"> <a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#quote"  class="cmt_btn quote"  title="引用">[引用]</a> <a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#report"  class="cmt_btn report"  title="举报">[举报]</a></span></span></dt><dd  class="comment_userface"><a  href="http://blog.csdn.net/yhf19881015"  target="_blank"><img  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/3_yhf19881015.jpg"  width="40"  height="40"></a></dd><dd  class="comment_body">在应用程序中进行系统调用，system("ifconfig eth0 192.168.1.5");</dd></dl><div  class="clear"></div></div>
+<div  id="comment_bar"  style="display: none;">
+</div>
+<div  id="comment_form"><div  class="guest_link">您还没有登录,请<a  href="javascript:void(0);" >[登录]</a>或<a  href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fyhf19881015%2Farticle%2Fdetails%2F8885406">[注册]</a></div></div>
+<div  class="announce">
+    * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a  name="reply"></a><a  name="quote"></a></div>
+<script  type="text/javascript">
+    var fileName = '8885406';
+    var commentscount = 1;
+    var islock = false
+</script>
+<script  type="text/javascript"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/comment.js"></script>
+    <div  id="ad_bot">
+    </div>
+    <script  type="text/javascript">
+    new Ad(5, 'ad_bot');
+    </script>
+<div  id="report_dialog">
+</div>
+
+<div  id="d-top"  style="bottom:60px;">
+      
+
+       <a  id="quick-reply"  class="btn btn-top q-reply"  title="快速回复"  style="display:none;">
+            <img  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/blog-icon-reply.png"  alt="快速回复">
+        </a>    
+
+    <a  id="d-top-a"  class="btn btn-top backtop"  style="display: none;"  title="返回顶部" >         
+         <img  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/top.png"  alt="TOP">
+    </a>
+</div>
+<script  type="text/javascript">
+    $(function ()
+    {
+        if($("#comment_content").length>0)
+        {
+            $("#quick-reply").show();
+
+            $("#quick-reply").click(function(){
+                setEditorFocus();
+            });
+        }       
+     
+        var d_top = $('#d-top-a');
+        document.onscroll = function ()
+        {
+            var scrTop = (document.body.scrollTop || document.documentElement.scrollTop);
+            if (scrTop > 500)
+            {
+                d_top.show();
+            } else
+            {
+                d_top.hide();
+            }
+        }
+        $('#d-top-a').click(function ()
+        {
+            scrollTo(0, 0);
+            this.blur();
+            return false;
+        });
+    });
+  
+</script>
+<style  type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+<div  class="tag_list">
+    <h5>
+        <a  href="http://www.csdn.net/tag/"  target="_blank">核心技术类目</a></h5>
+    <div  class="classify">
+<a  title="全部主题"  href="http://www.csdn.net/tag"  target="_blank" >全部主题</a>
+<a  title="Java"  href="http://www.csdn.net/tag/Java"  target="_blank" >Java</a>
+<a  title="VPN"  href="http://www.csdn.net/tag/vpn"  target="_blank" >VPN</a>
+<a  title="Android"  href="http://www.csdn.net/tag/android"  target="_blank" >Android</a>
+<a  title="iOS"  href="http://www.csdn.net/tag/ios"  target="_blank" >iOS</a>
+<a  title="ERP"  href="http://www.csdn.net/tag/erp"  target="_blank" >ERP</a>
+<a  title="IE10"  href="http://www.csdn.net/tag/ie10"  target="_blank" >IE10</a>
+<a  title="Eclipse"  href="http://www.csdn.net/tag/eclipse"  target="_blank" >Eclipse</a>
+<a  title="CRM"  href="http://www.csdn.net/tag/crm"  target="_blank" >CRM</a>
+<a  title="JavaScript"  href="http://www.csdn.net/tag/javascript"  target="_blank" >JavaScript</a>
+<a  title="Ubuntu"  href="http://www.csdn.net/tag/ubuntu"  target="_blank" >Ubuntu</a>
+<a  title="NFC"  href="http://www.csdn.net/tag/nfc"  target="_blank" >NFC</a>
+<a  title="WAP"  href="http://www.csdn.net/tag/wap"  target="_blank" >WAP</a>
+<a  title="jQuery"  href="http://www.csdn.net/tag/jquery"  target="_blank" >jQuery</a>
+<a  title="数据库"  href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E5%BA%93"  target="_blank" >数据库</a>
+<a  title="BI"  href="http://www.csdn.net/tag/bi"  target="_blank" >BI</a>
+<a  title="HTML5"  href="http://www.csdn.net/tag/html5"  target="_blank" >HTML5</a>
+<a  title="Spring"  href="http://www.csdn.net/tag/spring"  target="_blank" >Spring</a>
+<a  title="Apache"  href="http://www.csdn.net/tag/apache"  target="_blank" >Apache</a>
+<a  title="Hadoop"  href="http://www.csdn.net/tag/hadoop"  target="_blank" >Hadoop</a>
+<a  title=".NET"  href="http://www.csdn.net/tag/.net"  target="_blank" >.NET</a>
+<a  title="API"  href="http://www.csdn.net/tag/api"  target="_blank" >API</a>
+<a  title="HTML"  href="http://www.csdn.net/tag/html"  target="_blank" >HTML</a>
+<a  title="SDK"  href="http://www.csdn.net/tag/sdk"  target="_blank" >SDK</a>
+<a  title="IIS"  href="http://www.csdn.net/tag/iis"  target="_blank" >IIS</a>
+<a  title="Fedora"  href="http://www.csdn.net/tag/fedora"  target="_blank" >Fedora</a>
+<a  title="XML"  href="http://www.csdn.net/tag/xml"  target="_blank" >XML</a>
+<a  title="LBS"  href="http://www.csdn.net/tag/lbs"  target="_blank" >LBS</a>
+<a  title="Unity"  href="http://www.csdn.net/tag/unity"  target="_blank" >Unity</a>
+<a  title="Splashtop"  href="http://www.csdn.net/tag/splashtop"  target="_blank" >Splashtop</a>
+<a  title="UML"  href="http://www.csdn.net/tag/uml"  target="_blank" >UML</a>
+<a  title="components"  href="http://www.csdn.net/tag/components"  target="_blank" >components</a>
+<a  title="Windows Mobile"  href="http://www.csdn.net/tag/windowsmobile"  target="_blank" >Windows Mobile</a>
+<a  title="Rails"  href="http://www.csdn.net/tag/rails"  target="_blank" >Rails</a>
+<a  title="QEMU"  href="http://www.csdn.net/tag/qemu"  target="_blank" >QEMU</a>
+<a  title="KDE"  href="http://www.csdn.net/tag/kde"  target="_blank" >KDE</a>
+<a  title="Cassandra"  href="http://www.csdn.net/tag/cassandra"  target="_blank" >Cassandra</a>
+<a  title="CloudStack"  href="http://www.csdn.net/tag/cloudstack"  target="_blank" >CloudStack</a>
+<a  title="FTC"  href="http://www.csdn.net/tag/ftc"  target="_blank" >FTC</a>
+<a  title="coremail"  href="http://www.csdn.net/tag/coremail"  target="_blank" >coremail</a>
+<a  title="OPhone "  href="http://www.csdn.net/tag/ophone"  target="_blank" >OPhone </a>
+<a  title="CouchBase"  href="http://www.csdn.net/tag/couchbase"  target="_blank" >CouchBase</a>
+<a  title="云计算"  href="http://www.csdn.net/tag/%E4%BA%91%E8%AE%A1%E7%AE%97"  target="_blank" >云计算</a>
+<a  title="iOS6"  href="http://www.csdn.net/tag/iOS6"  target="_blank" >iOS6</a>
+<a  title="Rackspace "  href="http://www.csdn.net/tag/rackspace"  target="_blank" >Rackspace </a>
+<a  title="Web App"  href="http://www.csdn.net/tag/webapp"  target="_blank" >Web App</a>
+<a  title="SpringSide"  href="http://www.csdn.net/tag/springside"  target="_blank" >SpringSide</a>
+<a  title="Maemo"  href="http://www.csdn.net/tag/maemo"  target="_blank" >Maemo</a>
+<a  title="Compuware"  href="http://www.csdn.net/tag/compuware"  target="_blank" >Compuware</a>
+<a  title="大数据"  href="http://www.csdn.net/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE"  target="_blank" >大数据</a>
+<a  title="aptech"  href="http://www.csdn.net/tag/aptech"  target="_blank" >aptech</a>
+<a  title="Perl"  href="http://www.csdn.net/tag/perl"  target="_blank" >Perl</a>
+<a  title="Tornado"  href="http://www.csdn.net/tag/tornado"  target="_blank" >Tornado</a>
+<a  title="Ruby"  href="http://www.csdn.net/tag/ruby"  target="_blank" >Ruby</a>
+<a  title="Hibernate"  href="http://www.csdn.net/hibernate"  target="_blank" >Hibernate</a>
+<a  title="ThinkPHP"  href="http://www.csdn.net/tag/thinkphp"  target="_blank" >ThinkPHP</a>
+<a  title="Spark"  href="http://www.csdn.net/tag/spark"  target="_blank" >Spark</a>
+<a  title="HBase"  href="http://www.csdn.net/tag/hbase"  target="_blank" >HBase</a>
+<a  title="Pure"  href="http://www.csdn.net/tag/pure"  target="_blank" >Pure</a>
+<a  title="Solr"  href="http://www.csdn.net/tag/solr"  target="_blank" >Solr</a>
+<a  title="Angular"  href="http://www.csdn.net/tag/angular"  target="_blank" >Angular</a>
+<a  title="Cloud Foundry"  href="http://www.csdn.net/tag/cloudfoundry"  target="_blank" >Cloud Foundry</a>
+<a  title="Redis"  href="http://www.csdn.net/tag/redis"  target="_blank" >Redis</a>
+<a  title="Scala"  href="http://www.csdn.net/tag/scala"  target="_blank" >Scala</a>
+<a  title="Django"  href="http://www.csdn.net/tag/django"  target="_blank" >Django</a>
+<a  title="Bootstrap"  href="http://www.csdn.net/tag/bootstrap"  target="_blank" >Bootstrap</a>
+    </div>
+</div>
+
+                    <div  class="clear">
+                    </div>
+                </div>
+            </div>
+            <div  id="side">
+    <div  class="side">
+<div  id="panel_Profile"  class="panel">
+<ul  class="panel_head"><span>个人资料</span></ul>
+<ul  class="panel_body profile">
+<div  id="blog_userface">
+    <a  href="http://my.csdn.net/yhf19881015"  target="_blank">
+    <img  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/1_yhf19881015.jpg"  title="访问我的空间"  style="max-width:90%">
+    </a>
+    <br>
+    <span><a  href="http://my.csdn.net/yhf19881015"  class="user_name"  target="_blank">yhf19881015</a></span>
+</div>
+<div  class="interact">
+<a  href="javascript:void(0);"  class="attent"  id="span_add_follow"  title="[加关注]" ></a>
+<a  href="javascript:void(0);"  class="letter"   title="[发私信]"></a>
+</div>
+<div  id="blog_medal">
+<div  id="bms_box"></div></div>
+<ul  id="blog_rank">
+    <li>访问：<span>41402次</span></li>
+    <li>积分：<span>693分</span></li>
+    <li>排名：<span>千里之外</span></li>
+</ul>
+<ul  id="blog_statistics">
+    <li>原创：<span>10篇</span></li>
+    <li>转载：<span>129篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>8条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div  class="panel"  id="panel_Search">
+    <ul  class="panel_head"><span>文章搜索</span></ul>
+    <ul  class="panel_body">
+        <form  id="frmSearch"  action="http://so.csdn.net/search"  class="form_search"  target="_blank">
+        <span><input  id="inputSearch"  type="text"  class="blogsearch"  title="请输入关键字"></span>
+        <input  id="btnSubmit"  type="submit"  value="搜索"  title="search in blog">
+        <input  type="hidden"  name="q"  id="inputQ">
+        <input  type="hidden"  name="t"  value="blog">
+        <a  id="btnSearchBlog"  target="_blank"></a>
+        </form>
+    </ul>
+</div><div  id="panel_Category"  class="panel">
+<ul  class="panel_head"><span>文章分类</span></ul>
+<ul  class="panel_body">
+             <li>
+                <a  href="http://blog.csdn.net/yhf19881015/article/category/1192495" >am3517研发</a><span>(26)</span>
+            </li>
+             <li>
+                <a  href="http://blog.csdn.net/yhf19881015/article/category/1192497" >生活工作</a><span>(5)</span>
+            </li>
+             <li>
+                <a  href="http://blog.csdn.net/yhf19881015/article/category/1192498" >技术常识</a><span>(4)</span>
+            </li>
+             <li>
+                <a  href="http://blog.csdn.net/yhf19881015/article/category/1192503" >QT开发</a><span>(1)</span>
+            </li>
+             <li>
+                <a  href="http://blog.csdn.net/yhf19881015/article/category/1192535" >Uboot</a><span>(2)</span>
+            </li>
+             <li>
+                <a  href="http://blog.csdn.net/yhf19881015/article/category/1192536" >关于构建开发环境</a><span>(4)</span>
+            </li>
+             <li>
+                <a  href="http://blog.csdn.net/yhf19881015/article/category/1192537" >linux开发</a><span>(24)</span>
+            </li>
+             <li>
+                <a  href="http://blog.csdn.net/yhf19881015/article/category/1192538" >linux基本指令</a><span>(1)</span>
+            </li>
+             <li>
+                <a  href="http://blog.csdn.net/yhf19881015/article/category/1588327" >求职专题</a><span>(10)</span>
+            </li>
+</ul>
+</div><div  id="panel_Archive"  class="panel">
+<ul  class="panel_head"><span>文章存档</span></ul>
+<ul  class="panel_body">
+<div  id="archive_list"><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2014/03">2014年03月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2013/11">2013年11月</a><span>(5)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2013/10">2013年10月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2013/09">2013年09月</a><span>(5)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2013/08">2013年08月</a><span>(10)</span></li><span  class="hidelist"  style="display:none;"><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2013/07">2013年07月</a><span>(4)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2013/06">2013年06月</a><span>(12)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2013/05">2013年05月</a><span>(11)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2013/04">2013年04月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2013/03">2013年03月</a><span>(3)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2013/01">2013年01月</a><span>(3)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2012/11">2012年11月</a><span>(7)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2012/10">2012年10月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2012/09">2012年09月</a><span>(4)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2012/08">2012年08月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2012/07">2012年07月</a><span>(20)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2012/06">2012年06月</a><span>(5)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2012/05">2012年05月</a><span>(44)</span></li><li><a  href="http://blog.csdn.net/yhf19881015/article/month/2010/12">2010年12月</a><span>(1)</span></li></span><div  id="archive_list_button"  class="list_closed">展开</div></div>
+</ul>
+</div>
+<div  id="hotarticls"  class="panel">
+<ul  class="panel_head"><span>阅读排行</span></ul>
+<ul  class="panel_body itemlist">
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/7710159"  title="摩托罗拉XT319刷机及ROOT,卸载系统应用程序，安装移至SD卡">摩托罗拉XT319刷机及ROOT,卸载系统应用程序，安装移至SD卡</a><span>(6398)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/7772485"  title="QT4.3.2安装">QT4.3.2安装</a><span>(2054)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/7581755"  title="十大职场潜规则送职场新人">十大职场潜规则送职场新人</a><span>(1465)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/7772509"  title="AM3517之SD卡启动盘恢复NAND flash的数据:U-boot(三)">AM3517之SD卡启动盘恢复NAND flash的数据:U-boot(三)</a><span>(1395)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/8910987"  title="GT-P3110如何root">GT-P3110如何root</a><span>(1305)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/7772506"  title="AM3517之SD卡启动盘恢复NAND flash的数据:x-loader(二)">AM3517之SD卡启动盘恢复NAND flash的数据:x-loader(二)</a><span>(1033)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/7772511"  title="AM3517之SD卡启动盘恢复NAND flash的数据:uImage(四)">AM3517之SD卡启动盘恢复NAND flash的数据:uImage(四)</a><span>(960)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/7772499"  title="AM3517之SD卡启动盘恢复NAND flash的数据:x-loader(一)">AM3517之SD卡启动盘恢复NAND flash的数据:x-loader(一)</a><span>(878)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/7772515"  title="AM3517之SD卡启动盘恢复NAND flash的数据:文件系统(五)">AM3517之SD卡启动盘恢复NAND flash的数据:文件系统(五)</a><span>(776)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/7785009"  title="ARM - Linux嵌入式C/C++各种资料分享【更新日期：2012/04/24】">ARM - Linux嵌入式C/C++各种资料分享【更新日期：2012/04/24】</a><span>(656)</span>
+</li>
+</ul>
+</div>
+<div  id="hotarticls2"  class="panel">
+<ul  class="panel_head"><span>评论排行</span></ul>
+<ul  class="panel_body itemlist">
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/8910987"  title="GT-P3110如何root">GT-P3110如何root</a><span>(2)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/10089505"  title="位域">位域</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/8898910"  title="嵌入式Linux中让应用程序自动启动">嵌入式Linux中让应用程序自动启动</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/8885406"  title="Linux如何自动获取IP地址及配置静态IP地址上网">Linux如何自动获取IP地址及配置静态IP地址上网</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/9048165"  title="非常全的linux面试笔试题及参考答案">非常全的linux面试笔试题及参考答案</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/11156891"  title="数据结构学习笔记">数据结构学习笔记</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/7552803"  title="linux下驱动模块化编译，动态加载以及卸载">linux下驱动模块化编译，动态加载以及卸载</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/8186885"  title="Ubuntu下su:authentication failure的解决办法">Ubuntu下su:authentication failure的解决办法</a><span>(0)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/8873234"  title="嵌入式LinuxUDP通信程序设计">嵌入式LinuxUDP通信程序设计</a><span>(0)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/yhf19881015/article/details/8876224"  title="如何将数字转化为字符串">如何将数字转化为字符串</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div  id="homepageArticles"  class="panel tracking-ad"  data-mod="popu_4">
+<ul  class="panel_head"><span>推荐文章</span></ul>
+<ul  class="panel_body"  id="ad_commend"></ul>
+</div>
+<script  type="text/javascript">
+ new Ad(12, 'ad_commend');
+</script><div  id="custom_column_20800161"  class="panel">
+<ul  class="panel_head"><span>hao507高手连接</span></ul>
+<ul  class="panel_body">
+
+http://blog.csdn.net/hao507/article/category/709436/2
+
+</ul>
+</div><div  id="newcomments"  class="panel">
+<ul  class="panel_head"><span>最新评论</span></ul>
+<ul  class="panel_body itemlist">
+    <li>
+    <a  href="http://blog.csdn.net/yhf19881015/article/details/11156891#comments">数据结构学习笔记</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/u010350620"  class="user_name">小鱼宝贝</a>:
+请问一下，你可不可以发国嵌唐老师的数据结构视频给我谢谢！
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/yhf19881015/article/details/10089505#comments">位域</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/yhf19881015"  class="user_name">yhf19881015</a>:
+184154128246
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/yhf19881015/article/details/8910987#comments">GT-P3110如何root</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/yhf19881015"  class="user_name">yhf19881015</a>:
+@solomon5926:出现root成功骷颅头标志了么？
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/yhf19881015/article/details/8910987#comments">GT-P3110如何root</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/solomon5926"  class="user_name">solomon5926</a>:
+我的root之后还是不能删除系统软件
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/yhf19881015/article/details/9048165#comments">非常全的linux面试笔试题及参考答案</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/yhf19881015"  class="user_name">yhf19881015</a>:
+转自http://www.linux521.com/2009/system/201206/18176...
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/yhf19881015/article/details/8885406#comments">Linux如何自动获取IP地址及配置静态IP地址上网</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/yhf19881015"  class="user_name">yhf19881015</a>:
+在应用程序中进行系统调用，system("ifconfig eth0 192.168.1.5");
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/yhf19881015/article/details/8898910#comments">嵌入式Linux中让应用程序自动启动</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/yhf19881015"  class="user_name">yhf19881015</a>:
+在rcS文件夹里添加/opy/test,可执行程序路径，开机后即可自动运行
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/yhf19881015/article/details/7552803#comments">linux下驱动模块化编译，动态加载以及卸载</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/yhf19881015"  class="user_name">yhf19881015</a>:
+请教一下啊，源文件已完成，怎么编译啊？先将.c编译成.o，再编译成.ko？第2,3,4设置什么没看懂...
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div  class="clear">
+    </div>
+</div>
+
+            <div  class="clear">
+            </div>
+        </div>
+        
+
+<script  type="text/javascript"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/newblog.min.js"></script>
+<script  type="text/javascript"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script  type="text/javascript">
+    document.write('<script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/publib_footer.js?' + Math.floor(new Date() / 120000).toString(36) + '="></' + 'script>');
+</script><script  type="text/javascript"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/publib_footer.js"></script><link  rel="stylesheet"  type="text/css"  href="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/pub_footer_2012.css"><div  id="pub_footerall"  class="pub_footerall"><dl><dt></dt> <dd><a  href="http://www.csdn.net/company/about.html"  target="_blank">公司简介</a>|<a  href="http://www.csdn.net/company/recruit.html"  target="_blank">招贤纳士</a>|<a  href="http://www.csdn.net/company/marketing.html"  target="_blank">广告服务</a>|<a  href="http://www.csdn.net/company/account.html"  target="_blank">银行汇款帐号</a>|<a  href="http://www.csdn.net/company/contact.html"  target="_blank">联系方式</a>|<a  href="http://www.csdn.net/company/statement.html"  target="_blank">版权声明</a>|<a  href="http://www.csdn.net/company/layer.html"  target="_blank">法律顾问</a>|<a  href="mailto:webmaster@csdn.net">问题报告</a>|<a  target="_blank"  href="http://www.csdn.net/friendlink.html">合作伙伴</a>|<a  href="http://bbs.csdn.net/forums/Service"  target="_blank">论坛反馈</a></dd><dd><a  href="http://wpa.qq.com/msgrd?v=3&uin=2355263776&site=qq&menu=yes"  target="_blank"  class="qq">网站客服</a> <a  href="http://wpa.qq.com/msgrd?v=3&uin=2251809102&site=qq&menu=yes"  target="_blank"  class="qq">杂志客服</a> <a  href="http://e.weibo.com/csdnsupport/profile"  target="_blank"  class="weibo">微博客服</a> <a  href="mailto:webmaster@csdn.net"  class="email"  title="联系邮箱">webmaster@csdn.net</a> <span  class="phone"  title="服务热线">400-600-2320</span></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd>江苏乐知网络技术有限公司 提供商务支持</dd><dd>Copyright © 1999-2014, CSDN.NET, All Rights Reserved&nbsp;<a  href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010"  target="_blank"><img  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/gongshang_logos.gif"  alt="GongshangLogo"  title=""></a></dd></dl></div><div  id="note1"  class="csdn_note"  style="display:none; position:absolute; z-index:9999; width:440px">  <span  class="notice_top_arrow"><span  class="inner"></span></span>  <div  class="box"></div></div><div  class="csdn_notice_tip"  style="display: none; position: absolute; z-index: 9990; width: 170px;">  <iframe  src="about:blank"  frameborder="0"  scrolling="no"  style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div  class="tip_text">您有<strong>0</strong>条新通知</div>  <a  href="javascript:void 0"  class="close2"></a></div><script  id="noticeScript"  type="text/javascript"  btnid="header_notice_num"  wrapid="note1"  count="5"  subcount="5"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/notify.js"></script>
+    <script  type="text/javascript"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/login.js"></script>
+<script  type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/pv.aspx"  border="0"  width="0"  height="0">
+<script  type="text/javascript"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/counter.js"></script><script  type="text/javascript"  charset="UTF-8"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/msg.popup.js"></script>
+<script  type="text/javascript"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/ad-blog.js"></script>
+<script  type="text/javascript"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/count.js"></script><iframe  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/logs.htm"  frameborder="0"  width="0"  height="0"></iframe>
+<script  type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a>"
+                    + "<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+    });
+</script>
+
+    </div>
+      
+    
+    <script  id="csdn-toolbar-id"  btnid="header_notice_num"  wrapid="note1"  count="5"  subcount="5"  type="text/javascript"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/toolbar.js"></script>
+     
+
+
+<input  type="hidden"  id="J-rightclick-event"><link  href="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/message_pop.css"  rel="stylesheet"  type="text/css"><div  id="_popup_msg_container"  style="display: block;">
+
+<div  wistate="max"  id="im_popupWindow_miniMsg"  class="im_popupWindow"  style="display: block; height: 240px;">
+	<h6  class="wi_draggable"><span>
+</span><a ><img  alt="close"  class="founctionpic3"  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/pic_close.gif"></a></h6>
+    <div  id="im_popupWindow_miniMsgContent"  class="wi_content">
+		<div  class="kuai">
+			<div  style="width:280px;"><a  href="http://huiyi.csdn.net/meeting/info/815/tech?project_id=921"  target="_blank"><img  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/280_188.jpg"  alt=""  border="0"  style="border:0;"  title=""></a></div>
+		</div>
+	</div>
+<div  class="content_qq"><span   target="_blank"><font  color="red">
+</font></span>
+ </div>
+ 
+ 
+</div>
+</div><img  src="./Linux如何自动获取IP地址及配置静态IP地址上网 - yhf19881015的专栏 - 博客频道 - CSDN.NET_files/count_new.php"  style="display: none;"></body></html>
